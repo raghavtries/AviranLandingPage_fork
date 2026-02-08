@@ -1,6 +1,6 @@
-# Aviran-style Landing Page
+# Aviran Landing Page
 
-A React + TypeScript landing page inspired by [Aviran](https://www.aviran.health/) — self-improving AI agents for healthcare.
+Landing page for **Aviran** — Self-Learning for Agents. Automatic agent optimization: find best configs, simulate, and auto-deploy. Built for AI agent vendors.
 
 ## Stack
 
@@ -21,17 +21,18 @@ Open [http://localhost:5173](http://localhost:5173).
 
 ```bash
 npm run build
-npm run preview   # preview production build
+npm run preview   # preview production build (e.g. localhost:4173)
 ```
 
 ## Sections
 
-- **Header** — Logo, Features, Contact, Request Demo
-- **Hero** — “Healthcare agents that self improve” + CTA
-- **Trusted by** — Partner names
-- **Built for Healthcare** — Three features (Self-Improving Agents, Deploy Your Way, In Production Today)
-- **How it works** — Tabs: Observation, Model Comparison, Root Cause Analysis, Logs
+- **Header** — Logo, Features, Contact, Docs, Request Demo
+- **Hero** — “AI agents that self improve” + CTA
+- **Trusted by** — Wyn Labs, Sentrial, BrainHi, Artisio
+- **Built for agent vendors** — Self-Improving Agents, Connect & Optimize, In Production Today
+- **How it works** — Observation, Model Comparison, Root Cause Analysis, Logs
+- **Docs** — Documentation cards + FAQs (accordion)
 - **CTA** — “Ready to see Aviran in action?” + Talk to us
 - **Footer** — Tagline and copyright
 
-Design uses a dark theme, Instrument Serif for headings, DM Sans for body, and a cyan accent.
+Design: dark theme, Instrument Serif + DM Sans, blue accent.

@@ -3,6 +3,7 @@ import './Hero.css'
 export default function Hero() {
   return (
     <section className="hero">
+      <p className="hero-tagline">Self-Learning for Agents</p>
       <h1 className="hero-title">
         AI agents that
         <span className="hero-title-accent"> self improve</span>

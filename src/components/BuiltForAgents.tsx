@@ -17,7 +17,7 @@ const FEATURES = [
     number: '03',
     title: 'In Production Today',
     description:
-      'Used by AI agent vendors and startups. Live in production with paying customers like Wyn Labs, Sentrial, and design partners across verticals.',
+      'Used by AI agent vendors and startups. Live in production with teams like Sentrial, Martin, Wyn Labs, and more.',
   },
 ]
 

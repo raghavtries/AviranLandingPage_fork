@@ -1,0 +1,141 @@
+.docs {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  border-top: 1px solid var(--border);
+}
+
+.docs-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 400;
+  margin: 0 0 0.5rem;
+  text-align: center;
+}
+
+.docs-intro {
+  text-align: center;
+  color: var(--text-muted);
+  margin: 0 0 2.5rem;
+  font-size: 1.05rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.docs-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+.docs-card {
+  padding: 1.5rem 1.75rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.docs-card:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.docs-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--text);
+}
+
+.docs-card-content {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.docs-faq-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3.5vw, 1.85rem);
+  font-weight: 400;
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.docs-faq-list {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.docs-faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.docs-faq-item:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.docs-faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.2s;
+}
+
+.docs-faq-question:hover {
+  color: var(--accent);
+}
+
+.docs-faq-icon {
+  flex-shrink: 0;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  transition: transform 0.25s, color 0.2s;
+}
+
+.docs-faq-item.open .docs-faq-icon {
+  transform: rotate(45deg);
+  color: var(--accent);
+}
+
+.docs-faq-answer {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.35s ease;
+}
+
+.docs-faq-item.open .docs-faq-answer {
+  max-height: 320px;
+}
+
+.docs-faq-answer p {
+  margin: 0 0 1.1rem;
+  padding-right: 2rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+@media (min-width: 768px) {
+  .docs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .docs-card {
+    padding: 1.75rem 2rem;
+  }
+}

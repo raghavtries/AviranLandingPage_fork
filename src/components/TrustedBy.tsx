@@ -1,16 +1,16 @@
 import './TrustedBy.css'
 
 const LOGOS = [
-  'Prime Medical',
-  'Ismail Healthcare',
-  'Pear Health',
-  'PARAKH Hospital',
+  'Wyn Labs',
+  'Sentrial',
+  'BrainHi',
+  'Artisio',
 ]
 
 export default function TrustedBy() {
   return (
     <section className="trusted-by">
-      <p className="trusted-by-label">Trusted by healthcare professionals at</p>
+      <p className="trusted-by-label">Trusted by agent vendors and teams building at</p>
       <ul className="trusted-by-logos">
         {LOGOS.map((name) => (
           <li key={name}>

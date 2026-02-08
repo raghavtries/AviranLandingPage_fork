@@ -12,11 +12,14 @@
 .header {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  padding: 0.6rem 1.5rem;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  padding: 0.65rem 1.75rem 0.65rem 1.25rem;
+  min-width: min(100%, 640px);
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: 999px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
@@ -39,7 +42,7 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: clamp(1.5rem, 3.5vw, 2rem);
 }
 
 .nav a {

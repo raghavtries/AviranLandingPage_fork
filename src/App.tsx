@@ -1,8 +1,9 @@
 import Header from './components/Header'
 import Hero from './components/Hero'
 import TrustedBy from './components/TrustedBy'
-import BuiltForHealthcare from './components/BuiltForHealthcare'
+import BuiltForAgents from './components/BuiltForAgents'
 import HowItWorks from './components/HowItWorks'
+import Docs from './components/Docs'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
 import './App.css'
@@ -14,8 +15,9 @@ function App() {
       <main>
         <Hero />
         <TrustedBy />
-        <BuiltForHealthcare />
+        <BuiltForAgents />
         <HowItWorks />
+        <Docs />
         <CTA />
       </main>
       <Footer />

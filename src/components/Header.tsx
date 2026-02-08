@@ -36,8 +36,9 @@ export default function Header() {
         <nav className={`nav ${menuOpen ? 'nav-open' : ''}`}>
           <a href="#features">Features</a>
           <a href="#contact">Contact</a>
+          <a href="#docs">Docs</a>
           <a href="#demo" className="btn-cta">
-            Request Demo &rarr;
+            Request Demo →
           </a>
         </nav>
       </header>

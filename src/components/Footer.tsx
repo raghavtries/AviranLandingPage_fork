@@ -8,7 +8,7 @@ export default function Footer() {
           Aviran
         </a>
         <p className="footer-tagline">
-          AI monitoring and auto-remediation for healthcare.
+          Self-learning infrastructure for AI agents.
         </p>
         <p className="footer-copy">
           © {new Date().getFullYear()} Aviran. All rights reserved.

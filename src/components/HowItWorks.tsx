@@ -7,7 +7,7 @@ const STEPS = [
     title: 'Observation',
     subtitle: 'Monitor with precision',
     description:
-      'Real-time monitoring of agent performance across all interactions, tracking accuracy metrics, response times, and quality indicators to maintain optimal healthcare delivery',
+      'Real-time monitoring of agent performance across all interactions, tracking accuracy, response times, and quality. Spot drift and failure patterns before users do.',
   },
   {
     id: 'model-comparison',
@@ -40,7 +40,7 @@ export default function HowItWorks() {
     <section className="how-it-works">
       <h2 className="how-heading">How it works</h2>
       <p className="how-subheading">
-        Monitor, analyze, and optimize your healthcare AI agents in real-time
+        Monitor, analyze, and optimize your AI agents in production—automatically
       </p>
       <div className="how-tabs">
         {STEPS.map((s, i) => (

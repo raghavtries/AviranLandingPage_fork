@@ -1,30 +1,30 @@
-import './BuiltForHealthcare.css'
+import './BuiltForAgents.css'
 
 const FEATURES = [
   {
     number: '01',
     title: 'Self-Improving Agents',
     description:
-      'Real-time telemetry, stress testing, and drift detection. Agents that get better automatically.',
+      'Find issue patterns in agent runs, generate candidate configs across prompts and tools, simulate against tests from past runs, and auto-deploy the best versions.',
   },
   {
     number: '02',
-    title: 'Deploy Your Way',
+    title: 'Connect & Optimize',
     description:
-      'Add our layer to your existing agents. Or deploy our pre-built teams for billing, scheduling, and documentation.',
+      'Agent vendors create workflow-specific agents through our API. Connect production logs and optimize performance within hours—no manual A/B testing.',
   },
   {
     number: '03',
     title: 'In Production Today',
     description:
-      'Used by AI vendors, clinics, and hospitals. Live in production environments, not just pilots.',
+      'Used by AI agent vendors and startups. Live in production with paying customers like Wyn Labs, Sentrial, and design partners across verticals.',
   },
 ]
 
-export default function BuiltForHealthcare() {
+export default function BuiltForAgents() {
   return (
     <section id="features" className="built-for">
-      <h2 className="built-for-heading">Built for Healthcare</h2>
+      <h2 className="built-for-heading">Built for agent vendors</h2>
       <ul className="built-for-list">
         {FEATURES.map((f) => (
           <li key={f.number} className="built-for-card">

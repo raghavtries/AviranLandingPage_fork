@@ -1,0 +1,122 @@
+.header-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  background: rgba(10, 15, 26, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.6rem 1.5rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.logo-icon {
+  flex-shrink: 0;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.nav a:hover {
+  color: var(--text);
+}
+
+.btn-cta {
+  padding: 0.45rem 1.1rem !important;
+  background: var(--accent);
+  color: var(--bg) !important;
+  border-radius: 999px;
+  font-size: 0.85rem !important;
+}
+
+.btn-cta:hover {
+  opacity: 0.9;
+}
+
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+@media (max-width: 767px) {
+  .header {
+    border-radius: 14px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .nav {
+    position: fixed;
+    top: 72px;
+    left: 1rem;
+    right: 1rem;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transform: translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s, opacity 0.25s;
+  }
+
+  .nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-toggle {
+    display: none;
+  }
+}

@@ -1,0 +1,40 @@
+.trusted-by {
+  text-align: center;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+.trusted-by-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0 0 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.trusted-by-logos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem 3rem;
+}
+
+.trusted-by-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+@media (min-width: 768px) {
+  .trusted-by-logos {
+    gap: 3rem 4rem;
+  }
+
+  .trusted-by-name {
+    font-size: 1.05rem;
+  }
+}

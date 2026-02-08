@@ -1,0 +1,33 @@
+:root {
+  --bg: #0a0f1a;
+  --bg-elevated: #111827;
+  --surface: #1e293b;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.15);
+  --border: #334155;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}

@@ -23,7 +23,36 @@
 .footer-tagline {
   font-size: 0.9rem;
   color: var(--text-muted);
-  margin: 0 0 1rem;
+  margin: 0 0 1.5rem;
+}
+
+.footer-contact {
+  margin: 0 0 1.5rem;
+}
+
+.footer-contact-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0 0 0.75rem;
+}
+
+.footer-emails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.footer-email {
+  font-size: 0.95rem;
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.footer-email:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 .footer-copy {

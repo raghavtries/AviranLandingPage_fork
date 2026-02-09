@@ -29,6 +29,20 @@
   color: var(--text-muted);
 }
 
+.trusted-by-recent {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 1.5rem 0 0;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+.trusted-by-recent strong {
+  color: var(--text);
+}
+
 @media (min-width: 768px) {
   .trusted-by-logos {
     gap: 3rem 4rem;

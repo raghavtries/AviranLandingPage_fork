@@ -5,6 +5,7 @@ const LOGOS = [
   'Martin',
   'Wyn Labs',
   'Artisio',
+  'Databricks',
 ]
 
 export default function TrustedBy() {
@@ -18,6 +19,9 @@ export default function TrustedBy() {
           </li>
         ))}
       </ul>
+      <p className="trusted-by-recent">
+        Recently: a Databricks employee used Aviran on their deployed AI agent.
+      </p>
     </section>
   )
 }

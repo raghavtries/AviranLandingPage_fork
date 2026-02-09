@@ -15,54 +15,99 @@ export default function Hero() {
         Request Demo
       </a>
       <div className="hero-dashboard">
-        <div className="dashboard-mockup">
-          <div className="dashboard-header">
-            <div className="dashboard-title">Agent Performance</div>
-            <div className="dashboard-badge">Live</div>
-          </div>
-          <div className="dashboard-metrics">
-            <div className="metric-card">
-              <div className="metric-label">Accuracy</div>
-              <div className="metric-value">94.2%</div>
-              <div className="metric-trend up">↑ 2.1%</div>
+        <div className="aviran-dashboard-mockup">
+          <aside className="dashboard-sidebar">
+            <div className="sidebar-header">
+              <span className="sidebar-logo-icon">A</span>
+              <span className="sidebar-brand">Aviran</span>
             </div>
-            <div className="metric-card">
-              <div className="metric-label">Avg Latency</div>
-              <div className="metric-value">1.2s</div>
-              <div className="metric-trend down">↓ 0.3s</div>
+            <div className="sidebar-search">
+              <span className="sidebar-search-placeholder">Search...</span>
+              <span className="sidebar-search-kbd">⌘K</span>
             </div>
-            <div className="metric-card">
-              <div className="metric-label">Success Rate</div>
-              <div className="metric-value">98.7%</div>
-              <div className="metric-trend up">↑ 0.5%</div>
+            <nav className="sidebar-nav">
+              <div className="sidebar-nav-item active">
+                <span className="sidebar-nav-icon">⊞</span>
+                Dashboard
+              </div>
+              <div className="sidebar-nav-item">Traces</div>
+              <div className="sidebar-nav-section">OBSERVE</div>
+              <div className="sidebar-nav-item">Sessions</div>
+              <div className="sidebar-nav-item">
+                Issue patterns
+                <span className="sidebar-badge red">4</span>
+              </div>
+              <div className="sidebar-nav-section">IMPROVE</div>
+              <div className="sidebar-nav-item">
+                Experiments
+                <span className="sidebar-badge orange">8</span>
+              </div>
+              <div className="sidebar-nav-item">Judges</div>
+              <div className="sidebar-nav-item">Prompts</div>
+              <div className="sidebar-nav-item">Docs</div>
+            </nav>
+            <div className="sidebar-assistant">Assistant — Ask anything...</div>
+          </aside>
+          <main className="dashboard-main">
+            <div className="dashboard-main-header">
+              <div>
+                <h3 className="dashboard-main-title">Agents</h3>
+                <p className="dashboard-main-subtitle">
+                  Select an agent to see breakdown, scores, issue patterns, and start experiments.
+                </p>
+              </div>
+              <button type="button" className="dashboard-refresh" aria-label="Refresh">↻</button>
             </div>
-          </div>
-          <div className="dashboard-chart">
-            <div className="chart-bars">
-              <div className="chart-bar" style={{ height: '60%' }}></div>
-              <div className="chart-bar" style={{ height: '75%' }}></div>
-              <div className="chart-bar" style={{ height: '85%' }}></div>
-              <div className="chart-bar" style={{ height: '92%' }}></div>
-              <div className="chart-bar" style={{ height: '88%' }}></div>
-              <div className="chart-bar" style={{ height: '94%' }}></div>
-              <div className="chart-bar" style={{ height: '96%' }}></div>
+            <div className="dashboard-agent-cards">
+              <div className="agent-card">
+                <div className="agent-card-header">
+                  <span className="agent-card-icon">⚙</span>
+                  <div>
+                    <div className="agent-card-name">Client A&apos;s Sales Agent</div>
+                    <div className="agent-card-sub">default</div>
+                  </div>
+                </div>
+                <span className="agent-card-tag experiment">Experiment running</span>
+                <div className="agent-card-metrics">
+                  <div className="agent-metric">
+                    <span className="agent-metric-value">7/10</span>
+                    <span className="agent-metric-label">Avg score</span>
+                  </div>
+                  <div className="agent-metric">
+                    <span className="agent-metric-value">10</span>
+                    <span className="agent-metric-label">Runs (7d)</span>
+                  </div>
+                  <div className="agent-metric">
+                    <span className="agent-metric-value">5</span>
+                    <span className="agent-metric-label">Issues</span>
+                  </div>
+                </div>
+              </div>
+              <div className="agent-card">
+                <div className="agent-card-header">
+                  <span className="agent-card-icon">⚙</span>
+                  <div>
+                    <div className="agent-card-name">Client B&apos;s Sales Agent</div>
+                    <div className="agent-card-sub">agent2</div>
+                  </div>
+                </div>
+                <div className="agent-card-metrics">
+                  <div className="agent-metric">
+                    <span className="agent-metric-value">5/10</span>
+                    <span className="agent-metric-label">Avg score</span>
+                  </div>
+                  <div className="agent-metric">
+                    <span className="agent-metric-value">13</span>
+                    <span className="agent-metric-label">Runs (7d)</span>
+                  </div>
+                  <div className="agent-metric">
+                    <span className="agent-metric-value">6</span>
+                    <span className="agent-metric-label">Issues</span>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="chart-label">Last 7 days</div>
-          </div>
-          <div className="dashboard-agents">
-            <div className="agent-item">
-              <div className="agent-name">Support Agent</div>
-              <div className="agent-status active">Optimized</div>
-            </div>
-            <div className="agent-item">
-              <div className="agent-name">Voice Agent</div>
-              <div className="agent-status active">Optimized</div>
-            </div>
-            <div className="agent-item">
-              <div className="agent-name">Sales Agent</div>
-              <div className="agent-status pending">Testing</div>
-            </div>
-          </div>
+          </main>
         </div>
       </div>
     </section>

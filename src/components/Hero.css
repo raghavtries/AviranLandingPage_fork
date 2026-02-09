@@ -65,15 +65,179 @@
   margin-right: auto;
 }
 
-.hero-dashboard-placeholder {
+.dashboard-mockup {
   aspect-ratio: 16/9;
   background: var(--surface);
   border-radius: 12px;
+  padding: 1.5rem;
   display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  overflow: hidden;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+}
+
+.dashboard-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.dashboard-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dashboard-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.metric-card {
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.metric-label {
+  font-size: 0.75rem;
   color: var(--text-muted);
-  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.metric-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.metric-trend {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.metric-trend.up {
+  color: #22c55e;
+}
+
+.metric-trend.down {
+  color: #ef4444;
+}
+
+.dashboard-chart {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 0.5rem 0;
+}
+
+.chart-bar {
+  flex: 1;
+  background: linear-gradient(to top, var(--accent), rgba(59, 130, 246, 0.5));
+  border-radius: 4px 4px 0 0;
+  min-height: 20px;
+  animation: growBar 0.6s ease-out;
+}
+
+@keyframes growBar {
+  from {
+    height: 0;
+  }
+}
+
+.chart-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dashboard-agents {
+  display: flex;
+  gap: 1rem;
+}
+
+.agent-item {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.agent-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.agent-status {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.agent-status.active {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.agent-status.pending {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+@media (min-width: 768px) {
+  .dashboard-mockup {
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+
+  .dashboard-metrics {
+    gap: 1.25rem;
+  }
+
+  .metric-card {
+    padding: 1.25rem;
+  }
+
+  .metric-value {
+    font-size: 1.75rem;
+  }
 }
 
 @media (min-width: 768px) {

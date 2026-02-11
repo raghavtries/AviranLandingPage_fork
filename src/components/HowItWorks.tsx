@@ -8,7 +8,7 @@ const STEPS = [
     subtitle: 'Monitor with precision',
     description:
       'Real-time monitoring of agent performance across all interactions, tracking accuracy, response times, and quality. Spot drift and failure patterns before users do.',
-    image: null,
+    image: '/observation-runs.png',
   },
   {
     id: 'issue-patterns',
@@ -19,12 +19,12 @@ const STEPS = [
     image: '/issue-patterns.png',
   },
   {
-    id: 'model-comparison',
-    title: 'Model Comparison',
-    subtitle: 'Compare and optimize models',
+    id: 'judge-comparison',
+    title: 'Judge Comparison',
+    subtitle: 'Compare and optimize judges',
     description:
-      'Side-by-side comparison of model performance to choose the best configuration for your use case.',
-    image: null,
+      'Side-by-side comparison of each judge performance to choose the best configuration for your use case.',
+    image: '/judge-comparison.png',
   },
   {
     id: 'rca',

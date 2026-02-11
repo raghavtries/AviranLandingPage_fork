@@ -43,7 +43,7 @@ Vercel will build and host the app and give you a URL.
 - **Hero** — "AI agents that self learn" + CTA
 - **Trusted by** — Wyn Labs, Sentrial, BrainHi, Artisio
 - **Built for agent vendors** — Self-Learning Agents, Connect & Optimize, In Production Today
-- **How it works** — Observation, Model Comparison, Root Cause Analysis, Logs
+- **How it works** — Observation, Judge Comparison, Root Cause Analysis, Logs
 - **Docs** — Documentation cards + FAQs (accordion)
 - **CTA** — “Ready to see Aviran in action?” + Talk to us
 - **Footer** — Tagline and copyright

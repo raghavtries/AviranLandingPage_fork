@@ -3,10 +3,10 @@ import './Hero.css'
 export default function Hero() {
   return (
     <section className="hero">
-      <p className="hero-tagline">Self-Learning for Agents</p>
+      <p className="hero-tagline">Self-Learning for AI Agents</p>
       <h1 className="hero-title">
         AI agents that
-        <span className="hero-title-accent"> self improve</span>
+        <span className="hero-title-accent"> self learn</span>
       </h1>
       <p className="hero-subtitle">
         Continuously optimize prompts, tools, and parameters in production. Find the best configs, simulate them, and auto-deploy—like CI for your agents.

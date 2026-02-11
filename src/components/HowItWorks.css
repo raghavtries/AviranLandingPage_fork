@@ -103,6 +103,18 @@
   font-size: 0.95rem;
 }
 
+.how-visual-screenshot {
+  width: 100%;
+  line-height: 0;
+}
+
+.how-visual-screenshot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0 0 13px 13px;
+}
+
 @media (min-width: 768px) {
   .how-content {
     grid-template-columns: 1fr 1.4fr;

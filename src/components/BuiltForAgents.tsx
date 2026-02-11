@@ -3,7 +3,7 @@ import './BuiltForAgents.css'
 const FEATURES = [
   {
     number: '01',
-    title: 'Self-Improving Agents',
+    title: 'Self-Learning Agents',
     description:
       'Find issue patterns in agent runs, generate candidate configs across prompts and tools, simulate against tests from past runs, and auto-deploy the best versions.',
   },

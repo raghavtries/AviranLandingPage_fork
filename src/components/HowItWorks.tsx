@@ -8,6 +8,15 @@ const STEPS = [
     subtitle: 'Monitor with precision',
     description:
       'Real-time monitoring of agent performance across all interactions, tracking accuracy, response times, and quality. Spot drift and failure patterns before users do.',
+    image: null,
+  },
+  {
+    id: 'issue-patterns',
+    title: 'Issue patterns',
+    subtitle: 'Detect, analyze, and fix',
+    description:
+      'See patterns like false_claims_shipping with NEGATIVE impact, affected sessions, root cause analysis, and recommended fixes—so you can correct agent behavior before it scales.',
+    image: '/issue-patterns.png',
   },
   {
     id: 'model-comparison',
@@ -15,6 +24,7 @@ const STEPS = [
     subtitle: 'Compare and optimize models',
     description:
       'Side-by-side comparison of model performance to choose the best configuration for your use case.',
+    image: null,
   },
   {
     id: 'rca',
@@ -22,6 +32,7 @@ const STEPS = [
     subtitle: 'Deep dive into performance issues',
     description:
       'Trace failures and drift to their source with detailed logs and diagnostic tools.',
+    image: null,
   },
   {
     id: 'logs',
@@ -29,6 +40,7 @@ const STEPS = [
     subtitle: 'Complete transparency and traceability',
     description:
       'Full audit trail of every agent interaction for compliance and debugging.',
+    image: null,
   },
 ]
 
@@ -62,9 +74,15 @@ export default function HowItWorks() {
           <p className="how-step-desc">{step.description}</p>
         </div>
         <div className="how-visual">
-          <div className="how-visual-placeholder">
-            {step.title} Dashboard
-          </div>
+          {step.image ? (
+            <div className="how-visual-screenshot">
+              <img src={step.image} alt={`${step.title} in Aviran`} />
+            </div>
+          ) : (
+            <div className="how-visual-placeholder">
+              {step.title} Dashboard
+            </div>
+          )}
         </div>
       </div>
     </section>

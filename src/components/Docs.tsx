@@ -50,7 +50,7 @@ export default function Docs() {
     <section id="docs" className="docs">
       <h2 className="docs-heading">Documentation</h2>
       <p className="docs-intro">
-        Everything you need to integrate, monitor, and improve your AI agents.
+        Everything you need to integrate, monitor, and optimize your AI agents.
       </p>
 
       <div className="docs-grid">

@@ -8,7 +8,7 @@ export default function Footer() {
           Aviran
         </a>
         <p className="footer-tagline">
-          Self-learning infrastructure for AI agents.
+          Self-Learning for AI Agents.
         </p>
         <div className="footer-contact">
           <p className="footer-contact-label">Contact us:</p>

@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="hero">
       <p className="hero-tagline">Self-Learning for AI Agents</p>
       <h1 className="hero-title">
-        AI agents that
+        Let your AI agents
         <span className="hero-title-accent"> self learn</span>
       </h1>
       <p className="hero-subtitle">

@@ -37,7 +37,7 @@ export default function Header() {
           <a href="#features">Features</a>
           <a href="#contact">Contact</a>
           <a href="#docs">Docs</a>
-          <a href="#demo" className="btn-cta">
+          <a href="https://calendly.com/raghav-jsub/chat" className="btn-cta">
             Request Demo →
           </a>
         </nav>

@@ -11,7 +11,7 @@ export default function Hero() {
       <p className="hero-subtitle">
         Continuously optimize prompts, tools, and parameters in production. Find the best configs, simulate them, and auto-deploy—like CI for your agents.
       </p>
-      <a href="#demo" className="hero-cta">
+      <a href="https://calendly.com/raghav-jsub/chat" className="hero-cta">
         Request Demo
       </a>
       <div className="hero-dashboard">

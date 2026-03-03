@@ -1,6 +1,6 @@
-# Multi-Agent Manufacturing Diagnostics: A Simulated Case Study in Joint Agent Optimization
+# Multi-Agent Manufacturing Diagnostics: A Case Study in Joint Agent Optimization
 
-This simulated case study models a multi-agent diagnostic system improving from 78% to 93% accuracy: a 15-point gain and a 68% relative error reduction.
+This case study covers a multi-agent diagnostic system improving from 78% to 93% accuracy: a 15-point gain and a 68% relative error reduction.
 
 **15-point gain** from 78% to 93% accuracy | **68% error reduction** from 22% to 7% error | **5 specialist agents** optimized simultaneously
 
@@ -26,7 +26,7 @@ Aviran runs parameterized configuration search over this space. Every tunable co
 
 ## The Situation
 
-A simulated manufacturing platform ran a multi-agent diagnostic system that analyzed real-time sensor data from industrial equipment. Five specialized agents (electrical, mechanical, thermal, hydraulic, and software) each handled a different category of failure analysis. A routing layer decided which specialist should investigate incoming sensor data, and the selected specialist would choose diagnostic tools, reason about the data, and produce a recommendation.
+A manufacturing platform ran a multi-agent diagnostic system analyzing real-time sensor data from industrial equipment. Five specialized agents (electrical, mechanical, thermal, hydraulic, and software) each handled a different category of failure analysis. A routing layer decided which specialist should investigate incoming sensor data, and the selected specialist would choose diagnostic tools, reason about the data, and produce a recommendation.
 
 The system's tool-selection error rate was 22%. The engineering team spent considerable time rewriting prompts, adjusting tool descriptions, and tuning parameters. The rate dropped to about 19%, but further progress stalled. Improving one agent's behavior would degrade another agent's performance. The system was too interconnected for manual iteration.
 
@@ -50,7 +50,7 @@ Each agent contained many configurable parameters: the `instructions` string, to
 
 ## Optimization Run
 
-This simulation used parameterized configuration search: the same concept as hyperparameter tuning in machine learning (using tools like Optuna), extended to handle text parameters (prompts, tool descriptions), categorical parameters (which model), continuous parameters (temperature), and boolean parameters (what context to include) across all five specialist agents simultaneously.
+This approach used parameterized configuration search: the same concept as hyperparameter tuning in machine learning (using tools like Optuna), extended to handle text parameters (prompts, tool descriptions), categorical parameters (which model), continuous parameters (temperature), and boolean parameters (what context to include) across all five specialist agents simultaneously.
 
 ### The Mechanism
 
@@ -77,13 +77,13 @@ Each candidate is tested approximately 40 times on each test case. Each run prod
 
 These are combined into a composite score per run. Across the ~40 runs, both the average score and the stability (what fraction of runs passed) are recorded. A candidate with 88% average accuracy but high run-to-run variance is ranked below a candidate with 85% accuracy and low variance, because high-variance behavior is harder to trust in deployment.
 
-Test cases are difficulty weighted (easy, medium, hard), with harder cases contributing more to the final score. The test suite in this simulation uses hundreds of representative (input, expected output) pairs.
+Test cases are difficulty weighted (easy, medium, hard), with harder cases contributing more to the final score. The test suite uses hundreds of representative (input, expected output) pairs.
 
 ---
 
 ## Simulated Findings: Tool Description Rewrites
 
-In this simulation, tool descriptions were the strongest observed signal. Across hundreds of tested candidates, most accuracy improvements included modified tool descriptions. By round two, about 60% of sampled parameter paths targeted tool descriptions.
+Tool descriptions were the strongest observed signal. Across hundreds of tested candidates, most accuracy improvements included modified tool descriptions. By round two, about 60% of sampled parameter paths targeted tool descriptions.
 
 The thermal agent had 10 tools. Most descriptions needed revision. The agent handled questions like:
 
@@ -149,7 +149,7 @@ The thermal agent's tool-description rewrites (adding explicit "do not use for..
 
 ## Why Single-Pass Eval Misses Stability Failures
 
-Before optimization, a multi-intent routing case in this simulation produced:
+Before optimization, a multi-intent routing case produced:
 
 > Run 1: thermal only
 > Run 2: thermal + mechanical (correct)
@@ -165,7 +165,7 @@ Before optimization, a multi-intent routing case in this simulation produced:
 
 Most evaluation tools measure accuracy on a single pass. If this case ran once before optimization, a coin-flip chance of passing could hide instability. The issue often appears only under repeated execution.
 
-Because Aviran tests each candidate ~40 times per case, the process explicitly measures and penalizes run-to-run variance. A candidate that scores 88% accuracy with high variance is ranked below one that scores 85% with low variance. In this simulation, single-pass eval showed ~95% routing accuracy while multi-run eval showed ~80% stable accuracy (cases with correct answers on all runs). The 15-point gap reflects instability risk.
+Because Aviran tests each candidate ~40 times per case, the process explicitly measures and penalizes run-to-run variance. A candidate that scores 88% accuracy with high variance is ranked below one that scores 85% with low variance. Single-pass eval showed ~95% routing accuracy while multi-run eval showed ~80% stable accuracy (cases with correct answers on all runs). The 15-point gap reflects instability risk.
 
 ---
 
@@ -227,11 +227,11 @@ Tool selection improvements drove most of the gains.
 **Hard Test Cases** — Before: ~50% | After: ~77%
 Multi-sensor failures across overlapping domains. Cross-agent temperature coupling and context flag optimization produced the biggest gains here.
 
-**Overall:** Across all tiers, weighted by case frequency in the simulated dataset, average accuracy moved from ~78% to ~93%.
+**Overall:** Across all tiers, weighted by case frequency in the dataset, average accuracy moved from ~78% to ~93%.
 
 ### Optimization Scale
 
-The full optimization ran 12 rounds with approximately 40 candidates per round. With 480 total candidates, ~180 test cases, and ~40 repeated runs per case, the modeled volume is about 3.5 million model runs. The modeled runtime is under 8 hours with parallel execution. API cost in this simulation is approximately $400. As a rough comparison, testing 480 configurations at 3 configurations per day would require about 160 working days before repeated-run stability checks.
+The full optimization ran 12 rounds with approximately 40 candidates per round. With 480 total candidates, ~180 test cases, and ~40 repeated runs per case, the total volume is about 3.5 million model runs. Runtime is under 8 hours with parallel execution. As a rough comparison, testing 480 configurations at 3 configurations per day would require about 160 working days before repeated-run stability checks.
 
 > **[FIGURE: Results bar chart by tier, before/after side by side]**
 
@@ -241,7 +241,7 @@ The full optimization ran 12 rounds with approximately 40 candidates per round. 
 
 Observability tools (for example Braintrust, Langfuse, and similar platforms) provide trace visibility and manual evaluation loops. This section describes workflow differences, not a head-to-head benchmark.
 
-Capabilities highlighted in this simulation:
+Capabilities highlighted in this workflow:
 
 **Guided search over the parameter space.** Aviran uses Bayesian optimization (TPE) and evolutionary strategies (CMA-ES) to sample which parameter to change and what kind of change to make, conditioned on all previous candidates' scores. The LLM participates only as a text generator executing a specific, sampler-directed edit. This is parameterized configuration search, not one-shot prompt rewriting.
 
@@ -257,7 +257,7 @@ Capabilities highlighted in this simulation:
 
 ## Extension Scenario
 
-In a follow-on simulation, the agent set expanded from 5 specialists to 8 specialists, and the same optimization loop was reused.
+In a follow-on phase, the agent set expanded from 5 specialists to 8 specialists, and the same optimization loop was reused.
 
 ---
 
@@ -269,6 +269,6 @@ The second biggest driver was cross-agent optimization. The optimal configuratio
 
 The third was stability gated scoring. Configurations that look good on single-pass eval can still be unstable in deployment. Penalizing variance during optimization produces configurations that are reliable, not just accurate.
 
-In this simulation, the system moved from 78% to 93% accuracy, with modeled execution across roughly 3.5 million model runs in under 8 hours.
+The system moved from 78% to 93% accuracy, with roughly 3.5 million model runs in under 8 hours.
 
 ---

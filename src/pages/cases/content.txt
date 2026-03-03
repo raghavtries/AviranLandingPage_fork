@@ -81,7 +81,7 @@ Test cases are difficulty weighted (easy, medium, hard), with harder cases contr
 
 ---
 
-## Simulated Findings: Tool Description Rewrites
+## Findings: Tool Description Rewrites
 
 Tool descriptions were the strongest observed signal. Across hundreds of tested candidates, most accuracy improvements included modified tool descriptions. By round two, about 60% of sampled parameter paths targeted tool descriptions.
 
@@ -123,7 +123,7 @@ Tightening `thermal_sensor_analysis` alone improved accuracy by 2%. Tightening `
 
 ---
 
-## Simulated Findings: Cross-Agent Parameter Dependencies
+## Findings: Cross-Agent Parameter Dependencies
 
 Agents handle overlapping failure modes. Equipment showing high temperature and vibration could indicate thermal failure, mechanical failure, or both. The optimal configuration for the thermal agent depends on the mechanical agent's configuration. Because Aviran generates candidates that propose changes across all five agents simultaneously, it discovers these cross agent dependencies.
 

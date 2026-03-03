@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Accuracy bar chart">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <style>
+      .title { font: 700 28px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill: #e5e7eb; }
+      .label { font: 600 16px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill: #cbd5e1; }
+      .axis { stroke: #334155; stroke-width: 2; }
+      .grid { stroke: #1f2937; stroke-width: 1; opacity: 0.8; }
+      .tick { font: 500 13px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill: #94a3b8; }
+      .base { fill: #f59e0b; }
+      .opt { fill: #22c55e; }
+      .value { font: 700 13px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill: #e2e8f0; }
+      .legend { font: 600 14px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill: #cbd5e1; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="520" fill="url(#bg)"/>
+  <text x="48" y="64" class="title">Accuracy bar chart: Baseline vs Optimized</text>
+
+  <g transform="translate(90,100)">
+    <line x1="0" y1="360" x2="1000" y2="360" class="axis"/>
+    <line x1="0" y1="40" x2="0" y2="360" class="axis"/>
+
+    <line x1="0" y1="40" x2="1000" y2="40" class="grid"/>
+    <line x1="0" y1="120" x2="1000" y2="120" class="grid"/>
+    <line x1="0" y1="200" x2="1000" y2="200" class="grid"/>
+    <line x1="0" y1="280" x2="1000" y2="280" class="grid"/>
+
+    <text x="-42" y="364" class="tick">0%</text>
+    <text x="-50" y="284" class="tick">25%</text>
+    <text x="-50" y="204" class="tick">50%</text>
+    <text x="-50" y="124" class="tick">75%</text>
+    <text x="-58" y="44" class="tick">100%</text>
+
+    <g transform="translate(70,0)">
+      <rect x="0" y="138" width="70" height="222" class="base" rx="6"/>
+      <rect x="80" y="62" width="70" height="298" class="opt" rx="6"/>
+      <text x="4" y="132" class="value">69%</text>
+      <text x="84" y="56" class="value">93%</text>
+      <text x="2" y="388" class="label">Non-Reg.</text>
+    </g>
+
+    <g transform="translate(300,0)">
+      <rect x="0" y="106" width="70" height="254" class="base" rx="6"/>
+      <rect x="80" y="58" width="70" height="302" class="opt" rx="6"/>
+      <text x="4" y="100" class="value">79%</text>
+      <text x="84" y="52" class="value">94%</text>
+      <text x="26" y="388" class="label">Easy</text>
+    </g>
+
+    <g transform="translate(530,0)">
+      <rect x="0" y="90" width="70" height="270" class="base" rx="6"/>
+      <rect x="80" y="45" width="70" height="315" class="opt" rx="6"/>
+      <text x="4" y="84" class="value">84%</text>
+      <text x="84" y="39" class="value">98%</text>
+      <text x="12" y="388" class="label">Medium</text>
+    </g>
+
+    <g transform="translate(760,0)">
+      <rect x="0" y="180" width="70" height="180" class="base" rx="6"/>
+      <rect x="80" y="122" width="70" height="238" class="opt" rx="6"/>
+      <text x="4" y="174" class="value">56%</text>
+      <text x="84" y="116" class="value">74%</text>
+      <text x="26" y="388" class="label">Hard</text>
+    </g>
+  </g>
+
+  <g transform="translate(910,36)">
+    <rect x="0" y="0" width="16" height="16" class="base" rx="3"/>
+    <text x="24" y="13" class="legend">Baseline</text>
+    <rect x="120" y="0" width="16" height="16" class="opt" rx="3"/>
+    <text x="144" y="13" class="legend">Optimized</text>
+  </g>
+</svg>
+

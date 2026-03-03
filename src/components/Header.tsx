@@ -1,13 +1,16 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import './Header.css'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
+  const onHome = location.pathname === '/'
 
   return (
     <div className="header-wrapper">
       <header className="header">
-        <a href="#" className="logo" aria-label="Aviran home">
+        <Link to="/" className="logo" aria-label="Aviran home">
           <svg
             className="logo-icon"
             width="26"
@@ -21,7 +24,7 @@ export default function Header() {
             <circle cx="11" cy="12" r="4" fill="white" opacity="0.25" />
           </svg>
           <span>Aviran</span>
-        </a>
+        </Link>
         <button
           type="button"
           className="nav-toggle"
@@ -34,9 +37,16 @@ export default function Header() {
           <span />
         </button>
         <nav className={`nav ${menuOpen ? 'nav-open' : ''}`}>
-          <a href="#features">Features</a>
-          <a href="#contact">Contact</a>
-          <a href="#docs">Docs</a>
+          {onHome ? (
+            <>
+              <a href="#features">Features</a>
+              <a href="#contact">Contact</a>
+              <a href="#docs">Docs</a>
+            </>
+          ) : (
+            <Link to="/">Home</Link>
+          )}
+          <Link to="/cases">Cases</Link>
           <a href="https://calendly.com/raghav-jsub/chat" className="btn-cta">
             Request Demo →
           </a>

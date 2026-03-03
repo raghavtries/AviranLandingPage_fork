@@ -1,28 +1,14 @@
-import Header from './components/Header'
-import Hero from './components/Hero'
-import TrustedBy from './components/TrustedBy'
-import BuiltForAgents from './components/BuiltForAgents'
-import HowItWorks from './components/HowItWorks'
-import Docs from './components/Docs'
-import CTA from './components/CTA'
-import Footer from './components/Footer'
-import './App.css'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import LandingPage from './pages/LandingPage'
+import CasesPage from './pages/CasesPage'
 
-function App() {
+export default function App() {
   return (
-    <div className="app">
-      <Header />
-      <main>
-        <Hero />
-        <TrustedBy />
-        <BuiltForAgents />
-        <HowItWorks />
-        <Docs />
-        <CTA />
-      </main>
-      <Footer />
-    </div>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/cases" element={<CasesPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   )
 }
 
-export default App

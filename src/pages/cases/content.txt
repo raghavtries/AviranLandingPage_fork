@@ -1,0 +1,278 @@
+# Multi-Agent Manufacturing Diagnostics: A Case Study in Joint Agent Optimization
+
+Through automated parameter optimization of a multi-agent diagnostic system, Aviran achieved 93% accuracy, a 68% relative improvement over the baseline.
+
+**68% Gain** from 78% to 93% accuracy | **5 Agents** optimized simultaneously | **Weeks → Hours** vs traditional manual tuning
+
+> **[FIGURE: Accuracy bar chart, Baseline vs Optimized across Non-Regression, Easy, Medium, Hard tiers]**
+
+---
+
+## The Core Idea
+
+Every AI agent is defined by a configuration that determines how it behaves. This includes the system prompt (called `instructions` in Mastra), each tool's `description` string, the model provider and model name, generation settings like `temperature` and `topP`, memory and context inclusion rules, and feature flags. These are the parameters that agent frameworks expose as configurable.
+
+> **[FIGURE: "Tunable Parameters Per Agent." Horizontal layout. Left column lists parameter categories (instructions, tool descriptions, model, generation settings, memory/context/flags, examples, workflow structure). For each category, possible values extend to the right as blocks. Annotation at bottom: "Per agent: thousands of plausible configurations. Across N interacting agents: ~10¹⁰ combinations. Parameters interact within and across agents. Manual tuning explores dozens. Cannot test cross agent dependencies."]**
+
+Each parameter has many possible values. Instructions can be structured dozens of ways. Each tool description can be broad or tight, list everything the tool covers or explicitly state what it does not cover. The model can be GPT-5, Claude Sonnet 4.5, or Gemini Flash. Temperature can range from 0 to 1. Context can include full equipment history or just the relevant slice.
+
+For a single agent, this creates thousands of plausible configurations. For a multi-agent system where five agents interact, the space grows to roughly 10^10 combinations. These parameters also interact: a tool description change that improves planning accuracy might degrade performance if the temperature is wrong for that new description. A model swap that helps one agent might hurt another agent downstream.
+
+No team can manually explore this. Engineering teams typically test a few dozen configurations and settle on whichever seems best. More importantly, manual tuning cannot test cross agent parameter dependencies, because engineers tune one agent at a time.
+
+Aviran runs parameterized configuration search over this space. We parameterize every tunable component across all agents, then run guided search over the joint configuration space using Bayesian and evolutionary samplers. Every candidate must pass stability gated scoring before it can be promoted. The system adapts when production data changes, new failure patterns emerge, or models get updated.
+
+---
+
+## The Customer
+
+A manufacturing platform ran a multi-agent diagnostic system that analyzed real time sensor data from industrial equipment. Five specialized agents (electrical, mechanical, thermal, hydraulic, and software) each handled a different category of failure analysis. A routing layer decided which agent should investigate incoming sensor data, and that agent would select diagnostic tools, reason about the data, and produce a recommendation.
+
+The system's tool selection error rate was 22%. The engineering team spent considerable time rewriting prompts, adjusting tool descriptions, and tuning parameters. They brought the error rate down to about 19%, but further progress stalled. Improving one agent's behavior would degrade another agent's performance. The system was too interconnected for manual iteration.
+
+This is a common pattern. Teams get stuck in local minima because they tune one parameter at a time. Each change looks positive in isolation, but the system level effect is unpredictable. After enough cycles of fixing one thing and breaking another, progress stalls.
+
+### Goal
+
+Apply Aviran's optimization to the full multi-agent system, automatically exploring and optimizing all five agents' instructions, tool descriptions, context rules, model selections, and generation settings simultaneously.
+
+---
+
+## Their System
+
+The diagnostic system followed a routing flow. Sensor data came in, a triage step decided which specialist agent should handle it, and that agent selected tools, analyzed the data, and produced a recommendation.
+
+> **[FIGURE: "Agent Architecture." Horizontal flow: Sensor Input → Routing Agent → three parallel Sub Agents (Electrical, Thermal, Mechanical) → Verification Agent → Diagnostic Output. Also Hydraulic and Software sub agents branching from Routing. Below each agent circle, a cluster of colored dots representing its parameters (blue=context, pink=prompt, orange=tools, purple=model, yellow=generation). The Thermal agent's cluster should be the largest, visually. Small legend in bottom right mapping dot colors to parameter types.]**
+
+Each agent contained many configurable parameters: the `instructions` string, tool `description` fields (8 to 12 tools per agent, each with its own description), `temperature` and `topP`, few shot example libraries, context inclusion flags, and the model itself. Across all five agents, the system had 116 independently tunable parameters.
+
+---
+
+## What We Ran
+
+We ran parameterized configuration search on their system: the same concept as hyperparameter tuning in machine learning (using tools like Optuna), extended to handle text parameters (prompts, tool descriptions), categorical parameters (which model), continuous parameters (temperature), and boolean parameters (what context to include) across all five agents simultaneously.
+
+### The Mechanism
+
+For every candidate configuration, the system makes two decisions:
+
+1. **Which parameter to change.** The specific path in the agent system (e.g., the 3rd tool description on the thermal agent, or the 2nd paragraph of the routing instructions).
+
+2. **What kind of change to make.** The update goal (e.g., add explicit negative boundaries, simplify structure, reduce example count, tighten scope).
+
+These two decisions are sampled using standard ML hyperparameter search algorithms: TPE (Tree structured Parzen Estimator, a Bayesian optimization method) and CMA-ES (Covariance Matrix Adaptation Evolution Strategy, an evolutionary algorithm). Both are standard in neural network hyperparameter tuning. They are conditioned on every previous candidate's scores. As more candidates are tested, the sampler builds a surrogate model of which (parameter path, update goal) combinations are likely to produce high scores.
+
+Once the sampler selects a path and goal, an LLM generates the actual change (the new text for that prompt section or tool description) using the selected directive plus error context from failing runs. The sampler decides what to change and why. The LLM decides how to write it.
+
+Error traces from failed runs and LLM judge reasoning are also parsed to bias the sampler toward parameter paths that appear in failure analyses. If judge feedback repeatedly flags tool selection errors on the thermal agent, the sampler increases its probability of selecting thermal agent tool descriptions as the next parameter to modify.
+
+> **[FIGURE: "The Search Loop." Three columns representing Round 1, Round 2, Round 3. Each column contains: "Sampler picks: parameter path + update goal" (Round 2/3 add "informed by previous scores"), "LLM generates change," "Test ~40× per case," and a score badge (Round 1: 82%, Round 2: 88%, Round 3: 93%). Arrows between columns labeled "scores inform next sampling." Below: strip with three sections: Sampling (TPE + CMA-ES), Stability gated scoring (~40 runs per case per candidate, embedding similarity + LLM judges, difficulty weighted), Convergence (sampler learns which parameter × change type pairs score highest). Callout annotations: (1) "Each round's sampling is conditioned on all previous scores." (2) "Stability gated: high variance candidates are rejected regardless of average score." (3) "Guided convergence across rounds."]**
+
+### Stability Gated Scoring
+
+Each candidate is tested approximately 40 times on each test case. Each run produces:
+
+- An embedding similarity score between the agent's actual output and the expected output (using embedding models and quoted number comparison for numerical accuracy).
+- LLM judge scores assessing quality dimensions (correctness, completeness, safety compliance).
+
+These are combined into a composite score per run. Across the ~40 runs, both the average score and the stability (what fraction of runs passed) are recorded. A candidate with 88% average accuracy but high run to run variance is ranked below a candidate with 85% accuracy and low variance, because the high variance candidate will produce unpredictable behavior in production.
+
+Test cases are difficulty weighted (easy, medium, hard), with harder cases contributing more to the final score. The test suite for this customer consisted of hundreds of (input, expected output) pairs drawn from their actual production cases, built collaboratively with their engineering team.
+
+---
+
+## What We Found: Tool Description Rewrites
+
+The strongest signal across the entire search was tool descriptions. Across hundreds of tested candidates, whenever a candidate improved accuracy, it almost always involved modified tool descriptions. The sampler learned this quickly: after the first two rounds, over 60% of sampled parameter paths were tool descriptions.
+
+The thermal agent had 10 tools. Almost every description needed to be rewritten. The agent handled questions like:
+
+> *"Equipment B is showing elevated temperature readings alongside vibration spikes. Is this a thermal failure, mechanical failure, or cascading?"*
+
+These questions require multiple tool calls. If the descriptions do not clearly define each tool's scope, the model forms the correct diagnostic intent but selects the wrong tool.
+
+One tool whose description had expanded over months of incremental edits:
+
+> **Before**
+>
+> `thermal_sensor_analysis`
+>
+> `description: "Analyzes temperature-related sensor data including surface temperature, ambient temperature, thermal gradients, heat dissipation rates, bearing temperatures, and any thermal interactions tied to the equipment. Can also retrieve historical thermal baselines and compare against manufacturer specifications depending on what is available."`
+
+The model had no clear boundary for when to use this tool versus `vibration_analysis`, `bearing_diagnostics`, or `equipment_specs`.
+
+After optimization:
+
+> **After**
+>
+> `thermal_sensor_analysis`
+>
+> `description: "Returns only sustained temperature deviations >5°C from nominal baselines. Do not use for transient spikes, vibration correlated heating, current related thermal effects, or power factor analysis."`
+
+The critical change is the explicit exclusions ("do not use for..."). The sampler converged on update goal "add negative boundary constraints" as the highest scoring change type for tool descriptions within the first three rounds. The algorithm applied similar tightening across all tools:
+
+> **Before:** `bearing_diagnostics` — "Provides analysis of bearing conditions including wear patterns, vibration signatures, thermal behavior, lubrication status, and any related mechanical interactions."
+>
+> **After:** `bearing_diagnostics` — "Returns bearing wear metrics and lubrication status only. Do not use for vibration analysis or thermal readings."
+
+### Superlinear Interaction
+
+An engineer could manually rewrite any one of these descriptions. The part that cannot be replicated manually is discovering which combination of rewrites works together.
+
+Tightening `thermal_sensor_analysis` alone improved accuracy by 2%. Tightening `bearing_diagnostics` alone improved accuracy by 1.5%. Tightening both together improved accuracy by 6%. The combination was superlinear because fixing tool A's boundary resolved ambiguity that had been forcing tool B to overcompensate. The algorithm found this because TPE tracks scores per (parameter path, update goal) pair and can detect when two paths produce outsized gains when both are modified in the same candidate. An engineer testing one change at a time would see a 2% improvement, ship it, then see a 1.5% improvement from the next change, and never discover the 6% they left on the table.
+
+---
+
+## What We Found: Cross Agent Parameter Dependencies
+
+Agents handle overlapping failure modes. Equipment showing high temperature and vibration could indicate thermal failure, mechanical failure, or both. The optimal configuration for the thermal agent depends on the mechanical agent's configuration. Because Aviran generates candidates that propose changes across all five agents simultaneously, it discovers these cross agent dependencies.
+
+### Temperature Coupling
+
+The winning configuration assigned `temperature: 0.6` to the thermal agent. For a classification task, you would expect lower temperature for more deterministic outputs. This worked because the mechanical agent was simultaneously set to `temperature: 0.3`. The mechanical agent handled overlapping cases deterministically. The thermal agent, at higher temperature, was more willing to flag ambiguous cases for cross agent review rather than forcing a single classification. Together they covered failure modes that neither handled alone.
+
+When we ran the optimization with each agent tuned independently, the thermal agent got `temperature: 0.3` (the expected choice) and the system's overall error rate was nearly double.
+
+An engineer looking at the thermal agent's eval results in isolation would never set temperature to 0.6. It looks strictly worse in single agent testing. It only becomes better when the mechanical agent is at 0.3. This is invisible to any tool that evaluates agents one at a time.
+
+### Context Flag Interference
+
+The context flags that helped the hydraulic agent actively hurt the electrical agent when both were present. The hydraulic agent performed best when `pressure_history` and `flow_rates` were included in its context. When those same flags were enabled globally (as the original system had them), the electrical agent would sometimes misinterpret pressure data as relevant to electrical faults, leading to incorrect tool selection.
+
+The joint optimization learned to enable those flags only for the hydraulic agent and disable them for the electrical agent. In a system with 5 agents and dozens of context flags, this interaction is extremely unlikely to be found manually.
+
+### Model Description Dependency
+
+The thermal agent's tool description rewrites (adding explicit "do not use for..." exclusions) only produced their full accuracy improvement when paired with GPT-5 using high effort thinking. When the same descriptions were paired with Claude Sonnet 4.5, the negative constraints were followed too strictly, and the model would refuse to use tools in edge cases where they were actually appropriate. The optimal model for the thermal agent depended on the style of tool descriptions, and vice versa. Testing one change at a time (first rewrite descriptions, then swap models) would converge on a different, worse local minimum.
+
+---
+
+## Why Single Pass Eval Missed Their Production Failures
+
+Before optimization, a multi-intent routing case in their system produced:
+
+> Run 1: thermal only
+> Run 2: thermal + mechanical (correct)
+> Run 3: thermal only
+> Run 4: mechanical only
+> Run 5: thermal + mechanical (correct)
+
+50% accuracy on this case. After optimization:
+
+> Run 1 through Run 10: thermal + mechanical (correct)
+
+100% accuracy, measured across 10 runs.
+
+Most evaluation tools measure accuracy on a single pass. If you ran this case once before optimization, you had a coin flip chance of seeing it pass. You might conclude the agent works. You would not discover the instability until production users started seeing inconsistent results.
+
+Because Aviran tests each candidate ~40 times per case, it explicitly measures and penalizes run to run variance. A candidate that scores 88% accuracy with high variance is ranked below one that scores 85% with low variance. This is how we caught their routing layer instability: single pass eval showed ~95% accuracy. Multi-run eval showed ~80% stable accuracy (cases where it gave the correct answer on all runs). The 15 point gap is the instability that causes production failures.
+
+---
+
+## Context Optimization
+
+Each agent's context window had accumulated information over time: equipment specifications, maintenance history, cross-reference tables, previous diagnostic results, and "just in case" fields. Everything was being passed into every query.
+
+These were controlled by feature flags, so the sampler treated them as boolean parameters.
+
+**Before:** Over 6,000 tokens of context for every query, including context for unrelated equipment and irrelevant maintenance records.
+
+**After:** The algorithm learned to enable just the relevant flags per query type. For elevated temperature on Equipment B, only Equipment B thermal baselines and recent maintenance history were included. About 500 tokens.
+
+Token usage dropped by about 20% while accuracy went up.
+
+---
+
+## Routing Layer
+
+The routing layer decided which specialist agent should handle incoming sensor data. About 4 to 5% of overall failures originated here.
+
+The sampler found that the routing prompt carried too much context (5 feature flags, only 1 was needed for routing), contained too many few-shot examples (25, reduced to 8), and was using a more expensive model than the task required (swapped from GPT-5 to Gemini 2.5 Flash). After these changes, routing became consistent where it had previously oscillated.
+
+---
+
+## Verification Agent
+
+The verification agent reviewed each specialist agent's output before delivering the final recommendation. The original design tried to plan and execute in a single step. The algorithm split it into two stages (generate verification plan, then execute plan) and found that Claude Sonnet 4.5 handled this structured workflow more reliably than GPT-5.
+
+---
+
+## Results
+
+### Ablation: Where the Gains Came From
+
+> **[FIGURE: "Ablation Progression." Horizontal bar chart, four bars.**
+>
+> **Bar 1:** "Manual tuning (baseline)" — 78% — "What observability tools help you do"
+> **Bar 2:** "Automated per-agent search" — 85% — "Automated, but agents tuned independently"
+> **Bar 3:** "Joint multi-agent search" — 91% — "Cross-agent dependencies discovered"
+> **Bar 4:** "Joint + stability gating" — 93% — "Multi-run variance penalty applied"
+>
+> **Gap labels:** Standard optimization (+7), Joint search (+6), Stability (+2)
+>
+> **Callout:** "8 of the 15 points of improvement came from joint multi-agent optimization and stability gating."]
+
+### By Test Case Difficulty
+
+Each test case was run multiple times to measure both accuracy and stability.
+
+**Non-Regression Tests** — Before: ~95% | After: ~100%
+
+**Easy Test Cases** — Before: ~85% | After: ~97%
+The largest gains came from stabilizing these. The agents produced the correct diagnostic but could not do so consistently before optimization.
+
+**Medium Test Cases** — Before: ~78% | After: ~95%
+Tool selection improvements drove most of the gains.
+
+**Hard Test Cases** — Before: ~50% | After: ~77%
+Multi-sensor failures across overlapping domains. Cross-agent temperature coupling and context flag optimization produced the biggest gains here.
+
+**Overall:** Across all tiers, weighted by production frequency, average accuracy moved from ~78% to ~93%.
+
+### Optimization Scale
+
+The full optimization ran 12 rounds with approximately 40 candidates per round. Each candidate was evaluated across hundreds of test cases with ~40 runs per case. Total: approximately 14,000 evaluation runs completed in under 8 hours. API cost: approximately $400. A manual equivalent (an engineer testing 3 configurations per day) would need roughly 160 working days to cover the same candidate space, and would still miss cross-agent interactions because manual tuning evaluates one agent at a time.
+
+> **[FIGURE: Results bar chart by tier, before/after side by side]**
+
+---
+
+## What Existing Tools Cannot Do
+
+Braintrust, Langfuse, and similar tools provide observability and manual eval. You can look at traces, identify failures, rewrite a prompt, and test again. The per-agent improvements described in this case study (tighter tool descriptions, cleaner context, model swaps) are things an engineer could do with these tools, one change at a time.
+
+What they cannot do:
+
+**Guided search over the parameter space.** Aviran uses Bayesian optimization (TPE) and evolutionary strategies (CMA-ES) to sample which parameter to change and what kind of change to make, conditioned on all previous candidates' scores. The LLM participates only as a text generator executing a specific, sampler-directed edit. This is parameterized configuration search, not one-shot prompt rewriting.
+
+**Cross-agent parameter search.** Discovering that the thermal agent's temperature should be 0.6 (which looks wrong in single-agent eval) because the mechanical agent is at 0.3. Discovering that hydraulic context flags hurt the electrical agent. Discovering that tool description style interacts with model choice. These dependencies are invisible to any tool that evaluates one agent at a time.
+
+**Superlinear combination discovery.** Testing hundreds of candidates per round, tracking which specific changes drove improvement via (parameter path, update goal, score) tuples, and combining winning mutations from different candidates. Tightening two tool descriptions together produced 6% improvement where each individually produced only 1.5 to 2%. An engineer testing one change at a time converges on a local minimum.
+
+**Stability gated scoring.** Running each case ~40 times per candidate and rejecting high variance candidates regardless of average score. Single-pass eval showed the routing layer at ~95%. Multi-run eval showed ~80% stable accuracy. The 15 point gap is the instability that causes production failures.
+
+**Continuous re-optimization.** When a new model is released, when production data shifts, or when the customer adds new agents, the system runs again. The sampler starts from the previous best configuration and adapts.
+
+---
+
+## What Happened Next
+
+The customer expanded from 5 agents to 8 after seeing the results. The new agents were onboarded into the same optimization loop. Two referrals from this customer became paying customers.
+
+---
+
+## Conclusion
+
+The biggest driver of improvement was tool description clarity. Adding explicit negative boundaries ("do not use for...") to tool descriptions and tightening scope resolved most tool selection errors. The sampler learned this within the first two rounds and biased 60% of subsequent parameter selections toward tool descriptions.
+
+The second biggest driver was cross-agent optimization. The optimal configuration for any single agent depends on the other agents' settings. Temperature coupling, context flag interference, and model-description dependencies are all invisible to per-agent tuning. The ablation shows that joint multi-agent search contributed 6 of the 15 total points of improvement.
+
+The third was stability gated scoring. Configurations that look good on single-pass eval can be unstable in production. Penalizing variance during optimization produces configurations that are reliable, not just accurate.
+
+The system moved from 78% to 93% accuracy on production queries, validated across ~14,000 evaluation runs in under 8 hours.
+
+---
+
+*Note on Anonymization: This case study has been anonymized at the request of the customer. Agent configurations, tool descriptions, and operational parameters have been modified or abstracted. The customer has reviewed and approved publication.*
+
+*Note on Technical Simplification: Several aspects of the architecture have been simplified for clarity. The full optimization stack, sampling methodology, and scoring implementation are available on request.*

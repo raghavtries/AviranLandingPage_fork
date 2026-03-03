@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-label="Optimization Rounds">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="10" markerHeight="10" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#34d399"/>
+    </marker>
+    <style>
+      .title { font: 700 28px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill: #e5e7eb; }
+      .muted { font: 500 14px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill: #94a3b8; }
+      .label { font: 650 18px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill: #e5e7eb; }
+      .box { fill: url(#card); stroke: #334155; stroke-width: 2; rx: 18; }
+      .chip { fill: #0b1220; stroke: #334155; stroke-width: 2; rx: 10; }
+      .line { stroke: #34d399; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .grid { stroke: #1f2937; stroke-width: 1; opacity: 0.7; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="520" fill="url(#bg)"/>
+  <text x="48" y="64" class="title">Optimization rounds</text>
+  <text x="48" y="92" class="muted">Search loop over prompts + tool descriptions + cross-agent parameters</text>
+
+  <g opacity="0.9">
+    <path class="grid" d="M 60 130 H 1140"/>
+    <path class="grid" d="M 60 180 H 1140"/>
+    <path class="grid" d="M 60 230 H 1140"/>
+    <path class="grid" d="M 60 280 H 1140"/>
+    <path class="grid" d="M 60 330 H 1140"/>
+    <path class="grid" d="M 60 380 H 1140"/>
+    <path class="grid" d="M 60 430 H 1140"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="70" y="150" width="320" height="280" class="box"/>
+    <text x="104" y="196" class="label">Candidate generation</text>
+    <text x="104" y="224" class="muted">Mutate one dimension</text>
+    <rect x="104" y="250" width="252" height="38" class="chip"/>
+    <text x="120" y="275" class="muted">Prompt rewrite</text>
+    <rect x="104" y="300" width="252" height="38" class="chip"/>
+    <text x="120" y="325" class="muted">Tool description tweak</text>
+    <rect x="104" y="350" width="252" height="38" class="chip"/>
+    <text x="120" y="375" class="muted">Parameter adjustment</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="440" y="150" width="320" height="280" class="box"/>
+    <text x="474" y="196" class="label">Evaluation</text>
+    <text x="474" y="224" class="muted">Run on case suite</text>
+    <rect x="474" y="250" width="252" height="38" class="chip"/>
+    <text x="490" y="275" class="muted">Accuracy, latency</text>
+    <rect x="474" y="300" width="252" height="38" class="chip"/>
+    <text x="490" y="325" class="muted">Cost (tokens/tools)</text>
+    <rect x="474" y="350" width="252" height="38" class="chip"/>
+    <text x="490" y="375" class="muted">Stability (variance)</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="810" y="150" width="320" height="280" class="box"/>
+    <text x="844" y="196" class="label">Selection</text>
+    <text x="844" y="224" class="muted">Keep the best changes</text>
+    <rect x="844" y="250" width="252" height="38" class="chip"/>
+    <text x="860" y="275" class="muted">Pareto filter</text>
+    <rect x="844" y="300" width="252" height="38" class="chip"/>
+    <text x="860" y="325" class="muted">Rollback regressions</text>
+    <rect x="844" y="350" width="252" height="38" class="chip"/>
+    <text x="860" y="375" class="muted">Promote winners</text>
+  </g>
+
+  <path class="line" d="M 390 290 C 415 290, 420 290, 440 290"/>
+  <path class="line" d="M 760 290 C 785 290, 790 290, 810 290"/>
+  <path class="line" d="M 970 430 C 970 470, 230 470, 230 430"/>
+  <text x="260" y="496" class="muted">Repeat for N rounds; track cross-agent interactions</text>
+</svg>
+

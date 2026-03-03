@@ -27,27 +27,38 @@ function parseInline(text: string, keyPrefix: string): ReactNode[] {
   });
 }
 
-function renderFigure(label: string, index: number) {
+function getFigureCaption(label: string) {
+  if (/Tunable Parameters Per Agent/i.test(label)) {
+    return 'Per-agent parameter categories and candidate values explored by the optimizer.';
+  }
+  if (/Agent Architecture|Basic architecture/i.test(label)) {
+    return 'Routing and specialist agents flow into final verification output.';
+  }
+  return 'Experiment diagram.';
+}
+
+function renderFigure(label: string, index: number): ReactNode | null {
+  if (/Tunable Parameters Per Agent/i.test(label)) {
+    return null;
+  }
+
   const figureSource =
-    /Accuracy bar chart|Baseline vs Optimized/i.test(label)
-      ? '/cases/fig3_accuracy_bar.svg'
-      : /Basic architecture|Agent Architecture/i.test(label)
+    /Basic architecture|Agent Architecture/i.test(label)
       ? '/cases/fig1_pipeline_architecture.svg'
-      : /Optimization Rounds|Search Loop|Tunable Parameters Per Agent/i.test(label)
-        ? '/cases/fig2_mutation_space_bridge.svg'
-        : null;
+      : null;
+  if (!figureSource) {
+    return null;
+  }
 
   return (
     <figure
       key={`figure-${index}`}
       className="my-6 overflow-hidden rounded-xl border border-zinc-700 bg-zinc-900/70"
     >
-      {figureSource ? (
-        <img src={figureSource} alt={label} className="h-auto w-full bg-white/5 p-3" />
-      ) : (
-        <div className="p-4 text-sm text-zinc-400">Figure placeholder: {label}</div>
-      )}
-      <figcaption className="border-t border-zinc-800 px-4 py-3 text-xs text-zinc-400">{label}</figcaption>
+      <img src={figureSource} alt={label} className="h-auto w-full bg-white/5 p-3" />
+      <figcaption className="border-t border-zinc-800 px-4 py-3 text-xs text-zinc-400">
+        {getFigureCaption(label)}
+      </figcaption>
     </figure>
   );
 }
@@ -157,7 +168,10 @@ function renderContent(markdown: string) {
 
     const plainFigureMatch = trimmed.match(/^\[FIGURE:\s*(.+)\]$/i);
     if (plainFigureMatch) {
-      blocks.push(renderFigure(plainFigureMatch[1], blockIndex++));
+      const figure = renderFigure(plainFigureMatch[1], blockIndex++);
+      if (figure) {
+        blocks.push(figure);
+      }
       i += 1;
       continue;
     }
@@ -247,7 +261,10 @@ function renderContent(markdown: string) {
       const figureMatch = quoteText.match(/\*\*\[FIGURE:\s*(.+?)\]\*\*/i);
 
       if (figureMatch) {
-        blocks.push(renderFigure(figureMatch[1], blockIndex++));
+        const figure = renderFigure(figureMatch[1], blockIndex++);
+        if (figure) {
+          blocks.push(figure);
+        }
       } else {
         blocks.push(
           <blockquote

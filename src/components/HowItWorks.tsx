@@ -32,7 +32,7 @@ const STEPS = [
     subtitle: 'Deep dive into performance issues',
     description:
       'Trace failures and drift to their source with detailed logs and diagnostic tools.',
-    image: null,
+    image: '/rca-dashboard.png',
   },
   {
     id: 'logs',
@@ -40,7 +40,7 @@ const STEPS = [
     subtitle: 'Complete transparency and traceability',
     description:
       'Full audit trail of every agent interaction for compliance and debugging.',
-    image: null,
+    image: '/logs-dashboard.png',
   },
 ]
 

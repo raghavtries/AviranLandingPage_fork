@@ -1,6 +1,5 @@
 import Header from '../components/Header'
 import Hero from '../components/Hero'
-import TrustedBy from '../components/TrustedBy'
 import BuiltForAgents from '../components/BuiltForAgents'
 import HowItWorks from '../components/HowItWorks'
 import Docs from '../components/Docs'
@@ -14,7 +13,6 @@ export default function LandingPage() {
       <Header />
       <main>
         <Hero />
-        <TrustedBy />
         <BuiltForAgents />
         <HowItWorks />
         <Docs />

@@ -1,16 +1,48 @@
 @import "tailwindcss";
 
+@theme {
+  /* Colors */
+  --color-bg-base:       #05070A;
+  --color-bg-raised:     #0A0E14;
+  --color-bg-overlay:    #111822;
+  --color-border-subtle: #1A2230;
+  --color-border-strong: #2A3547;
+  --color-text-primary:  #E6ECF5;
+  --color-text-secondary:#8A97AB;
+  --color-text-tertiary: #525F74;
+  --color-accent:        #4DA3FF;
+  --color-accent-dim:    #1E3A5F;
+  --color-signal-good:   #3DDC97;
+  --color-signal-warn:   #F5A623;
+  --color-signal-bad:    #FF5C5C;
+
+  /* Legacy mappings for existing components */
+  --color-bg:            #0a0f1a;
+  --color-bg-elevated:   #111827;
+  --color-surface:       #1e293b;
+  --color-text:          #f1f5f9;
+  --color-text-muted:    #94a3b8;
+  --color-border:        #334155;
+
+  /* Typography */
+  --font-display: 'Inter Tight', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+/* Raw CSS variables for inline styles and pseudo-elements */
 :root {
-  --bg: #0a0f1a;
-  --bg-elevated: #111827;
-  --surface: #1e293b;
-  --text: #f1f5f9;
+  --bg:         #0a0f1a;
+  --bg-elevated:#111827;
+  --surface:    #1e293b;
+  --text:       #f1f5f9;
   --text-muted: #94a3b8;
-  --accent: #38bdf8;
-  --accent-soft: rgba(56, 189, 248, 0.15);
-  --border: #334155;
-  --font-sans: 'DM Sans', system-ui, sans-serif;
-  --font-serif: 'Instrument Serif', Georgia, serif;
+  --accent:     #38bdf8;
+  --accent-new: #4DA3FF;
+  --accent-soft:rgba(56, 189, 248, 0.15);
+  --border:     #334155;
+  --font-sans:  'Inter', system-ui, sans-serif;
+  --font-serif: 'Inter Tight', Georgia, serif;
 }
 
 * {
@@ -24,8 +56,8 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: var(--bg);
-  color: var(--text);
+  background: #05070A;
+  color: #E6ECF5;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }

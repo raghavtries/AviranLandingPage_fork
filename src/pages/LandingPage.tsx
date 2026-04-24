@@ -1,25 +1,30 @@
-import Header from '../components/Header'
-import Hero from '../components/Hero'
-import BuiltForAgents from '../components/BuiltForAgents'
-import HowItWorks from '../components/HowItWorks'
-import Docs from '../components/Docs'
-import CTA from '../components/CTA'
-import Footer from '../components/Footer'
 import '../App.css'
+import { Nav } from '../components/marketing/Nav'
+import { Hero } from '../components/marketing/Hero'
+import { LoopVisualizer } from '../components/marketing/LoopVisualizer'
+import { FeatureGrid } from '../components/marketing/FeatureGrid'
+import { HowItWorksNew } from '../components/marketing/HowItWorksNew'
+import { ArchitectureDiagram } from '../components/marketing/ArchitectureDiagram'
+import { DocsGrid } from '../components/marketing/DocsGrid'
+import { FAQ } from '../components/marketing/FAQ'
+import { CTAFooter } from '../components/marketing/CTAFooter'
+import { SiteFooter } from '../components/marketing/SiteFooter'
 
 export default function LandingPage() {
   return (
     <div className="app">
-      <Header />
+      <Nav />
       <main>
         <Hero />
-        <BuiltForAgents />
-        <HowItWorks />
-        <Docs />
-        <CTA />
+        <LoopVisualizer />
+        <FeatureGrid />
+        <HowItWorksNew />
+        <ArchitectureDiagram />
+        <DocsGrid />
+        <FAQ />
+        <CTAFooter />
       </main>
-      <Footer />
+      <SiteFooter />
     </div>
   )
 }
-

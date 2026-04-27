@@ -161,7 +161,7 @@ const TABS = [
   {
     id: 'observation',
     title: 'Observation',
-    headline: 'Every span. Every run. Zero sampling.',
+    headline: 'Every span. Every run.',
     body: 'Aviran instruments your agent at the span level via OpenTelemetry, capturing full trace fidelity without sampling. Every production run is stored, indexed, and queryable.',
     bullets: [
       'Span-level traces with <2ms overhead at p50',
@@ -185,12 +185,13 @@ const TABS = [
   {
     id: 'sampling-optimization',
     title: 'Sampling Optimization',
-    headline: 'Smart samplers find the best fix, not just any fix.',
-    body: 'Aviran runs Optuna-based search over the config space—TPE for efficient Bayesian exploration, CMA-ES for continuous parameter landscapes. DSPy drives prompt mutations as structured proposals. Candidates are scored on real held-out traffic, not synthetic evals.',
+    headline: 'Bayesian optimization finds the best config.',
+    body: 'Aviran uses state-of-the-art sampling algorithms—TPE (Tree-structured Parzen Estimator) for discrete config search and CMA-ES for continuous parameters like temperature and penalty weights. DSPy generates prompt mutations as structured proposals. Every candidate is scored on real held-out production traffic, not synthetic benchmarks.',
     bullets: [
-      'TPE (Tree-structured Parzen Estimator) for discrete config search',
-      'CMA-ES for continuous params like temperature and penalty weights',
+      'TPE for efficient Bayesian exploration of prompt and tool space',
+      'CMA-ES for continuous params (temperature, top_p, penalty weights)',
       'DSPy-guided prompt mutations as search proposals',
+      'Candidates scored on real traffic, not synthetic evals',
     ],
     Viz: JudgeComparisonViz,
   },

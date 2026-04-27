@@ -250,7 +250,7 @@ export function HowItWorksNew() {
         <div className="mx-auto max-w-[1200px]">
           <MonoLabel className="block mb-4">How It Works</MonoLabel>
           <h2 className="font-display text-[40px] font-semibold leading-tight tracking-[-0.02em] text-text-primary mb-10">
-            Monitor, diagnose, and fix — automatically.
+            Automatically monitor + diagnose + fix.
           </h2>
           <div className="flex gap-0 border-b border-border-subtle mb-8">
             {TABS.map((t, i) => (
@@ -303,7 +303,7 @@ export function HowItWorksNew() {
         <div className="shrink-0 pt-8 pb-4">
           <MonoLabel className="block mb-3 text-[11px]">How It Works</MonoLabel>
           <h2 className="font-display text-[36px] md:text-[44px] font-semibold leading-tight tracking-[-0.02em] text-text-primary">
-            Monitor, diagnose, and fix — automatically.
+            Automatically monitor + diagnose + fix.
           </h2>
         </div>
 

@@ -154,17 +154,11 @@ export function Hero() {
 
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <a
-              href="https://cal.com/aviran/demo"
-              className="group inline-flex items-center gap-1.5 rounded border border-accent/40 bg-accent/10 px-4 py-2.5 font-body text-sm font-medium text-accent shadow-[inset_0_1px_0_rgba(77,163,255,0.12)] transition-all duration-200 hover:border-accent/70 hover:bg-accent/15 hover:shadow-[0_0_20px_rgba(77,163,255,0.2)]"
+              href="https://calendly.com/raghav-jsub/chat"
+              className="group inline-flex items-center gap-2 rounded border border-accent/40 bg-accent/10 px-7 py-4 font-body text-base font-medium text-accent shadow-[inset_0_1px_0_rgba(77,163,255,0.12)] transition-all duration-200 hover:border-accent/70 hover:bg-accent/15 hover:shadow-[0_0_24px_rgba(77,163,255,0.25)]"
             >
               Request access
-              <ArrowUpRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-            <a
-              href="#docs"
-              className="inline-flex items-center gap-1.5 rounded border border-border-subtle px-4 py-2.5 font-body text-sm font-medium text-text-secondary transition-all duration-200 hover:border-border-strong hover:text-text-primary"
-            >
-              Read the docs
+              <ArrowUpRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
 

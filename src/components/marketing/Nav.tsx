@@ -5,7 +5,6 @@ const NAV_LINKS = [
   { label: 'Features',     href: '#features' },
   { label: 'How it works', href: '#how-it-works' },
   { label: 'Docs',         href: '#docs' },
-  { label: 'Pricing',      href: '#' },
 ]
 
 export function Nav() {
@@ -16,10 +15,6 @@ export function Nav() {
       <div className="mx-auto flex h-14 max-w-[1200px] items-center justify-between px-6">
         {/* Wordmark */}
         <a href="/" className="flex items-center gap-2.5 no-underline">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inset-0 animate-ping rounded-full bg-signal-good opacity-75" />
-            <span className="relative rounded-full h-2.5 w-2.5 bg-signal-good" />
-          </span>
           <span className="font-display text-[15px] font-semibold tracking-[-0.02em] text-text-primary">
             Aviran
           </span>
@@ -41,13 +36,7 @@ export function Nav() {
         {/* Right CTAs — desktop */}
         <div className="hidden items-center gap-3 md:flex">
           <a
-            href="#"
-            className="rounded px-3 py-1.5 font-body text-[13px] text-text-secondary transition-colors duration-200 hover:text-text-primary"
-          >
-            Sign in
-          </a>
-          <a
-            href="https://cal.com/aviran/demo"
+            href="https://calendly.com/raghav-jsub/chat"
             className="group inline-flex items-center gap-1 rounded border border-accent/40 bg-accent/10 px-3 py-1.5 font-body text-[13px] text-accent shadow-[inset_0_1px_0_rgba(77,163,255,0.12)] transition-all duration-200 hover:border-accent/70 hover:bg-accent/15 hover:shadow-[0_0_16px_rgba(77,163,255,0.18)]"
           >
             Request access
@@ -83,11 +72,8 @@ export function Nav() {
             ))}
           </nav>
           <div className="mt-4 flex flex-col gap-2 border-t border-border-subtle pt-4">
-            <a href="#" className="rounded px-3 py-2 text-center font-body text-sm text-text-secondary hover:text-text-primary">
-              Sign in
-            </a>
             <a
-              href="https://cal.com/aviran/demo"
+              href="https://calendly.com/raghav-jsub/chat"
               className="inline-flex items-center justify-center gap-1 rounded border border-accent/40 bg-accent/10 px-3 py-2 font-body text-sm text-accent"
             >
               Request access <ArrowUpRight size={13} />

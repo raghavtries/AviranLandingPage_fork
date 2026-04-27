@@ -31,7 +31,7 @@ export function CTAFooter() {
 
             <div className="flex shrink-0 flex-col items-start gap-4 md:items-end">
               <a
-                href="https://cal.com/aviran/demo"
+                href="https://calendly.com/raghav-jsub/chat"
                 className="group inline-flex items-center gap-1.5 rounded border border-accent/40 bg-accent/10 px-5 py-3 font-body text-sm font-medium text-accent shadow-[inset_0_1px_0_rgba(77,163,255,0.12)] transition-all duration-200 hover:border-accent/70 hover:bg-accent/15 hover:shadow-[0_0_24px_rgba(77,163,255,0.22)]"
               >
                 Book a walkthrough

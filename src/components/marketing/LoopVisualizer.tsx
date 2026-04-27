@@ -29,20 +29,20 @@ const NODES = [
   },
   {
     num: '03',
-    label: 'DIAGNOSE',
+    label: 'OPTIMIZE',
     icon: Stethoscope,
-    desc: 'Root-cause attribution per cluster.',
+    desc: 'Sampling algorithms search the config space.',
     details: [
-      'Causal attribution: prompt vs. tool vs. param',
-      'Counterfactual traces generated per cluster',
-      'Confidence scores surfaced in the dashboard',
+      'Optuna TPE sampler over prompt, tool, and param axes',
+      'DSPy-guided prompt mutations as search proposals',
+      'Pareto-optimal candidates ranked by score + latency',
     ],
   },
   {
     num: '04',
     label: 'SIMULATE',
     icon: FlaskConical,
-    desc: 'Candidate configs scored on real traffic.',
+    desc: 'Scored on rigorous tests.',
     details: [
       'DSPy + Optuna search over prompt/tool/param space',
       'Replayed against historical traces as ground truth',
@@ -98,7 +98,7 @@ export function LoopVisualizer() {
         <div className="mb-12 flex flex-col gap-3">
           <MonoLabel>The Loop</MonoLabel>
           <h2 className="font-display text-[32px] font-semibold leading-tight tracking-[-0.02em] text-text-primary md:text-[40px]">
-            Five stages. Zero humans in the critical path.
+            Based on ICLR research, we use smart sampling to find the best config fixes.
           </h2>
         </div>
 

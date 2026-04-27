@@ -5,7 +5,7 @@ import { MonoLabel } from '../primitives/MonoLabel'
 const ITEMS = [
   {
     q: 'What kinds of agents does Aviran support?',
-    a: 'Aviran works with any AI agent or LLM pipeline that can emit OpenTelemetry spans or structured logs. Our design partners are agent vendors deploying at scale—voice agents, support agents, sales agents, coding agents, and internal workflow automation. We support LangGraph, CrewAI, and custom integrations via our SDK and HTTP ingestion API.',
+    a: 'Aviran works with any AI agent or LLM pipeline that can emit OpenTelemetry spans or structured logs. Our design partners are agent vendors deploying at scale—voice agents, support agents, sales agents, coding agents, and internal workflow automation. We support LangGraph, CrewAI, Mastra, Vercel AI SDK, and custom integrations via our SDK and HTTP ingestion API.',
   },
   {
     q: 'How does automatic optimization work?',

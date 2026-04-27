@@ -4,8 +4,6 @@ import { Hero } from '../components/marketing/Hero'
 import { LoopVisualizer } from '../components/marketing/LoopVisualizer'
 import { FeatureGrid } from '../components/marketing/FeatureGrid'
 import { HowItWorksNew } from '../components/marketing/HowItWorksNew'
-import { ArchitectureDiagram } from '../components/marketing/ArchitectureDiagram'
-import { DocsGrid } from '../components/marketing/DocsGrid'
 import { FAQ } from '../components/marketing/FAQ'
 import { CTAFooter } from '../components/marketing/CTAFooter'
 import { SiteFooter } from '../components/marketing/SiteFooter'
@@ -19,8 +17,6 @@ export default function LandingPage() {
         <LoopVisualizer />
         <FeatureGrid />
         <HowItWorksNew />
-        <ArchitectureDiagram />
-        <DocsGrid />
         <FAQ />
         <CTAFooter />
       </main>

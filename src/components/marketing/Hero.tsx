@@ -137,7 +137,7 @@ export function Hero() {
       <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_0.72fr] lg:gap-16">
         {/* Left — copy */}
         <div className="flex flex-col gap-6 pt-4">
-          <MonoLabel className="tracking-[0.15em]">ICLR 2025 · Reliability Infrastructure for AI Agents</MonoLabel>
+          <MonoLabel className="tracking-[0.15em]">Reliability Infrastructure for AI Agents</MonoLabel>
 
           <h1
             className="font-display text-[40px] font-semibold leading-[1.08] tracking-[-0.03em] text-text-primary md:text-[60px]"

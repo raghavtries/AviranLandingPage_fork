@@ -10,8 +10,8 @@ export function Nav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border-subtle bg-bg-base/70 backdrop-blur-xl">
-      <div className="mx-auto flex h-14 max-w-[1200px] items-center px-6">
+    <header className="sticky top-0 z-50 border-b border-border-subtle bg-bg-base/70 backdrop-blur-xl px-6">
+      <div className="mx-auto flex h-14 max-w-[1200px] items-center">
         {/* Wordmark */}
         <a href="/" className="flex items-center gap-2.5 no-underline mr-auto">
           <span className="font-display text-[15px] font-semibold tracking-[-0.02em] text-text-primary">

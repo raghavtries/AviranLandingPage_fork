@@ -17,7 +17,7 @@ const ITEMS = [
   },
   {
     q: 'Can I try Aviran before committing?',
-    a: 'Yes. Request a walkthrough and we will instrument one of your agents live in the session—typically 30 minutes. We do Collison-style installs with design partners to understand your workflow before proposing a config. Contact us at hello@aviran.dev to schedule.',
+    a: 'Yes. Request a walkthrough and we will instrument one of your agents live in the session—typically 30 minutes. We do Collison-style installs with design partners to understand your workflow before proposing a config. Contact us at team@aviran.dev to schedule.',
   },
 ]
 

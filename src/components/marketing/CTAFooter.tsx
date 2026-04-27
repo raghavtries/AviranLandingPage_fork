@@ -3,7 +3,7 @@ import { ArrowUpRight, Copy, Check } from 'lucide-react'
 import { BracketPanel } from '../primitives/BracketPanel'
 import { MonoLabel } from '../primitives/MonoLabel'
 
-const EMAIL = 'hello@aviran.dev'
+const EMAIL = 'team@aviran.dev'
 
 export function CTAFooter() {
   const [copied, setCopied] = useState(false)

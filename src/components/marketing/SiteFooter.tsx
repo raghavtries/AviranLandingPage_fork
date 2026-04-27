@@ -13,8 +13,8 @@ export function SiteFooter() {
             <a href="mailto:raghav.jsub@gmail.com" className="font-mono text-[12px] text-text-tertiary transition-colors hover:text-text-secondary">
               raghav.jsub@gmail.com
             </a>
-            <a href="mailto:hello@aviran.dev" className="font-mono text-[12px] text-text-tertiary transition-colors hover:text-text-secondary">
-              hello@aviran.dev
+            <a href="mailto:team@aviran.dev" className="font-mono text-[12px] text-text-tertiary transition-colors hover:text-text-secondary">
+              team@aviran.dev
             </a>
           </div>
         </div>

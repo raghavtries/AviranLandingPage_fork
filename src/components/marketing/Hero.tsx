@@ -143,7 +143,7 @@ export function Hero() {
             className="font-display text-[40px] font-semibold leading-[1.08] tracking-[-0.03em] text-text-primary md:text-[60px]"
             style={{ maxWidth: '580px' }}
           >
-            Your agents ship fixes to themselves.
+            Let your agents continually improve.
           </h1>
 
           <p className="font-body text-[18px] leading-relaxed text-text-secondary md:text-[21px]" style={{ maxWidth: '540px' }}>

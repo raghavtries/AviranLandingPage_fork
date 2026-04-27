@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 
 const NAV_LINKS = [
-  { label: 'Features',     href: '#features' },
   { label: 'How it works', href: '#how-it-works' },
+  { label: 'Docs',         href: '#docs' },
 ]
 
 export function Nav() {

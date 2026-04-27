@@ -6,7 +6,7 @@ const CARDS = [
   {
     num: '01',
     title: 'Self-Improving Configs',
-    body: 'Every production run becomes training signal. We search prompt, tool, and parameter space with DSPy + Optuna, score candidates on your real traffic, and promote winners behind a feature flag.',
+    body: 'Every production run becomes training signal. We search prompt, tool, and parameter space using Bayesian and genetic sampling methods like TPE, CMA-ES, and others, score candidates on your real traffic, and promote winners behind a feature flag.',
     href: '#docs',
   },
   {

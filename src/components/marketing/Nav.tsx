@@ -4,7 +4,6 @@ import { ArrowUpRight, Menu, X } from 'lucide-react'
 const NAV_LINKS = [
   { label: 'Features',     href: '#features' },
   { label: 'How it works', href: '#how-it-works' },
-  { label: 'Docs',         href: '#docs' },
 ]
 
 export function Nav() {
@@ -12,9 +11,9 @@ export function Nav() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border-subtle bg-bg-base/70 backdrop-blur-xl">
-      <div className="mx-auto flex h-14 max-w-[1200px] items-center justify-between px-6">
+      <div className="mx-auto flex h-14 max-w-[1200px] items-center px-6">
         {/* Wordmark */}
-        <a href="/" className="flex items-center gap-2.5 no-underline">
+        <a href="/" className="flex items-center gap-2.5 no-underline mr-auto">
           <span className="font-display text-[15px] font-semibold tracking-[-0.02em] text-text-primary">
             Aviran
           </span>

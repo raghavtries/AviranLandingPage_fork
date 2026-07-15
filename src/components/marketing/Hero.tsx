@@ -1,123 +1,148 @@
-import { useEffect, useState, useRef } from 'react'
-import { ArrowUpRight } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { ArrowUpRight, Check } from 'lucide-react'
 import { BracketPanel } from '../primitives/BracketPanel'
 import { MonoLabel } from '../primitives/MonoLabel'
 import { SignalChip } from '../primitives/SignalChip'
 
-// Sparkline showing time-to-launch drop after contract reuse kicks in
-function Sparkline() {
-  const pathRef = useRef<SVGPathElement>(null)
-  const [len, setLen] = useState(0)
-  const W = 340
-  const H = 100
+const STAGES = [
+  { label: 'DISCOVER',  detail: 'reading SOW, calls, schemas',      cmd: 'aviran discover --customer' },
+  { label: 'MAP',       detail: 'systems → product model',          cmd: 'aviran map --customer' },
+  { label: 'CONFIGURE', detail: 'generating config & workflows',    cmd: 'aviran configure --customer' },
+  { label: 'VALIDATE',  detail: 'running acceptance tests',         cmd: 'aviran validate --customer' },
+  { label: 'LAUNCH',    detail: 'live',                             cmd: 'aviran launch --customer' },
+]
 
-  // Points: high fail rate before x=180, drops after
-  const pts: [number, number][] = [
-    [0, 55], [25, 50], [50, 58], [75, 48], [100, 54],
-    [125, 46], [150, 52], [170, 50],
-    [180, 52],
-    [195, 72], [215, 80], [235, 82], [255, 85], [275, 83], [300, 85], [320, 88], [340, 86],
-  ]
+const CUSTOMERS = ['acme_corp', 'globex_inc', 'initech']
 
-  const d = pts.map(([x, y], i) => `${i === 0 ? 'M' : 'L'} ${x} ${y}`).join(' ')
-
-  useEffect(() => {
-    if (pathRef.current) setLen(pathRef.current.getTotalLength())
-  }, [])
-
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-  return (
-    <div className="relative" style={{ height: H }}>
-      <svg
-        viewBox={`0 0 ${W} ${H}`}
-        preserveAspectRatio="none"
-        width="100%"
-        height={H}
-        aria-hidden="true"
-        className="overflow-visible"
-      >
-        {/* Area fill */}
-        <defs>
-          <linearGradient id="spark-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#4DA3FF" stopOpacity="0.15" />
-            <stop offset="100%" stopColor="#4DA3FF" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <path
-          d={`${d} L 340 ${H} L 0 ${H} Z`}
-          fill="url(#spark-fill)"
-        />
-        {/* Line */}
-        <path
-          ref={pathRef}
-          d={d}
-          fill="none"
-          stroke="#4DA3FF"
-          strokeWidth="1.5"
-          style={
-            len > 0 && !prefersReduced
-              ? {
-                  strokeDasharray: len,
-                  strokeDashoffset: len,
-                  animation: 'drawLine 1.4s cubic-bezier(0.16,1,0.3,1) 0.3s forwards',
-                }
-              : {}
-          }
-        />
-        {/* Deploy marker */}
-        <line x1="180" y1="8" x2="180" y2={H - 4} stroke="#2A3547" strokeWidth="1" strokeDasharray="3 3" />
-        <text x="184" y="16" fill="#525F74" fontSize="8" fontFamily="JetBrains Mono, monospace">contract reused</text>
-        {/* After-drop highlight dot */}
-        <circle cx="340" cy="86" r="3" fill="#4DA3FF" />
-      </svg>
-      <style>{`
-        @keyframes drawLine {
-          to { stroke-dashoffset: 0; }
-        }
-      `}</style>
-    </div>
-  )
-}
-
-// Typing effect for the deploy command
-function TypingLine() {
-  const CMD = '> aviran apply --customer acme_corp --change discount_threshold=7% --approve pending'
+// Typing effect for a single command line, retriggered by remounting via `key`
+function TypingLine({ cmd }: { cmd: string }) {
   const [text, setText] = useState('')
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   useEffect(() => {
     if (prefersReduced) {
-      setText(CMD)
+      setText(cmd)
       return
     }
     let i = 0
     let timer: ReturnType<typeof setTimeout>
-
     const type = () => {
       i++
-      setText(CMD.slice(0, i))
-      if (i < CMD.length) {
-        timer = setTimeout(type, 30)
-      } else {
-        // Wait ~8s after full text, then clear and restart
-        timer = setTimeout(() => {
-          setText('')
-          i = 0
-          timer = setTimeout(type, 500)
-        }, 8000)
-      }
+      setText(cmd.slice(0, i))
+      if (i < cmd.length) timer = setTimeout(type, 22)
     }
-
-    timer = setTimeout(type, 800)
+    timer = setTimeout(type, 150)
     return () => clearTimeout(timer)
-  }, [prefersReduced])
+  }, [cmd, prefersReduced])
 
   return (
     <span className="text-accent">
       {text}
       <span className="animate-pulse">_</span>
     </span>
+  )
+}
+
+// Animated pipeline: steps through Discover → Map → Configure → Validate → Launch,
+// looping across a few example customers to show onboarding speed.
+function DeploymentPipeline() {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const [stage, setStage] = useState(prefersReduced ? STAGES.length - 1 : 0)
+  const [customer, setCustomer] = useState(0)
+
+  useEffect(() => {
+    if (prefersReduced) return
+    let cancelled = false
+    let s = 0
+    let cust = 0
+    let timer: ReturnType<typeof setTimeout>
+
+    const tick = () => {
+      if (cancelled) return
+      setStage(s)
+      setCustomer(cust)
+      const atLaunch = s === STAGES.length - 1
+      timer = setTimeout(() => {
+        if (atLaunch) {
+          s = 0
+          cust = (cust + 1) % CUSTOMERS.length
+        } else {
+          s += 1
+        }
+        tick()
+      }, atLaunch ? 2200 : 1100)
+    }
+
+    tick()
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+    }
+  }, [prefersReduced])
+
+  const customerName = CUSTOMERS[customer]
+
+  return (
+    <>
+      <div className="flex items-center justify-between border-b border-border-subtle px-3 py-2">
+        <span className="font-mono text-[10px] text-text-tertiary">
+          CUSTOMER: <span className="text-text-secondary">{customerName}</span>
+        </span>
+        <span className="font-mono text-[10px] text-text-tertiary">
+          {stage === STAGES.length - 1 ? (
+            <span className="text-signal-good">LIVE</span>
+          ) : (
+            `stage ${stage + 1}/${STAGES.length}`
+          )}
+        </span>
+      </div>
+
+      <div className="flex flex-col gap-0 px-3 py-4">
+        {STAGES.map((s, i) => {
+          const state = i < stage ? 'done' : i === stage ? 'active' : 'pending'
+          return (
+            <div key={s.label} className="relative flex gap-3 pb-5 last:pb-0">
+              {i < STAGES.length - 1 && (
+                <span
+                  className="absolute left-[7px] top-4 h-full w-px transition-colors duration-300"
+                  style={{ backgroundColor: state === 'done' ? '#4DA3FF' : '#2A3547' }}
+                  aria-hidden="true"
+                />
+              )}
+              <span
+                className="relative z-10 mt-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full border transition-colors duration-300"
+                style={{
+                  backgroundColor: state === 'done' ? '#4DA3FF' : state === 'active' ? 'rgba(77,163,255,0.15)' : 'transparent',
+                  borderColor: state === 'pending' ? '#2A3547' : '#4DA3FF',
+                }}
+              >
+                {state === 'done' && <Check size={9} className="text-bg-base" strokeWidth={3} />}
+                {state === 'active' && (
+                  <motion.span
+                    className="h-1.5 w-1.5 rounded-full bg-accent"
+                    animate={{ scale: [1, 1.5, 1] }}
+                    transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                )}
+              </span>
+              <div className="flex flex-col gap-0.5">
+                <span className={`font-mono text-[11px] uppercase tracking-[0.08em] ${state === 'pending' ? 'text-text-tertiary' : 'text-text-primary'}`}>
+                  {s.label}
+                </span>
+                <span className="font-mono text-[10px] text-text-tertiary">{s.detail}</span>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      <div className="border-t border-border-subtle px-3 py-2.5">
+        <p className="font-mono text-[11px] leading-none text-text-tertiary">
+          <TypingLine key={`${customer}-${stage}`} cmd={`> ${STAGES[stage].cmd} ${customerName}`} />
+        </p>
+      </div>
+    </>
   )
 }
 
@@ -140,16 +165,15 @@ export function Hero() {
           <MonoLabel className="tracking-[0.15em]">AI FDE for Agent Vendors</MonoLabel>
 
           <h1
-            className="font-display text-[40px] font-semibold leading-[1.08] tracking-[-0.03em] text-text-primary md:text-[60px]"
-            style={{ maxWidth: '640px' }}
+            className="font-display text-[40px] font-semibold leading-[1.08] tracking-[-0.03em] text-text-primary md:text-[56px]"
+            style={{ maxWidth: '560px' }}
           >
-            We build AI FDEs. Get your product deployed in minutes, not weeks.
+            Deploy your product in minutes, not weeks.
           </h1>
 
           <p className="font-body text-[18px] leading-relaxed text-text-secondary md:text-[21px]" style={{ maxWidth: '540px' }}>
-            Aviran learns your product once, then handles the repeatable work of
-            onboarding and maintaining every enterprise customer — discovery,
-            configuration, integration, validation, and launch.
+            Aviran is the AI FDE for agent vendors — it learns your product once,
+            then handles onboarding and maintenance for every enterprise customer.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -164,82 +188,19 @@ export function Hero() {
 
         </div>
 
-        {/* Right — Onboarding Ops panel */}
-        <BracketPanel label="ONBOARDING OPS" className="overflow-hidden" glow>
+        {/* Right — Deployment pipeline panel */}
+        <BracketPanel label="DEPLOYMENT" className="overflow-hidden" glow>
           {/* Top bar */}
           <div className="flex flex-wrap items-center gap-0 border-b border-border-subtle">
             <span className="border-r border-border-subtle px-3 py-2 font-mono text-[10px] text-text-tertiary">
               VENDOR: <span className="text-text-secondary">collectflow.v3</span>
-            </span>
-            <span className="border-r border-border-subtle px-3 py-2 font-mono text-[10px] text-text-tertiary">
-              CUSTOMER: <span className="text-text-secondary">acme_corp</span>
             </span>
             <span className="flex items-center gap-2 px-3 py-2 font-mono text-[10px] text-text-tertiary">
               STATUS: <SignalChip variant="healthy" />
             </span>
           </div>
 
-          {/* Stat row */}
-          <div className="grid grid-cols-3 divide-x divide-border-subtle border-b border-border-subtle">
-            {[
-              { label: 'CUSTOMERS LIVE', value: '20',     delta: '+4 this mo.' },
-              { label: 'TIME TO LAUNCH', value: '4.2 days', delta: '−18 days' },
-              { label: 'OPEN BLOCKERS',  value: '3',      delta: '−2' },
-            ].map((s) => (
-              <div key={s.label} className="flex flex-col gap-1 px-3 py-3">
-                <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-text-tertiary">
-                  {s.label}
-                </span>
-                <span className="font-mono text-lg font-medium text-text-primary leading-none">
-                  {s.value}
-                </span>
-                <span className="font-mono text-[10px] text-signal-good">
-                  {s.delta}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* Sparkline */}
-          <div className="border-b border-border-subtle px-3 py-3">
-            <span className="mb-2 block font-mono text-[9px] uppercase tracking-[0.12em] text-text-tertiary">
-              TIME TO LAUNCH — 7 DAY
-            </span>
-            <Sparkline />
-          </div>
-
-          {/* Blockers table */}
-          <div className="border-b border-border-subtle">
-            <div className="grid grid-cols-[auto_1fr_auto_auto] gap-x-3 border-b border-border-subtle px-3 py-1.5">
-              {['ACCOUNT', 'BLOCKER', 'OWNER', 'STATUS'].map((h) => (
-                <span key={h} className="font-mono text-[9px] uppercase tracking-[0.1em] text-text-tertiary">
-                  {h}
-                </span>
-              ))}
-            </div>
-            {[
-              { id: 'acme_corp', pattern: 'Salesforce sandbox access',   n: 'Acme CRM admin',    fix: 'waiting' },
-              { id: 'acme_corp', pattern: 'Approval-channel owner',      n: 'Acme Recoveries lead', fix: 'answered' },
-              { id: 'acme_corp', pattern: 'Payment API test creds',      n: 'Acme engineering',  fix: 'blocking' },
-            ].map((row, i) => (
-              <div
-                key={i}
-                className="grid grid-cols-[auto_1fr_auto_auto] gap-x-3 px-3 py-2 transition-colors hover:bg-bg-overlay"
-              >
-                <span className="font-mono text-[10px] text-accent">{row.id}</span>
-                <span className="truncate font-mono text-[10px] text-text-secondary">{row.pattern}</span>
-                <span className="truncate font-mono text-[10px] text-text-tertiary">{row.n}</span>
-                <span className={`font-mono text-[10px] ${row.fix === 'blocking' ? 'text-signal-bad' : row.fix === 'waiting' ? 'text-signal-warn' : 'text-signal-good'}`}>{row.fix}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Typing footer */}
-          <div className="px-3 py-2.5">
-            <p className="font-mono text-[11px] leading-none text-text-tertiary">
-              <TypingLine />
-            </p>
-          </div>
+          <DeploymentPipeline />
         </BracketPanel>
       </div>
     </section>

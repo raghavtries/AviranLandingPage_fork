@@ -4,27 +4,24 @@ import { MonoLabel } from '../primitives/MonoLabel'
 
 // ─── Mini Visualizations ────────────────────────────────────────────────────
 
-function ObservationViz() {
+function ProductContractViz() {
+  const items = [
+    { label: 'Configurable prompts & policies', status: 'done' },
+    { label: 'Tools & workflows', status: 'done' },
+    { label: 'Integrations & field mappings', status: 'done' },
+    { label: 'Permissions & escalation rules', status: 'done' },
+    { label: 'Actions requiring vendor engineering', status: 'flag' },
+  ]
   return (
     <div className="flex h-full flex-col gap-4 rounded border border-border-subtle bg-bg-raised p-6">
-      <MonoLabel className="block text-[11px]">Trace Waterfall — run_a4f291</MonoLabel>
-      <div className="flex flex-1 flex-col justify-center gap-4">
-        {[
-          { name: 'agent_run',   start: 0,   dur: 100, color: '#4DA3FF', ms: '2140ms' },
-          { name: '  plan',      start: 2,   dur: 30,  color: '#3DDC97', ms: '620ms'  },
-          { name: '  call_llm',  start: 5,   dur: 52,  color: '#4DA3FF', ms: '1080ms' },
-          { name: '  tool_srch', start: 58,  dur: 18,  color: '#F5A623', ms: '380ms'  },
-          { name: '  embed',     start: 77,  dur: 14,  color: '#4DA3FF', ms: '290ms'  },
-        ].map((row) => (
-          <div key={row.name} className="flex items-center gap-3">
-            <span className="w-28 shrink-0 font-mono text-[13px] text-text-tertiary">{row.name}</span>
-            <div className="relative h-6 flex-1">
-              <div
-                className="absolute inset-y-1 rounded-sm"
-                style={{ left: `${row.start}%`, width: `${row.dur}%`, backgroundColor: row.color, opacity: 0.75 }}
-              />
-            </div>
-            <span className="w-16 text-right font-mono text-[13px] text-text-tertiary">{row.ms}</span>
+      <MonoLabel className="block text-[11px]">Product Contract — CollectFlow v3</MonoLabel>
+      <div className="flex flex-1 flex-col justify-center gap-3">
+        {items.map((it) => (
+          <div key={it.label} className="flex items-center gap-3 font-mono text-[13px]">
+            <span className={it.status === 'flag' ? 'text-signal-warn' : 'text-signal-good'}>
+              {it.status === 'flag' ? '△' : '✓'}
+            </span>
+            <span className="text-text-secondary">{it.label}</span>
           </div>
         ))}
       </div>
@@ -32,62 +29,57 @@ function ObservationViz() {
   )
 }
 
-function IssuePatternsViz() {
-  const clusters = [
-    { cx: 25, cy: 35, r: 22, color: '#FF5C5C', label: 'stale results ×412' },
-    { cx: 65, cy: 55, r: 16, color: '#F5A623', label: 'handoff loop ×201' },
-    { cx: 50, cy: 22, r: 10, color: '#F5A623', label: 'timeout ×73' },
-    { cx: 82, cy: 30, r: 7,  color: '#3DDC97', label: '' },
-    { cx: 75, cy: 70, r: 6,  color: '#3DDC97', label: '' },
+function RequirementsViz() {
+  const rows = [
+    { src: 'SOW §4.2',       req: 'Discounts above 7% require approval',                status: 'CONFIRMED' },
+    { src: 'Slack thread',   req: 'CRM field renamed: deal_stage → opportunity_stage',   status: 'CONFIRMED' },
+    { src: 'Discovery call', req: 'Salesforce sandbox access',                            status: 'WAITING'   },
+    { src: 'Discovery call', req: 'Payment API test credentials',                         status: 'BLOCKING'  },
   ]
+  const color: Record<string, string> = {
+    CONFIRMED: 'text-signal-good', WAITING: 'text-signal-warn', BLOCKING: 'text-signal-bad',
+  }
   return (
     <div className="flex h-full flex-col gap-4 rounded border border-border-subtle bg-bg-raised p-6">
-      <MonoLabel className="block text-[11px]">Issue Cluster Map — last 7 days</MonoLabel>
-      <div className="flex flex-1 items-center justify-center">
-        <svg viewBox="0 0 100 90" width="100%" height="100%" aria-hidden="true">
-          {clusters.map((c, i) => (
-            <g key={i}>
-              <circle cx={c.cx} cy={c.cy} r={c.r} fill={c.color} fillOpacity="0.15" stroke={c.color} strokeWidth="0.8" strokeOpacity="0.5" />
-              {c.label && (
-                <text x={c.cx} y={c.cy + 0.5} textAnchor="middle" dominantBaseline="middle" fill={c.color} fontSize="4">
-                  {c.label}
-                </text>
-              )}
-            </g>
-          ))}
-          <text x="2" y="87" fill="#525F74" fontSize="3.5" fontFamily="JetBrains Mono, monospace">n=2,906 runs · 3 active clusters</text>
-        </svg>
+      <MonoLabel className="block text-[11px]">Requirements — Acme Corp</MonoLabel>
+      <div className="flex flex-1 flex-col justify-center gap-3">
+        {rows.map((r, i) => (
+          <div key={i} className="flex items-start gap-3 font-mono text-[12px] leading-relaxed">
+            <span className="w-24 shrink-0 text-text-tertiary">{r.src}</span>
+            <span className="flex-1 text-text-secondary">{r.req}</span>
+            <span className={`w-20 shrink-0 text-right ${color[r.status]}`}>{r.status}</span>
+          </div>
+        ))}
       </div>
     </div>
   )
 }
 
-function JudgeComparisonViz() {
+function ConfigDiffViz() {
   return (
     <div className="flex h-full flex-col gap-4 rounded border border-border-subtle bg-bg-raised p-6">
-      <MonoLabel className="block text-[11px]">Config Diff — v7 vs v8 candidate</MonoLabel>
+      <MonoLabel className="block text-[11px]">Generated Config — acme_corp.yaml</MonoLabel>
       <div className="flex flex-1 flex-col justify-center">
         <div className="overflow-hidden rounded border border-border-subtle font-mono text-[13px]">
           <div className="flex border-b border-border-subtle">
-            <span className="w-1/2 border-r border-border-subtle bg-signal-bad/5 px-4 py-2.5 text-signal-bad">— v7 (current)</span>
-            <span className="w-1/2 bg-signal-good/5 px-4 py-2.5 text-signal-good">+ v8 (candidate)</span>
+            <span className="w-1/2 border-r border-border-subtle bg-bg-overlay px-4 py-2.5 text-text-tertiary">CollectFlow contract</span>
+            <span className="w-1/2 bg-signal-good/5 px-4 py-2.5 text-signal-good">+ acme_corp.yaml</span>
           </div>
           {[
-            ['  model: gpt-4o',    '  model: gpt-4o'],
-            ['- ttl: 300',         '+ ttl: 900'],
-            ['  retries: 1',       '  retries: 1'],
-            ['- temperature: 0.9', '+ temperature: 0.7'],
-            ['  tool: search_v2',  '  tool: search_v2'],
+            ['  discount_threshold: null', '+ discount_threshold: 7%'],
+            ['  approval_required: false', '+ approval_required: true'],
+            ['  crm_field: deal_stage',     '+ crm_field: opportunity_stage'],
+            ['  escalation: default',       '  escalation: default'],
           ].map(([left, right], i) => (
             <div key={i} className="flex border-t border-border-subtle/50">
-              <span className={`w-1/2 border-r border-border-subtle/50 px-4 py-2 ${left.startsWith('-') ? 'bg-signal-bad/5 text-signal-bad' : 'text-text-tertiary'}`}>{left}</span>
+              <span className="w-1/2 border-r border-border-subtle/50 px-4 py-2 text-text-tertiary">{left}</span>
               <span className={`w-1/2 px-4 py-2 ${right.startsWith('+') ? 'bg-signal-good/5 text-signal-good' : 'text-text-tertiary'}`}>{right}</span>
             </div>
           ))}
           <div className="border-t border-border-subtle bg-bg-overlay px-4 py-2.5">
-            <span className="text-signal-good">score 94.2 → 97.8</span>
+            <span className="text-signal-good">14/14 requirements mapped</span>
             <span className="mx-3 text-text-tertiary">·</span>
-            <span className="text-signal-good">fail_rate 2.9% → 1.2%</span>
+            <span className="text-signal-good">0 unmapped fields</span>
           </div>
         </div>
       </div>
@@ -95,23 +87,23 @@ function JudgeComparisonViz() {
   )
 }
 
-function RootCauseViz() {
+function ValidationViz() {
   const [expanded, setExpanded] = useState(true)
   return (
     <div className="flex h-full flex-col gap-4 rounded border border-border-subtle bg-bg-raised p-6">
-      <MonoLabel className="block text-[11px]">Trace Tree — run_b7e14 (fail)</MonoLabel>
+      <MonoLabel className="block text-[11px]">Validation — acme_corp.yaml</MonoLabel>
       <div className="flex flex-1 flex-col justify-center font-mono text-[14px]">
         <button type="button" className="flex items-center gap-3 text-left" onClick={() => setExpanded(!expanded)}>
           <span className="text-text-tertiary">{expanded ? '▼' : '▶'}</span>
-          <span className="text-signal-bad">agent_run</span>
-          <span className="text-[11px] text-signal-bad">[FAIL]</span>
+          <span className="text-signal-good">contract compliance</span>
+          <span className="text-[11px] text-signal-good">[PASS]</span>
         </button>
         {expanded && (
           <div className="ml-5 mt-3 flex flex-col gap-3 border-l border-border-subtle pl-5">
             {[
-              { label: 'plan_step',                     status: 'good' },
-              { label: 'call_tool  [timeout 5003ms]',   status: 'bad'  },
-              { label: 'retry → call_tool  [ok 312ms]', status: 'good' },
+              { label: 'schema compatibility',                       status: 'good' },
+              { label: 'permission checks',                          status: 'good' },
+              { label: 'regression: escalation path  [1 flagged]',   status: 'bad'  },
             ].map((n, i) => (
               <div key={i} className="flex items-center gap-3">
                 <span className="text-text-tertiary">●</span>
@@ -125,23 +117,22 @@ function RootCauseViz() {
   )
 }
 
-function LogsViz() {
+function LaunchLogViz() {
   const lines = [
-    { ts: '14:23:01.042', level: 'INFO',  msg: 'agent=sales.v7 run=a4f291 start' },
-    { ts: '14:23:01.188', level: 'DEBUG', msg: 'span=call_llm tokens_in=1247 tokens_out=312' },
-    { ts: '14:23:03.922', level: 'WARN',  msg: 'span=tool_search latency=4180ms' },
-    { ts: '14:23:03.924', level: 'ERROR', msg: 'span=tool_search error="upstream timeout"' },
-    { ts: '14:23:04.001', level: 'INFO',  msg: 'span=retry attempt=2 backoff=1000ms' },
-    { ts: '14:23:04.388', level: 'INFO',  msg: 'span=tool_search ok latency=361ms' },
-    { ts: '14:23:05.112', level: 'INFO',  msg: 'agent=sales.v7 run=a4f291 end score=0.91' },
+    { ts: 'Mon 09:14', level: 'INFO',  msg: 'acme_corp implementation approved by operator' },
+    { ts: 'Mon 09:15', level: 'INFO',  msg: 'acme_corp launched — stage=LIVE' },
+    { ts: 'Thu 14:02', level: 'INFO',  msg: 'slack: "discounts above 7% now require approval"' },
+    { ts: 'Thu 14:03', level: 'DEBUG', msg: 'scoped change against CollectFlow contract' },
+    { ts: 'Thu 14:04', level: 'INFO',  msg: 'diff generated — pending operator approval' },
+    { ts: 'Thu 14:11', level: 'INFO',  msg: 'change approved, applied to acme_corp.yaml' },
+    { ts: 'Thu 14:11', level: 'INFO',  msg: 'replied in Slack: "done — live now"' },
   ]
   const color: Record<string, string> = {
     INFO: 'text-text-secondary', DEBUG: 'text-text-tertiary',
-    WARN: 'text-signal-warn', ERROR: 'text-signal-bad',
   }
   return (
     <div className="flex h-full flex-col gap-4 rounded border border-border-subtle bg-bg-raised p-6">
-      <MonoLabel className="block text-[11px]">Log Stream — run_a4f291</MonoLabel>
+      <MonoLabel className="block text-[11px]">Audit Trail — acme_corp</MonoLabel>
       <div className="flex flex-1 flex-col justify-center gap-2">
         {lines.map((l, i) => (
           <div key={i} className="flex gap-4 font-mono text-[13px] leading-relaxed">
@@ -159,65 +150,64 @@ function LogsViz() {
 
 const TABS = [
   {
-    id: 'observation',
-    title: 'Observation',
-    headline: 'Every span. Every run.',
-    body: 'Aviran instruments your agent at the span level via OpenTelemetry, capturing full trace fidelity without sampling. Every production run is stored, indexed, and queryable.',
+    id: 'product-discovery',
+    title: 'Product Discovery',
+    headline: 'Learn the product once.',
+    body: 'Aviran inspects your documentation, schemas, APIs, repositories, and sample deployments to build a confirmed product contract — what’s configurable, what’s supported, and what needs engineering.',
     bullets: [
-      'Span-level traces with <2ms overhead at p50',
-      'PII redaction via Presidio before storage',
-      'Query by agent, run, cluster, or time window',
+      'Identifies configurable prompts, policies, tools, and workflows',
+      'Maps supported integrations, field mappings, and permissions',
+      'Skippable when you already hand us a complete contract',
     ],
-    Viz: ObservationViz,
+    Viz: ProductContractViz,
   },
   {
-    id: 'issue-patterns',
-    title: 'Issue Patterns',
-    headline: 'Failures cluster automatically.',
-    body: 'Aviran embeds span summaries into pgvector, runs DBSCAN clustering, and surfaces recurring failure signatures—no manual labeling, no threshold tuning.',
+    id: 'customer-discovery',
+    title: 'Customer Discovery',
+    headline: 'Extract requirements, not assumptions.',
+    body: 'Aviran reads customer documents, call transcripts, policies, Slack threads, and sample data, extracting structured, cited requirements — and routes open questions to the right stakeholder instead of guessing.',
     bullets: [
-      'Semantic clustering over span embeddings',
-      'Cluster severity scored by frequency × impact',
-      'Webhook alerts when new cluster exceeds threshold',
+      'Every requirement is traceable to its source',
+      'Missing or conflicting information is flagged and routed automatically',
+      'Blocker owners and status are tracked until resolved',
     ],
-    Viz: IssuePatternsViz,
+    Viz: RequirementsViz,
   },
   {
-    id: 'sampling-optimization',
-    title: 'Sampling Optimization',
-    headline: 'Bayesian optimization finds the best config.',
-    body: 'Aviran uses state-of-the-art sampling algorithms—TPE (Tree-structured Parzen Estimator) for discrete config search and CMA-ES for continuous parameters like temperature and penalty weights. DSPy generates prompt mutations as structured proposals. Every candidate is scored on real held-out production traffic, not synthetic benchmarks.',
+    id: 'implementation',
+    title: 'Implementation',
+    headline: 'Generate the customer-specific build.',
+    body: 'Combining the vendor product contract with confirmed customer requirements, Aviran generates configuration, field mappings, and workflows — plus the acceptance criteria to test them against. Requirement mapping and candidate generation draw on ICLR-published search techniques, applied here to implementation rather than optimization.',
     bullets: [
-      'TPE for efficient Bayesian exploration of prompt and tool space',
-      'CMA-ES for continuous params (temperature, top_p, penalty weights)',
-      'DSPy-guided prompt mutations as search proposals',
-      'Candidates scored on real traffic, not synthetic evals',
+      'Config, mappings, and workflows generated from the product contract',
+      'Acceptance tests and an implementation plan produced alongside the build',
+      'Every artifact traces back to a source requirement',
     ],
-    Viz: JudgeComparisonViz,
+    Viz: ConfigDiffViz,
   },
   {
-    id: 'rca',
-    title: 'Root Cause Analysis',
-    headline: 'Trace a failure to its exact cause.',
-    body: 'Drill into any failing run. Aviran presents the span tree, highlights the offending node, and surfaces causal attribution across prompt, tool call, and parameter.',
+    id: 'validation',
+    title: 'Validation',
+    headline: 'Prove it works before it ships.',
+    body: 'Aviran checks the proposed configuration against your product contract for schema compatibility, permission correctness, expected behavior, and regressions — producing evidence, not just a pass/fail.',
     bullets: [
-      'Collapsible trace tree per run',
-      'Causal attribution: prompt vs. tool vs. config',
-      'Linked directly to the cluster and suggested fix',
+      'Contract compliance and schema checks',
+      'Behavioral validation against acceptance criteria',
+      'Failures come with proposed remediation, not just an error',
     ],
-    Viz: RootCauseViz,
+    Viz: ValidationViz,
   },
   {
-    id: 'logs',
-    title: 'Logs',
-    headline: 'Full audit trail, queryable.',
-    body: 'Structured log lines for every agent interaction with level, timestamp, and span context. Filter by level, agent, or run.',
+    id: 'launch-maintain',
+    title: 'Launch & Maintain',
+    headline: 'Approve once. Maintain forever.',
+    body: 'Aviran presents the plan, risks, and rollback path for operator approval, then launches the customer. Afterward, supported changes — policy updates, field mappings, routing rules — are suggested for approval before they ship.',
     bullets: [
-      'Structured JSON logs with span correlation IDs',
-      'Retention configurable per environment',
-      'Exportable to S3, GCS, or your SIEM',
+      'Full plan, risk, and rollback surfaced before launch',
+      'Post-launch changes are suggested, then approved — never silent',
+      'Unsupported work escalates to engineering with full context',
     ],
-    Viz: LogsViz,
+    Viz: LaunchLogViz,
   },
 ]
 
@@ -250,7 +240,7 @@ export function HowItWorksNew() {
         <div className="mx-auto max-w-[1200px]">
           <MonoLabel className="block mb-4">How It Works</MonoLabel>
           <h2 className="font-display text-[40px] font-semibold leading-tight tracking-[-0.02em] text-text-primary mb-10">
-            Automatically monitor + diagnose + fix.
+            From new customer to launched, without a new hire.
           </h2>
           <div className="flex gap-0 border-b border-border-subtle mb-8">
             {TABS.map((t, i) => (
@@ -303,7 +293,7 @@ export function HowItWorksNew() {
         <div className="shrink-0 pt-8 pb-4">
           <MonoLabel className="block mb-3 text-[11px]">How It Works</MonoLabel>
           <h2 className="font-display text-[36px] md:text-[44px] font-semibold leading-tight tracking-[-0.02em] text-text-primary">
-            Automatically monitor + diagnose + fix.
+            From new customer to launched, without a new hire.
           </h2>
         </div>
 

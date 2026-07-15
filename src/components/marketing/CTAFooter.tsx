@@ -22,10 +22,10 @@ export function CTAFooter() {
             <div className="flex flex-col gap-4" style={{ maxWidth: 580 }}>
               <MonoLabel>Get Started</MonoLabel>
               <h2 className="font-display text-[32px] font-semibold leading-tight tracking-[-0.02em] text-text-primary md:text-[44px]">
-                Stop watching dashboards. Start shipping fixes.
+                Stop backlogging onboarding. Start shipping customers.
               </h2>
               <p className="font-body text-[15px] leading-relaxed text-text-secondary">
-                30-minute technical walkthrough. We&apos;ll instrument one of your agents live.
+                30-minute technical walkthrough. We&apos;ll onboard one of your customers live.
               </p>
             </div>
 

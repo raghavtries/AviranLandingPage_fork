@@ -1,63 +1,41 @@
 import { useState, useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { Radio, Layers, Stethoscope, FlaskConical, Rocket } from 'lucide-react'
+import { Search, PlugZap, Wrench } from 'lucide-react'
 import { BracketPanel } from '../primitives/BracketPanel'
 import { MonoLabel } from '../primitives/MonoLabel'
 
 const NODES = [
   {
     num: '01',
-    label: 'OBSERVE',
-    icon: Radio,
-    desc: 'Span-level telemetry via OpenTelemetry.',
+    label: 'UNDERSTAND',
+    icon: Search,
+    desc: 'Learn the vendor product once.',
     details: [
-      'OTel spans, 1:1 trace fidelity per production run',
-      'PII redaction via Presidio before any storage',
-      '<2ms overhead at p50, <8ms at p99',
+      'Configurable prompts, policies, tools, and workflows',
+      'Supported integrations, field mappings, and permissions',
+      'What Aviran may do — and what needs vendor engineering',
     ],
   },
   {
     num: '02',
-    label: 'CLUSTER',
-    icon: Layers,
-    desc: 'Semantic clustering of failure patterns.',
+    label: 'ONBOARD',
+    icon: PlugZap,
+    desc: 'Implement each customer from requirements to launch.',
     details: [
-      'pgvector embeddings over span summaries',
-      'DBSCAN clustering, no manual labeling required',
-      'New cluster alerts delivered via webhook',
+      'Extracts cited requirements from docs, calls, and Slack',
+      'Maps the customer’s systems to the product model',
+      'Generates config, validates it, and launches on approval',
     ],
   },
   {
     num: '03',
-    label: 'OPTIMIZE',
-    icon: Stethoscope,
-    desc: 'Sampling algorithms search the config space.',
+    label: 'MAINTAIN',
+    icon: Wrench,
+    desc: 'Handle supported changes after launch.',
     details: [
-      'Optuna TPE sampler over prompt, tool, and param axes',
-      'DSPy-guided prompt mutations as search proposals',
-      'Pareto-optimal candidates ranked by score + latency',
-    ],
-  },
-  {
-    num: '04',
-    label: 'SIMULATE',
-    icon: FlaskConical,
-    desc: 'Scored on rigorous tests.',
-    details: [
-      'DSPy + Optuna search over prompt/tool/param space',
-      'Replayed against historical traces as ground truth',
-      'Pareto-optimal candidates ranked by score + latency',
-    ],
-  },
-  {
-    num: '05',
-    label: 'DEPLOY',
-    icon: Rocket,
-    desc: 'Winning version shipped behind a feature flag.',
-    details: [
-      'Gradual rollout: 1% → 10% → 50% → 100%',
-      'Guardrails: auto-rollback if fail_rate exceeds threshold',
-      'Full audit trail in Candidate Registry',
+      'Scopes each request against the product contract',
+      'Shows the exact diff before anything ships',
+      'Escalates unsupported work to engineering',
     ],
   },
 ]
@@ -92,13 +70,13 @@ export function LoopVisualizer() {
       id="features"
       ref={containerRef}
       className="bg-bg-base px-6 py-24 md:py-32"
-      aria-label="The Loop"
+      aria-label="How Aviran Works"
     >
       <div className="mx-auto max-w-[1200px]">
         <div className="mb-12 flex flex-col gap-3">
-          <MonoLabel>The Loop</MonoLabel>
+          <MonoLabel>How Aviran Works</MonoLabel>
           <h2 className="font-display text-[32px] font-semibold leading-tight tracking-[-0.02em] text-text-primary md:text-[40px]">
-            Based on ICLR research, we use smart sampling to find the best config fixes.
+            Grounded in ICLR-published research, Aviran learns your product once and reuses it for every customer.
           </h2>
         </div>
 
@@ -106,7 +84,7 @@ export function LoopVisualizer() {
         <BracketPanel className="overflow-visible p-8 md:p-10">
           {/* Nodes row */}
           <div className="relative">
-            <div className="grid grid-cols-5 gap-0">
+            <div className="grid grid-cols-3 gap-0">
               {NODES.map((node, i) => {
                 const Icon = node.icon
                 const active = hovered === i
@@ -197,7 +175,7 @@ export function LoopVisualizer() {
                 markerEnd="url(#arrow-head)"
               />
               <text x="290" y="22" textAnchor="middle" fill="#525F74" fontSize="9" fontFamily="JetBrains Mono, monospace">
-                LOOP BACK TO OBSERVE
+                MAINTAIN LOOPS BACK TO UNDERSTAND
               </text>
             </svg>
           </div>

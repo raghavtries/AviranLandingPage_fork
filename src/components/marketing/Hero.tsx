@@ -4,7 +4,7 @@ import { BracketPanel } from '../primitives/BracketPanel'
 import { MonoLabel } from '../primitives/MonoLabel'
 import { SignalChip } from '../primitives/SignalChip'
 
-// Sparkline showing fail rate drop after v7 deploy
+// Sparkline showing time-to-launch drop after contract reuse kicks in
 function Sparkline() {
   const pathRef = useRef<SVGPathElement>(null)
   const [len, setLen] = useState(0)
@@ -67,7 +67,7 @@ function Sparkline() {
         />
         {/* Deploy marker */}
         <line x1="180" y1="8" x2="180" y2={H - 4} stroke="#2A3547" strokeWidth="1" strokeDasharray="3 3" />
-        <text x="184" y="16" fill="#525F74" fontSize="8" fontFamily="JetBrains Mono, monospace">v7 deployed</text>
+        <text x="184" y="16" fill="#525F74" fontSize="8" fontFamily="JetBrains Mono, monospace">contract reused</text>
         {/* After-drop highlight dot */}
         <circle cx="340" cy="86" r="3" fill="#4DA3FF" />
       </svg>
@@ -82,7 +82,7 @@ function Sparkline() {
 
 // Typing effect for the deploy command
 function TypingLine() {
-  const CMD = '> aviran deploy --candidate v8 --traffic 10% --guardrail fail_rate<2.0'
+  const CMD = '> aviran apply --customer acme_corp --change discount_threshold=7% --approve pending'
   const [text, setText] = useState('')
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -137,19 +137,19 @@ export function Hero() {
       <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_0.72fr] lg:gap-16">
         {/* Left — copy */}
         <div className="flex flex-col gap-6 pt-4">
-          <MonoLabel className="tracking-[0.15em]">Reliability Infrastructure for AI Agents</MonoLabel>
+          <MonoLabel className="tracking-[0.15em]">AI FDE for Agent Vendors</MonoLabel>
 
           <h1
             className="font-display text-[40px] font-semibold leading-[1.08] tracking-[-0.03em] text-text-primary md:text-[60px]"
-            style={{ maxWidth: '580px' }}
+            style={{ maxWidth: '640px' }}
           >
-            Let your agents continually improve.
+            We build AI FDEs. Get your product deployed in minutes, not weeks.
           </h1>
 
           <p className="font-body text-[18px] leading-relaxed text-text-secondary md:text-[21px]" style={{ maxWidth: '540px' }}>
-            Aviran ingests every production run, clusters the failures, rewrites the
-            prompts, tools, and parameters, and redeploys the versions that win.
-            Observability that actually closes the loop.
+            Aviran learns your product once, then handles the repeatable work of
+            onboarding and maintaining every enterprise customer — discovery,
+            configuration, integration, validation, and launch.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -164,15 +164,15 @@ export function Hero() {
 
         </div>
 
-        {/* Right — Live Ops panel */}
-        <BracketPanel label="LIVE OPS" className="overflow-hidden" glow>
+        {/* Right — Onboarding Ops panel */}
+        <BracketPanel label="ONBOARDING OPS" className="overflow-hidden" glow>
           {/* Top bar */}
           <div className="flex flex-wrap items-center gap-0 border-b border-border-subtle">
             <span className="border-r border-border-subtle px-3 py-2 font-mono text-[10px] text-text-tertiary">
-              AGENT: <span className="text-text-secondary">client_a.sales.v7</span>
+              VENDOR: <span className="text-text-secondary">collectflow.v3</span>
             </span>
             <span className="border-r border-border-subtle px-3 py-2 font-mono text-[10px] text-text-tertiary">
-              REGION: <span className="text-text-secondary">us-east-1</span>
+              CUSTOMER: <span className="text-text-secondary">acme_corp</span>
             </span>
             <span className="flex items-center gap-2 px-3 py-2 font-mono text-[10px] text-text-tertiary">
               STATUS: <SignalChip variant="healthy" />
@@ -182,9 +182,9 @@ export function Hero() {
           {/* Stat row */}
           <div className="grid grid-cols-3 divide-x divide-border-subtle border-b border-border-subtle">
             {[
-              { label: 'RUNS (24H)', value: '14,028', delta: '+6.2%', up: true },
-              { label: 'FAIL RATE',  value: '2.1%',   delta: '−0.8%', up: false },
-              { label: 'P95 LAT',    value: '940ms',  delta: '−120ms', up: false },
+              { label: 'CUSTOMERS LIVE', value: '20',     delta: '+4 this mo.' },
+              { label: 'TIME TO LAUNCH', value: '4.2 days', delta: '−18 days' },
+              { label: 'OPEN BLOCKERS',  value: '3',      delta: '−2' },
             ].map((s) => (
               <div key={s.label} className="flex flex-col gap-1 px-3 py-3">
                 <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-text-tertiary">
@@ -193,7 +193,7 @@ export function Hero() {
                 <span className="font-mono text-lg font-medium text-text-primary leading-none">
                   {s.value}
                 </span>
-                <span className={`font-mono text-[10px] ${s.up ? 'text-signal-good' : 'text-signal-good'}`}>
+                <span className="font-mono text-[10px] text-signal-good">
                   {s.delta}
                 </span>
               </div>
@@ -203,33 +203,33 @@ export function Hero() {
           {/* Sparkline */}
           <div className="border-b border-border-subtle px-3 py-3">
             <span className="mb-2 block font-mono text-[9px] uppercase tracking-[0.12em] text-text-tertiary">
-              FAIL RATE — 7 DAY
+              TIME TO LAUNCH — 7 DAY
             </span>
             <Sparkline />
           </div>
 
-          {/* Cluster table */}
+          {/* Blockers table */}
           <div className="border-b border-border-subtle">
             <div className="grid grid-cols-[auto_1fr_auto_auto] gap-x-3 border-b border-border-subtle px-3 py-1.5">
-              {['CLUSTER ID', 'PATTERN', 'N', 'SUGGESTED FIX'].map((h) => (
+              {['ACCOUNT', 'BLOCKER', 'OWNER', 'STATUS'].map((h) => (
                 <span key={h} className="font-mono text-[9px] uppercase tracking-[0.1em] text-text-tertiary">
                   {h}
                 </span>
               ))}
             </div>
             {[
-              { id: 'c_0142', pattern: 'tool=search returns stale results', n: '412', fix: '↑ ttl 300→900' },
-              { id: 'c_0089', pattern: 'handoff loop on refund intent',     n: '201', fix: 'split policy prompt' },
-              { id: 'c_0037', pattern: 'timeout on invoice PDF extract',    n: '73',  fix: 'retry backoff=2x' },
-            ].map((row) => (
+              { id: 'acme_corp', pattern: 'Salesforce sandbox access',   n: 'Acme CRM admin',    fix: 'waiting' },
+              { id: 'acme_corp', pattern: 'Approval-channel owner',      n: 'Acme Recoveries lead', fix: 'answered' },
+              { id: 'acme_corp', pattern: 'Payment API test creds',      n: 'Acme engineering',  fix: 'blocking' },
+            ].map((row, i) => (
               <div
-                key={row.id}
+                key={i}
                 className="grid grid-cols-[auto_1fr_auto_auto] gap-x-3 px-3 py-2 transition-colors hover:bg-bg-overlay"
               >
                 <span className="font-mono text-[10px] text-accent">{row.id}</span>
                 <span className="truncate font-mono text-[10px] text-text-secondary">{row.pattern}</span>
-                <span className="font-mono text-[10px] text-text-tertiary">{row.n}</span>
-                <span className="font-mono text-[10px] text-signal-good">{row.fix}</span>
+                <span className="truncate font-mono text-[10px] text-text-tertiary">{row.n}</span>
+                <span className={`font-mono text-[10px] ${row.fix === 'blocking' ? 'text-signal-bad' : row.fix === 'waiting' ? 'text-signal-warn' : 'text-signal-good'}`}>{row.fix}</span>
               </div>
             ))}
           </div>

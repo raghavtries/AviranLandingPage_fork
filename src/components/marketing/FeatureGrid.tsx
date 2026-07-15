@@ -5,20 +5,20 @@ import { MonoLabel } from '../primitives/MonoLabel'
 const CARDS = [
   {
     num: '01',
-    title: 'Self-Improving Configs',
-    body: 'Every production run becomes training signal. We search prompt, tool, and parameter space using Bayesian and genetic sampling methods like TPE, CMA-ES, and others, score candidates on your real traffic, and promote winners behind a feature flag.',
+    title: 'Product Contract, Once',
+    body: 'Aviran learns your configurable objects, workflows, and permission boundaries a single time. Every customer after that reuses the same contract — progressively less custom work, not a fresh integration.',
     href: '#docs',
   },
   {
     num: '02',
-    title: 'Drop-In, Not Rip-and-Replace',
-    body: 'An OpenTelemetry SDK and an HTTP ingestion endpoint. Keep your framework, model provider, and eval stack. Aviran sits next to them, not in front of them.',
+    title: 'Owner-Routed Blockers',
+    body: 'Most implementation delay sits with the customer — missing access, unclear ownership, unanswered questions. Aviran identifies the blocker owner, asks them directly, and tracks the answer as an implementation record.',
     href: '#docs',
   },
   {
     num: '03',
-    title: 'Shipped to Production',
-    body: 'Running today with voice-agent, sales-agent, and support-agent vendors. SOC 2 Type I in progress. VPC deploy available on request.',
+    title: 'Approve, Don’t Audit',
+    body: 'Every generated config and every post-launch change ships with a diff, validation evidence, and a rollback path. Nothing goes live without operator approval.',
     href: '#',
   },
 ]

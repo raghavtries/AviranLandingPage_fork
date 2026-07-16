@@ -8,10 +8,6 @@ const ITEMS = [
     a: 'Deployment is a different surface from your core product. Instead of your engineers getting backlogged onboarding 10 customers, Aviran automates the onboarding and maintenance work — faster than a human FDE — so your team spends its time on the product itself. Building requirements intake, configuration generation, validation, approvals, rollout, rollback, and auditability from scratch is substantial infrastructure that distracts from what you’re actually selling.',
   },
   {
-    q: 'Won’t every vendor be different, making this a consulting business?',
-    a: 'We integrate with your product once, through a reusable product contract, workflows, schemas, tests, and execution hooks. Every customer after that requires progressively less custom work — it’s implementation infrastructure, not a services engagement.',
-  },
-  {
     q: 'What can Aviran actually change without approval?',
     a: 'Nothing ships without operator sign-off. Aviran suggests changes — policy updates, prompt and workflow edits, field mappings, integration config, routing rules — and shows the exact diff. You approve before anything goes live.',
   },

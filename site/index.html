@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aviran — The AI Forward-Deployed Engineer for agent vendors</title>
+  <meta name="description" content="Aviran is the AI FDE for AI agent vendors. It learns your product once, then handles onboarding and maintenance for every enterprise customer — with operator approval, validation evidence, and a rollback path for every change." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ── Nav ─────────────────────────────────────────────────────── -->
+  <header class="nav" id="top">
+    <div class="shell nav__inner">
+      <a class="wordmark" href="#top" aria-label="Aviran home">
+        <span class="wordmark__mark" aria-hidden="true"></span>
+        Aviran
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#process">How it works</a>
+        <a href="#docs">Docs</a>
+      </nav>
+      <a class="btn btn--primary nav__cta" href="#access">Request access</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ── Hero ──────────────────────────────────────────────────── -->
+    <section class="section hero" aria-labelledby="hero-title">
+      <div class="shell grid">
+        <p class="rail" aria-hidden="true"><span class="rail__sec">§ 01</span><span class="rail__cap">Overview</span></p>
+
+        <div class="hero__copy">
+          <p class="eyebrow">The AI Forward-Deployed Engineer for agent vendors</p>
+          <h1 id="hero-title" class="display display--xl">
+            Deploy your product in minutes,<br class="brk" /> not weeks.
+          </h1>
+          <p class="lede">
+            Aviran is the AI FDE for agent vendors — it learns your product once,
+            then handles onboarding and maintenance for every enterprise customer.
+          </p>
+          <div class="actions">
+            <a class="btn btn--primary" href="#access">Request access</a>
+            <a class="btn btn--ghost" href="#access">Book a walkthrough</a>
+          </div>
+          <p class="footnote">
+            Grounded in an <abbr title="International Conference on Learning Representations">ICLR</abbr>-published paper by the founders.
+          </p>
+        </div>
+
+        <!-- Signature element: the Product Contract, typeset as a printed plate -->
+        <figure class="plate plate--hero" id="contract" data-reveal>
+          <figcaption class="plate__masthead">
+            <span class="plate__title">Product Contract</span>
+            <span class="plate__meta">CollectFlow&nbsp;v3 · rev&nbsp;3 · signed</span>
+          </figcaption>
+
+          <div class="plate__body">
+            <p class="plate__preamble">
+              The following capabilities are confirmed configurable for this product.
+              Requirements are mapped to their source and validated against this contract.
+            </p>
+
+            <table class="ledger" aria-label="Product contract requirements">
+              <thead>
+                <tr>
+                  <th scope="col" class="col-src">Source</th>
+                  <th scope="col">Requirement</th>
+                  <th scope="col" class="col-state">State</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mono col-src">SOW §4.2</td>
+                  <td>Discounts above 7% require approval</td>
+                  <td class="col-state"><span class="state state--ok">Confirmed</span></td>
+                </tr>
+                <tr>
+                  <td class="mono col-src">Slack thread</td>
+                  <td>CRM field renamed <span class="mono">deal_stage → opportunity_stage</span></td>
+                  <td class="col-state"><span class="state state--ok">Confirmed</span></td>
+                </tr>
+                <tr>
+                  <td class="mono col-src">Discovery call</td>
+                  <td>Salesforce sandbox access</td>
+                  <td class="col-state"><span class="state state--wait">Waiting</span></td>
+                </tr>
+                <tr>
+                  <td class="mono col-src">Discovery call</td>
+                  <td>Payment API test credentials</td>
+                  <td class="col-state"><span class="state state--block">Blocking</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="plate__footer">
+            <span class="mono">14 / 14 requirements mapped · 0 unmapped fields</span>
+            <span class="stamp" data-stamp aria-hidden="true">
+              <span class="stamp__line">Operator</span>
+              <span class="stamp__big">Approval</span>
+              <span class="stamp__line">required</span>
+            </span>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ── How Aviran works: 3-step loop ─────────────────────────── -->
+    <section class="section loop" aria-labelledby="loop-title">
+      <div class="shell grid">
+        <p class="rail" aria-hidden="true"><span class="rail__sec">§ 02</span><span class="rail__cap">The loop</span></p>
+        <div class="loop__head">
+          <p class="eyebrow">How Aviran works</p>
+          <h2 id="loop-title" class="display display--lg">
+            From new customer to launched,<br class="brk" /> without a new hire.
+          </h2>
+        </div>
+
+        <ol class="loop__steps" aria-label="How Aviran works">
+          <li class="loop__step">
+            <span class="loop__idx mono">01</span>
+            <h3>Understand</h3>
+            <p>Aviran learns your product one time — configurable objects, workflows, and permission boundaries — as a reusable product contract.</p>
+          </li>
+          <li class="loop__step">
+            <span class="loop__idx mono">02</span>
+            <h3>Onboard</h3>
+            <p>For each customer it extracts cited requirements, generates the customer-specific build, and validates it against the contract before anything ships.</p>
+          </li>
+          <li class="loop__step">
+            <span class="loop__idx mono">03</span>
+            <h3>Maintain</h3>
+            <p>After launch, supported changes are suggested with a diff and a rollback path, applied only once the operator approves.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ── Capabilities: ledger rows, not cards ──────────────────── -->
+    <section class="section caps" aria-labelledby="caps-title">
+      <div class="shell grid">
+        <p class="rail" aria-hidden="true"><span class="rail__sec">§ 03</span><span class="rail__cap">Capabilities</span></p>
+        <div class="caps__head">
+          <p class="eyebrow">Capabilities</p>
+          <h2 id="caps-title" class="display display--lg">What makes it hold up under diligence.</h2>
+        </div>
+
+        <dl class="caps__list">
+          <div class="caps__row">
+            <dt>
+              <span class="caps__lead mono">i.</span>
+              Product contract, once
+            </dt>
+            <dd>Aviran learns your configurable objects, workflows, and permission boundaries a single time. Every customer after that reuses the same contract — progressively less custom work, not a fresh integration.</dd>
+          </div>
+          <div class="caps__row">
+            <dt>
+              <span class="caps__lead mono">ii.</span>
+              Owner-routed blockers
+            </dt>
+            <dd>Most implementation delay sits with the customer — missing access, unclear ownership, unanswered questions. Aviran identifies the blocker owner, asks them directly, and tracks the answer as an implementation record.</dd>
+          </div>
+          <div class="caps__row">
+            <dt>
+              <span class="caps__lead mono">iii.</span>
+              Approve, don&rsquo;t audit
+            </dt>
+            <dd>Every generated config and every post-launch change ships with a diff, validation evidence, and a rollback path. Nothing goes live without operator approval.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ── The 5-stage process ───────────────────────────────────── -->
+    <section class="section process" id="process" aria-labelledby="process-title">
+      <div class="shell grid">
+        <p class="rail" aria-hidden="true"><span class="rail__sec">§ 04</span><span class="rail__cap">The process</span></p>
+        <div class="process__head">
+          <p class="eyebrow">The process</p>
+          <h2 id="process-title" class="display display--lg">Five stages, each with evidence.</h2>
+          <p class="process__intro">The sequence is fixed. Nothing advances a stage without an artifact you can read, and nothing ships without your approval.</p>
+        </div>
+
+        <div class="process__layout">
+          <!-- Index / table-of-contents rail acts as the tabs -->
+          <ol class="toc" role="tablist" aria-label="Process stages">
+            <li>
+              <button role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true" class="toc__item is-active" data-stage="1">
+                <span class="toc__num mono">01</span>
+                <span class="toc__name">Product Discovery</span>
+                <span class="toc__desc">Learn the product once.</span>
+              </button>
+            </li>
+            <li>
+              <button role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" class="toc__item" data-stage="2">
+                <span class="toc__num mono">02</span>
+                <span class="toc__name">Customer Discovery</span>
+                <span class="toc__desc">Extract requirements, not assumptions.</span>
+              </button>
+            </li>
+            <li>
+              <button role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" class="toc__item" data-stage="3">
+                <span class="toc__num mono">03</span>
+                <span class="toc__name">Implementation</span>
+                <span class="toc__desc">Generate the customer-specific build.</span>
+              </button>
+            </li>
+            <li>
+              <button role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false" class="toc__item" data-stage="4">
+                <span class="toc__num mono">04</span>
+                <span class="toc__name">Validation</span>
+                <span class="toc__desc">Prove it works before it ships.</span>
+              </button>
+            </li>
+            <li>
+              <button role="tab" id="tab-5" aria-controls="panel-5" aria-selected="false" class="toc__item" data-stage="5">
+                <span class="toc__num mono">05</span>
+                <span class="toc__name">Launch &amp; Maintain</span>
+                <span class="toc__desc">Approve once. Maintain forever.</span>
+              </button>
+            </li>
+          </ol>
+
+          <!-- Panels -->
+          <div class="process__panels">
+            <!-- 1 -->
+            <div role="tabpanel" id="panel-1" aria-labelledby="tab-1" class="panel is-active">
+              <h3 class="panel__title">Learn the product once.</h3>
+              <p class="panel__body">Aviran inspects your documentation, schemas, APIs, repositories, and sample deployments to build a confirmed product contract — what&rsquo;s configurable, what&rsquo;s supported, and what needs engineering.</p>
+              <ul class="panel__points">
+                <li>Identifies configurable prompts, policies, tools, and workflows</li>
+                <li>Maps supported integrations, field mappings, and permissions</li>
+                <li>Skippable when you already hand us a complete contract</li>
+              </ul>
+              <figure class="plate plate--sm">
+                <figcaption class="plate__masthead"><span class="plate__title">Product Contract</span><span class="plate__meta">CollectFlow v3</span></figcaption>
+                <table class="ledger ledger--compact" aria-label="Contract scope">
+                  <tbody>
+                    <tr><td>Configurable prompts &amp; policies</td><td class="col-state"><span class="state state--ok">In scope</span></td></tr>
+                    <tr><td>Tools &amp; workflows</td><td class="col-state"><span class="state state--ok">In scope</span></td></tr>
+                    <tr><td>Integrations &amp; field mappings</td><td class="col-state"><span class="state state--ok">In scope</span></td></tr>
+                    <tr><td>Permissions &amp; escalation rules</td><td class="col-state"><span class="state state--ok">In scope</span></td></tr>
+                    <tr><td>Actions requiring vendor engineering</td><td class="col-state"><span class="state state--wait">Escalates</span></td></tr>
+                  </tbody>
+                </table>
+              </figure>
+            </div>
+
+            <!-- 2 -->
+            <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" class="panel" hidden>
+              <h3 class="panel__title">Extract requirements, not assumptions.</h3>
+              <p class="panel__body">Aviran reads customer documents, call transcripts, policies, Slack threads, and sample data, extracting structured, cited requirements — and routes open questions to the right stakeholder instead of guessing.</p>
+              <ul class="panel__points">
+                <li>Every requirement is traceable to its source</li>
+                <li>Missing or conflicting information is flagged and routed automatically</li>
+                <li>Blocker owners and status are tracked until resolved</li>
+              </ul>
+              <figure class="plate plate--sm">
+                <figcaption class="plate__masthead"><span class="plate__title">Requirements</span><span class="plate__meta">Acme Corp</span></figcaption>
+                <table class="ledger" aria-label="Extracted requirements">
+                  <thead><tr><th scope="col" class="col-src">Source</th><th scope="col">Requirement</th><th scope="col" class="col-state">State</th></tr></thead>
+                  <tbody>
+                    <tr><td class="mono col-src">SOW §4.2</td><td>Discounts above 7% require approval</td><td class="col-state"><span class="state state--ok">Confirmed</span></td></tr>
+                    <tr><td class="mono col-src">Slack</td><td>Field renamed <span class="mono">deal_stage → opportunity_stage</span></td><td class="col-state"><span class="state state--ok">Confirmed</span></td></tr>
+                    <tr><td class="mono col-src">Call</td><td>Salesforce sandbox access</td><td class="col-state"><span class="state state--wait">Waiting</span></td></tr>
+                    <tr><td class="mono col-src">Call</td><td>Payment API test credentials</td><td class="col-state"><span class="state state--block">Blocking</span></td></tr>
+                  </tbody>
+                </table>
+                <p class="plate__note mono">Blocking · owner: Acme payments lead · routed 2h ago</p>
+              </figure>
+            </div>
+
+            <!-- 3 -->
+            <div role="tabpanel" id="panel-3" aria-labelledby="tab-3" class="panel" hidden>
+              <h3 class="panel__title">Generate the customer-specific build.</h3>
+              <p class="panel__body">Combining the vendor product contract with confirmed customer requirements, Aviran generates configuration, field mappings, and workflows — plus the acceptance criteria to test them against. Requirement mapping and candidate generation draw on ICLR-published search techniques, applied here to implementation rather than optimization.</p>
+              <ul class="panel__points">
+                <li>Config, mappings, and workflows generated from the product contract</li>
+                <li>Acceptance tests and an implementation plan produced alongside the build</li>
+                <li>Every artifact traces back to a source requirement</li>
+              </ul>
+              <figure class="plate plate--sm">
+                <figcaption class="plate__masthead"><span class="plate__title">Generated Config</span><span class="plate__meta">acme_corp.yaml</span></figcaption>
+                <dl class="revised">
+                  <div class="revised__row"><dt class="mono">discount_threshold</dt><dd class="mono"><span class="was">null</span><span class="now">7%</span></dd></div>
+                  <div class="revised__row"><dt class="mono">approval_required</dt><dd class="mono"><span class="was">false</span><span class="now">true</span></dd></div>
+                  <div class="revised__row"><dt class="mono">crm_field</dt><dd class="mono"><span class="was">deal_stage</span><span class="now">opportunity_stage</span></dd></div>
+                  <div class="revised__row"><dt class="mono">escalation</dt><dd class="mono"><span class="now now--same">default (unchanged)</span></dd></div>
+                </dl>
+                <p class="plate__note mono">Each field cites the requirement it satisfies.</p>
+              </figure>
+            </div>
+
+            <!-- 4 -->
+            <div role="tabpanel" id="panel-4" aria-labelledby="tab-4" class="panel" hidden>
+              <h3 class="panel__title">Prove it works before it ships.</h3>
+              <p class="panel__body">Aviran checks the proposed configuration against your product contract for schema compatibility, permission correctness, expected behavior, and regressions — producing evidence, not just a pass/fail.</p>
+              <ul class="panel__points">
+                <li>Contract compliance and schema checks</li>
+                <li>Behavioral validation against acceptance criteria</li>
+                <li>Failures come with proposed remediation, not just an error</li>
+              </ul>
+              <figure class="plate plate--sm">
+                <figcaption class="plate__masthead"><span class="plate__title">Validation</span><span class="plate__meta">acme_corp.yaml</span></figcaption>
+                <table class="ledger ledger--compact" aria-label="Validation results">
+                  <tbody>
+                    <tr><td>Contract compliance</td><td class="col-state"><span class="state state--ok">Pass</span></td></tr>
+                    <tr><td>Schema compatibility</td><td class="col-state"><span class="state state--ok">Pass</span></td></tr>
+                    <tr><td>Permission checks</td><td class="col-state"><span class="state state--ok">Pass</span></td></tr>
+                    <tr><td>Regression: escalation path</td><td class="col-state"><span class="state state--block">1 flagged</span></td></tr>
+                  </tbody>
+                </table>
+                <p class="plate__note mono">Remediation proposed for the flagged path — pending review.</p>
+              </figure>
+            </div>
+
+            <!-- 5 -->
+            <div role="tabpanel" id="panel-5" aria-labelledby="tab-5" class="panel" hidden>
+              <h3 class="panel__title">Approve once. Maintain forever.</h3>
+              <p class="panel__body">Aviran presents the plan, risks, and rollback path for operator approval, then launches the customer. Afterward, supported changes — policy updates, field mappings, routing rules — are suggested for approval before they ship.</p>
+              <ul class="panel__points">
+                <li>Full plan, risk, and rollback surfaced before launch</li>
+                <li>Post-launch changes are suggested, then approved — never silent</li>
+                <li>Unsupported work escalates to engineering with full context</li>
+              </ul>
+              <figure class="plate plate--sm">
+                <figcaption class="plate__masthead"><span class="plate__title">Audit Trail</span><span class="plate__meta">Acme Corp</span></figcaption>
+                <ol class="trail">
+                  <li><span class="trail__ts mono">Mon 09:14</span> <span>Implementation approved by operator</span></li>
+                  <li><span class="trail__ts mono">Mon 09:15</span> <span>Customer launched — stage set to <span class="mono">live</span></span></li>
+                  <li><span class="trail__ts mono">Thu 14:02</span> <span>Slack request: &ldquo;discounts above 7% now require approval&rdquo;</span></li>
+                  <li><span class="trail__ts mono">Thu 14:04</span> <span>Diff generated — pending operator approval</span></li>
+                  <li><span class="trail__ts mono">Thu 14:11</span> <span>Change approved &amp; applied · replied &ldquo;done — live now&rdquo;</span></li>
+                </ol>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ (definition list) ─────────────────────────────────── -->
+    <section class="section faq" id="docs" aria-labelledby="faq-title">
+      <div class="shell grid">
+        <p class="rail" aria-hidden="true"><span class="rail__sec">§ 05</span><span class="rail__cap">Questions</span></p>
+        <div class="faq__head">
+          <p class="eyebrow">Common questions</p>
+          <h2 id="faq-title" class="display display--lg">Questions from diligence.</h2>
+        </div>
+
+        <div class="faq__list">
+          <details class="qa">
+            <summary><span class="qa__q">Why wouldn&rsquo;t we build this internally?</span></summary>
+            <p>Deployment is a different surface from your core product. Instead of your engineers getting backlogged onboarding 10 customers, Aviran automates the onboarding and maintenance work — faster than a human FDE — so your team spends its time on the product itself. Building requirements intake, configuration generation, validation, approvals, rollout, rollback, and auditability from scratch is substantial infrastructure that distracts from what you&rsquo;re actually selling.</p>
+          </details>
+          <details class="qa">
+            <summary><span class="qa__q">What can Aviran actually change without approval?</span></summary>
+            <p>Nothing ships without operator sign-off. Aviran suggests changes — policy updates, prompt and workflow edits, field mappings, integration config, routing rules — and shows the exact diff. You approve before anything goes live.</p>
+          </details>
+          <details class="qa">
+            <summary><span class="qa__q">What happens when the customer is the blocker?</span></summary>
+            <p>A lot of implementation delay sits with the customer — missing access, unclear ownership, unresolved requirements. Aviran identifies who owns each blocker, asks them directly, and turns the answer into an implementation record, e.g. &ldquo;Salesforce sandbox access — Owner: Acme CRM admin — Status: Waiting.&rdquo;</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA (the approval seal moment) ────────────────────────── -->
+    <section class="section cta" id="access" aria-labelledby="cta-title">
+      <div class="shell">
+        <div class="cta__card">
+          <div class="cta__copy">
+            <h2 id="cta-title" class="display display--lg">Stop backlogging onboarding.<br class="brk" /> Start shipping customers.</h2>
+            <p class="cta__lede">A 30-minute technical walkthrough where we onboard one of your customers live.</p>
+            <div class="actions">
+              <a class="btn btn--primary" href="https://calendly.com/raghav-jsub/chat">Book a walkthrough</a>
+              <a class="btn btn--ghost" href="mailto:team@aviran.dev">Email the team</a>
+            </div>
+          </div>
+          <div class="cta__seal" aria-hidden="true">
+            <span class="seal">
+              <span class="seal__top">Aviran</span>
+              <span class="seal__mid">Approved</span>
+              <span class="seal__bot">operator · evidence · rollback</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── Footer ────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="shell footer__inner">
+      <div class="footer__brand">
+        <a class="wordmark" href="#top" aria-label="Aviran home">
+          <span class="wordmark__mark" aria-hidden="true"></span>
+          Aviran
+        </a>
+        <p class="footer__tag">The AI Forward-Deployed Engineer for agent vendors.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="#process">How it works</a>
+        <a href="#docs">Docs</a>
+        <a href="#access">Request access</a>
+        <a href="mailto:team@aviran.dev">team@aviran.dev</a>
+      </nav>
+      <p class="footer__legal mono">© <span data-year>2026</span> Aviran</p>
+    </div>
+  </footer>
+
+  <script src="/main.js" type="module"></script>
+</body>
+</html>

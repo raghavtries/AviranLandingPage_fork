@@ -4,20 +4,16 @@ import { MonoLabel } from '../primitives/MonoLabel'
 
 const ITEMS = [
   {
-    q: 'What kinds of agents does Aviran support?',
-    a: 'Aviran works with any AI agent or LLM pipeline that can emit OpenTelemetry spans or structured logs. Our design partners are agent vendors deploying at scale—voice agents, support agents, sales agents, coding agents, and internal workflow automation. We support LangGraph, CrewAI, Mastra, Vercel AI SDK, and custom integrations via our SDK and HTTP ingestion API.',
+    q: 'Why wouldn’t we build this internally?',
+    a: 'Deployment is a different surface from your core product. Instead of your engineers getting backlogged onboarding 10 customers, Aviran automates the onboarding and maintenance work — faster than a human FDE — so your team spends its time on the product itself. Building requirements intake, configuration generation, validation, approvals, rollout, rollback, and auditability from scratch is substantial infrastructure that distracts from what you’re actually selling.',
   },
   {
-    q: 'How does automatic optimization work?',
-    a: 'Aviran clusters production failures by semantic similarity, identifies which part of the config—prompt, tool definition, or parameter—is the root cause, then uses DSPy + Optuna to search the config space. Candidates are scored against held-out production traces, not synthetic benchmarks. The winner is promoted via a feature flag with configurable guardrails.',
+    q: 'What can Aviran actually change without approval?',
+    a: 'Nothing ships without operator sign-off. Aviran suggests changes — policy updates, prompt and workflow edits, field mappings, integration config, routing rules — and shows the exact diff. You approve before anything goes live.',
   },
   {
-    q: 'Is my data secure?',
-    a: 'All data is encrypted in transit (TLS 1.3) and at rest (AES-256). PII is stripped by Presidio before any span data reaches persistent storage. You control retention period and region. VPC-isolated deployment is available on request. SOC 2 Type I is in progress.',
-  },
-  {
-    q: 'Can I try Aviran before committing?',
-    a: 'Yes. Request a walkthrough and we will instrument one of your agents live in the session—typically 30 minutes. We do Collison-style installs with design partners to understand your workflow before proposing a config. Contact us at team@aviran.dev to schedule.',
+    q: 'What happens when the customer is the blocker?',
+    a: 'A lot of implementation delay sits with the customer — missing access, unclear ownership, unresolved requirements. Aviran identifies who owns each blocker, asks them directly, and turns the answer into an implementation record, e.g. "Salesforce sandbox access — Owner: Acme CRM admin — Status: Waiting."',
   },
 ]
 

@@ -1,4 +1,4 @@
-// Aviran landing — minimal vanilla JS: tabs, stamp reveal, year.
+// Aviran landing — minimal vanilla JS: tabs, contract resolve, year.
 
 /* ── Footer year ─────────────────────────────────────────── */
 const yearEl = document.querySelector("[data-year]");
@@ -38,25 +38,43 @@ tabs.forEach((tab, i) => {
   });
 });
 
-/* ── Orchestrated moment: stamp presses down on reveal ───── */
-const stamp = document.querySelector("[data-stamp]");
+/* ── The one orchestrated moment ──────────────────────────────
+   A requirement the customer owed us lands: the sandbox-access
+   row resolves Waiting → Confirmed and the tally follows it.
+   The blocking row is untouched — the contract stays unsigned.
+   ------------------------------------------------------------ */
+const contract = document.querySelector("[data-contract]");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-if (stamp) {
+function resolveRow() {
+  const state = document.querySelector("[data-live-state]");
+  const label = document.querySelector("[data-live-label]");
+  const tally = document.querySelector("[data-tally]");
+  const waiting = document.querySelector("[data-waiting]");
+  if (!state) return;
+
+  state.classList.remove("state--wait");
+  state.classList.add("state--ok");
+  if (label) label.textContent = "Confirmed";
+  if (tally) tally.textContent = "13";
+  if (waiting) waiting.textContent = "0";
+}
+
+if (contract) {
   if (reduceMotion || !("IntersectionObserver" in window)) {
-    stamp.classList.add("is-stamped");
+    // Render the resolved state outright — no motion to observe.
+    resolveRow();
   } else {
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            stamp.classList.add("is-stamped");
-            io.disconnect();
-          }
+          if (!entry.isIntersecting) return;
+          io.disconnect();
+          setTimeout(resolveRow, 900);
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.55 }
     );
-    io.observe(stamp);
+    io.observe(contract);
   }
 }

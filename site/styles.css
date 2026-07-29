@@ -158,14 +158,9 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   height: 66px;
 }
 .wordmark {
-  display: inline-flex; align-items: center; gap: 9px;
+  display: inline-flex; align-items: center;
   font-family: var(--display); font-weight: 600; font-size: 1.15rem;
   letter-spacing: -0.02em; text-decoration: none;
-}
-.wordmark__mark {
-  width: 9px; height: 9px; border-radius: 50%;
-  background: var(--signal);
-  flex: none;
 }
 .nav__links { display: flex; gap: 26px; margin-left: auto; }
 .nav__links a {
@@ -322,8 +317,60 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   line-height: 1.3;
   color: var(--ink-soft);
 }
-/* a contract is a document, not a banner — hold it to a document measure */
-.plate--hero { margin-top: 68px; max-width: 840px; }
+/* a contract is a document, not a banner — hold it to a document measure.
+   it also gets treated like a physical paper: a slight tilt, a second
+   sheet peeking out behind it, a folded top corner, and an ink stamp. */
+.plate--hero {
+  margin-top: 68px; max-width: 840px;
+  position: relative; z-index: 0;
+  overflow: visible; /* let the second sheet and stamp escape the card bounds */
+  transform: rotate(-1deg);
+  box-shadow:
+    0 1px 1px rgba(23, 20, 31, 0.04),
+    0 30px 50px -28px rgba(23, 20, 31, 0.34);
+}
+.plate--hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: var(--plate);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  transform: rotate(2.2deg);
+  transform-origin: bottom right;
+  z-index: -1;
+}
+.plate--hero::after {
+  content: "";
+  position: absolute; top: -1px; right: -1px;
+  width: 30px; height: 30px;
+  background:
+    linear-gradient(135deg, transparent 49.5%, var(--rule) 50%, var(--ground) 51%, var(--ground) 100%);
+  border-radius: 0 5px 0 12px;
+  box-shadow: -3px 3px 6px rgba(23, 20, 31, 0.14);
+}
+/* the footer strip has its own tinted background, so it needs its own
+   corner radius now that the card no longer clips via overflow:hidden */
+.plate__footer { border-radius: 0 0 5px 5px; }
+
+.plate__stamp {
+  position: absolute; top: -18px; right: 64px; z-index: 1;
+  padding: 6px 16px;
+  font-family: var(--mono);
+  font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--signal);
+  background: var(--ground);
+  border: 1.5px solid var(--signal);
+  border-radius: 3px;
+  transform: rotate(-6deg);
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+}
+
+@media (max-width: 560px) {
+  .plate--hero, .plate--hero::before { transform: none; }
+  .plate__stamp { top: -14px; right: 16px; padding: 4px 11px; font-size: 0.6rem; }
+}
 
 /* ── The loop: a cycle, not a numbered list ────────────────── */
 .loop__steps {

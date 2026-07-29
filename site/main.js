@@ -1,4 +1,4 @@
-// Aviran landing — minimal vanilla JS: tabs, contract resolve, year.
+// Aviran landing — minimal vanilla JS: tabs, year.
 
 /* ── Footer year ─────────────────────────────────────────── */
 const yearEl = document.querySelector("[data-year]");
@@ -37,44 +37,3 @@ tabs.forEach((tab, i) => {
     }
   });
 });
-
-/* ── The one orchestrated moment ──────────────────────────────
-   A requirement the customer owed us lands: the sandbox-access
-   row resolves Waiting → Confirmed and the tally follows it.
-   The blocking row is untouched — the contract stays unsigned.
-   ------------------------------------------------------------ */
-const contract = document.querySelector("[data-contract]");
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-function resolveRow() {
-  const state = document.querySelector("[data-live-state]");
-  const label = document.querySelector("[data-live-label]");
-  const tally = document.querySelector("[data-tally]");
-  const waiting = document.querySelector("[data-waiting]");
-  if (!state) return;
-
-  state.classList.remove("state--wait");
-  state.classList.add("state--ok");
-  if (label) label.textContent = "Confirmed";
-  if (tally) tally.textContent = "13";
-  if (waiting) waiting.textContent = "0";
-}
-
-if (contract) {
-  if (reduceMotion || !("IntersectionObserver" in window)) {
-    // Render the resolved state outright — no motion to observe.
-    resolveRow();
-  } else {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          io.disconnect();
-          setTimeout(resolveRow, 900);
-        });
-      },
-      { threshold: 0.55 }
-    );
-    io.observe(contract);
-  }
-}

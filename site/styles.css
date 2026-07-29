@@ -41,7 +41,7 @@
    ============================================================ */
 
 :root {
-  /* Palette — violet-tinted neutral ramp, one accent */
+  /* Palette — neutral ramp, black line accent, no brand color */
   --ground:     #F6F5F9;
   --plate:      #FFFFFF;
   --ink:        #17141F;
@@ -49,8 +49,7 @@
   --rule:       #D7D3E2;
   --rule-soft:  #E6E2F0;
 
-  --signal:     #6A24C0;  /* owned violet = the brand + the Confirmed state */
-  --signal-ink: #521C96;  /* pressed / hover */
+  --signal:     var(--ink);  /* was violet; now black, outline-only usage */
   --graphite:   #626D72;  /* Waiting — no signal yet; AA on both ground and plate */
   --alert:      #C0182B;  /* Blocking */
 
@@ -158,14 +157,9 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   height: 66px;
 }
 .wordmark {
-  display: inline-flex; align-items: center; gap: 9px;
+  display: inline-flex; align-items: center;
   font-family: var(--display); font-weight: 600; font-size: 1.15rem;
   letter-spacing: -0.02em; text-decoration: none;
-}
-.wordmark__mark {
-  width: 9px; height: 9px; border-radius: 50%;
-  background: var(--signal);
-  flex: none;
 }
 .nav__links { display: flex; gap: 26px; margin-left: auto; }
 .nav__links a {
@@ -189,8 +183,8 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   text-decoration: none; border-radius: 3px;
   transition: background .16s var(--ease), border-color .16s var(--ease), color .16s var(--ease);
 }
-.btn--primary { background: var(--signal); color: #fff; }
-.btn--primary:hover { background: var(--signal-ink); }
+.btn--primary { background: none; color: var(--ink); border: 1.5px solid var(--ink); }
+.btn--primary:hover { background: var(--rule-soft); }
 .btn--ghost { border: 1px solid var(--rule); color: var(--ink); }
 .btn--ghost:hover { border-color: var(--ink); }
 .nav__cta { height: 38px; padding: 0 16px; font-size: 0.9rem; }
@@ -261,47 +255,15 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 
 .ledger--compact td { font-size: 0.85rem; padding: 9px 12px 9px 0; }
 
-/* ── States: shape + color, one system ─────────────────────── */
+/* ── States: color only, no dots ───────────────────────────── */
 .state {
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex; align-items: center;
   font-size: 0.8rem; font-weight: 500; color: var(--ink);
   white-space: nowrap;
 }
-.state__dot {
-  width: 7px; height: 7px; border-radius: 50%; flex: none;
-  transition: background-color .45s var(--ease), box-shadow .45s var(--ease);
-}
-/* Confirmed — full signal */
-.state--ok .state__dot { background: var(--signal); box-shadow: none; }
-/* Waiting — hollow: a state, not muted text */
-.state--wait .state__dot { background: transparent; box-shadow: inset 0 0 0 1.5px var(--graphite); }
-/* Blocking — full alert */
-.state--block .state__dot { background: var(--alert); box-shadow: none; }
-
-/* ── Plate footer: tally + signature block ─────────────────── */
-.plate__footer {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 24px; flex-wrap: wrap;
-  padding: 16px 20px;
-  border-top: 1px solid var(--rule);
-  background: color-mix(in srgb, var(--ground) 50%, var(--plate));
-}
-.tally { font-size: 0.74rem; color: var(--ink-soft); }
-.tally [data-tally], .tally [data-waiting] { color: var(--ink); font-weight: 500; }
-.tally__sep { margin: 0 6px; color: var(--rule); }
-
-.signoff {
-  display: flex; flex-direction: column; gap: 2px;
-  min-width: 214px;
-  padding-top: 7px;
-  border-top: 1px solid var(--ink);
-  text-align: right;
-}
-.signoff__label {
-  font-family: var(--display); font-weight: 500;
-  font-size: 0.72rem; color: var(--ink-soft);
-}
-.signoff__value { font-size: 0.8rem; font-weight: 500; }
+.state--ok { color: var(--ink); font-weight: 600; }
+.state--wait { color: var(--graphite); }
+.state--block { color: var(--alert); font-weight: 600; }
 
 /* ── Hero ──────────────────────────────────────────────────── */
 .hero { padding-top: 84px; }
@@ -322,9 +284,6 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   line-height: 1.3;
   color: var(--ink-soft);
 }
-/* a contract is a document, not a banner — hold it to a document measure */
-.plate--hero { margin-top: 68px; max-width: 840px; }
-
 /* ── The loop: a cycle, not a numbered list ────────────────── */
 .loop__steps {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
@@ -337,12 +296,6 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   border-top: 1px solid var(--rule);
 }
 .loop__step + .loop__step { padding-left: 32px; }
-.loop__step::before {
-  content: ""; position: absolute; top: -4px; left: 0;
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--signal);
-}
-.loop__step + .loop__step::before { left: 32px; }
 .loop__step h3 {
   font-family: var(--display); font-weight: 600; font-size: 1.22rem;
   letter-spacing: -0.02em; margin-bottom: 10px;
@@ -369,7 +322,6 @@ button { font: inherit; color: inherit; background: none; border: 0; }
 @media (max-width: 800px) {
   .loop__steps { grid-template-columns: 1fr; }
   .loop__step, .loop__step + .loop__step { padding: 22px 0 22px 20px; }
-  .loop__step::before, .loop__step + .loop__step::before { left: 0; top: 26px; }
   .loop__step { border-top: 0; border-left: 1px solid var(--rule); }
   .loop__return { display: none; }
 }
@@ -561,15 +513,10 @@ button { font: inherit; color: inherit; background: none; border: 0; }
   body { font-size: 16px; }
   .section { padding: 68px 0; }
   .hero { padding-top: 52px; }
-  .plate--hero { margin-top: 44px; }
   .actions { gap: 10px; }
   .actions .btn { width: 100%; }
   .plate__masthead { flex-direction: column; align-items: flex-start; gap: 4px; }
   .plate__body { padding: 16px; }
-  .plate__footer { padding: 14px 16px; }
-  .signoff { min-width: 0; width: 100%; text-align: left; }
-  .tally { font-size: 0.68rem; }
-  .tally__sep { margin: 0 4px; }
 
   /* Narrow: the ledger stops being a squeezed table and becomes
      one record per row — requirement, then its source and state. */

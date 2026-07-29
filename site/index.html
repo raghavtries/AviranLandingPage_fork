@@ -21,13 +21,12 @@
   <header class="nav" id="top">
     <div class="shell nav__inner">
       <a class="wordmark" href="#top" aria-label="Aviran home">
-        <span class="wordmark__mark" aria-hidden="true"></span>
         Aviran
       </a>
       <nav class="nav__links" aria-label="Primary">
         <a href="#process">How it works</a>
       </nav>
-      <a class="btn btn--primary nav__cta" href="#access">Request access</a>
+      <a class="btn btn--primary nav__cta" href="https://calendly.com/raghav-jsub/chat">Request access</a>
     </div>
   </header>
 
@@ -37,7 +36,6 @@
     <section class="section hero" aria-labelledby="hero-title">
       <div class="shell">
         <div class="hero__copy">
-          <p class="kicker">AI FDE for Agent Vendors</p>
           <h1 id="hero-title" class="display display--xl hero-title">
             <span class="hero-title__big">AI FDEs for your product.</span>
             <span class="hero-title__small">Get integrated with clients in minutes.</span>
@@ -48,87 +46,10 @@
             requirement into a validated change. Your operator approves each change.
           </p>
           <div class="actions">
-            <a class="btn btn--primary" href="#access">Request access</a>
-            <a class="btn btn--ghost" href="#access">Book a walkthrough</a>
+            <a class="btn btn--primary" href="https://calendly.com/raghav-jsub/chat">Request access</a>
+            <a class="btn btn--ghost" href="https://calendly.com/raghav-jsub/chat">Book a walkthrough</a>
           </div>
-          <p class="footnote">
-            Aviran is grounded in an <abbr title="International Conference on Learning Representations">ICLR</abbr>-published paper by the founders.
-          </p>
         </div>
-
-        <!-- Signature element: the Product Contract as an inspectable document -->
-        <figure class="plate plate--hero" id="contract" data-contract>
-          <figcaption class="plate__masthead">
-            <span class="plate__title">Product Contract</span>
-            <span class="plate__meta mono">CollectFlow&nbsp;v3 · rev&nbsp;3 · in review</span>
-          </figcaption>
-
-          <div class="plate__body">
-            <p class="plate__preamble">
-              Each requirement has a mapped source. Aviran validates each requirement
-              against this contract. The customer can ship only after each requirement
-              reaches Confirmed.
-            </p>
-
-            <!-- roles are explicit: the narrow layout changes `display`,
-                 which would otherwise drop the native table semantics -->
-            <table class="ledger ledger--rows" role="table" aria-label="Product contract requirements">
-              <thead role="rowgroup">
-                <tr role="row">
-                  <th role="columnheader" scope="col" class="col-src">Source</th>
-                  <th role="columnheader" scope="col">Requirement</th>
-                  <th role="columnheader" scope="col" class="col-state">State</th>
-                </tr>
-              </thead>
-              <tbody role="rowgroup">
-                <tr role="row">
-                  <td role="cell" class="mono col-src">SOW §4.2</td>
-                  <td role="cell">Discounts above 7% require approval</td>
-                  <td role="cell" class="col-state">
-                    <span class="state state--ok"><span class="state__dot" aria-hidden="true"></span>Confirmed</span>
-                  </td>
-                </tr>
-                <tr role="row">
-                  <td role="cell" class="mono col-src">Slack thread</td>
-                  <td role="cell">CRM field renamed <span class="mono">deal_stage → opportunity_stage</span></td>
-                  <td role="cell" class="col-state">
-                    <span class="state state--ok"><span class="state__dot" aria-hidden="true"></span>Confirmed</span>
-                  </td>
-                </tr>
-                <tr role="row" data-live-row>
-                  <td role="cell" class="mono col-src">Discovery call</td>
-                  <td role="cell">Salesforce sandbox access</td>
-                  <td role="cell" class="col-state">
-                    <span class="state state--wait" data-live-state>
-                      <span class="state__dot" aria-hidden="true"></span><span data-live-label>Waiting</span>
-                    </span>
-                  </td>
-                </tr>
-                <tr role="row">
-                  <td role="cell" class="mono col-src">Discovery call</td>
-                  <td role="cell">Payment API test credentials</td>
-                  <td role="cell" class="col-state">
-                    <span class="state state--block"><span class="state__dot" aria-hidden="true"></span>Blocking</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="plate__footer">
-            <p class="tally mono">
-              <span data-tally>12</span> / 14 confirmed
-              <span class="tally__sep" aria-hidden="true">·</span>
-              <span data-waiting>1</span> waiting
-              <span class="tally__sep" aria-hidden="true">·</span>
-              1 blocking
-            </p>
-            <div class="signoff">
-              <span class="signoff__label">Operator approval</span>
-              <span class="signoff__value">Pending: 1 blocking requirement</span>
-            </div>
-          </div>
-        </figure>
       </div>
     </section>
 
@@ -238,15 +159,15 @@
                 <li>Skippable when you already hand us a complete contract</li>
               </ul>
               <figure class="plate plate--sm">
-                <figcaption class="plate__masthead"><span class="plate__title">Product Contract</span><span class="plate__meta mono">CollectFlow v3</span></figcaption>
+                <figcaption class="plate__masthead"><span class="plate__title">Product Contract</span><span class="plate__meta mono">Collectly v3</span></figcaption>
                 <div class="plate__body">
                   <table class="ledger ledger--compact" aria-label="Contract scope">
                     <tbody>
-                      <tr><td>Configurable prompts &amp; policies</td><td class="col-state"><span class="state state--ok"><span class="state__dot" aria-hidden="true"></span>In scope</span></td></tr>
-                      <tr><td>Tools &amp; workflows</td><td class="col-state"><span class="state state--ok"><span class="state__dot" aria-hidden="true"></span>In scope</span></td></tr>
-                      <tr><td>Integrations &amp; field mappings</td><td class="col-state"><span class="state state--ok"><span class="state__dot" aria-hidden="true"></span>In scope</span></td></tr>
-                      <tr><td>Permissions &amp; escalation rules</td><td class="col-state"><span class="state state--ok"><span class="state__dot" aria-hidden="true"></span>In scope</span></td></tr>
-                      <tr><td>Actions requiring vendor engineering</td><td class="col-state"><span class="state state--wait"><span class="state__dot" aria-hidden="true"></span>Escalates</span></td></tr>
+                      <tr><td>Configurable prompts &amp; policies</td><td class="col-state"><span class="state state--ok">In scope</span></td></tr>
+                      <tr><td>Tools &amp; workflows</td><td class="col-state"><span class="state state--ok">In scope</span></td></tr>
+                      <tr><td>Integrations &amp; field mappings</td><td class="col-state"><span class="state state--ok">In scope</span></td></tr>
+                      <tr><td>Permissions &amp; escalation rules</td><td class="col-state"><span class="state state--ok">In scope</span></td></tr>
+                      <tr><td>Actions requiring vendor engineering</td><td class="col-state"><span class="state state--wait">Escalates</span></td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -268,14 +189,14 @@
                   <table class="ledger ledger--rows" role="table" aria-label="Extracted requirements">
                     <thead role="rowgroup"><tr role="row"><th role="columnheader" scope="col" class="col-src">Source</th><th role="columnheader" scope="col">Requirement</th><th role="columnheader" scope="col" class="col-state">State</th></tr></thead>
                     <tbody role="rowgroup">
-                      <tr role="row"><td role="cell" class="mono col-src">SOW §4.2</td><td role="cell">Discounts above 7% require approval</td><td role="cell" class="col-state"><span class="state state--ok"><span class="state__dot" aria-hidden="true"></span>Confirmed</span></td></tr>
-                      <tr role="row"><td role="cell" class="mono col-src">Slack</td><td role="cell">Field renamed <span class="mono">deal_stage → opportunity_stage</span></td><td role="cell" class="col-state"><span class="state state--ok"><span class="state__dot" aria-hidden="true"></span>Confirmed</span></td></tr>
-                      <tr role="row"><td role="cell" class="mono col-src">Call</td><td role="cell">Salesforce sandbox access</td><td role="cell" class="col-state"><span class="state state--wait"><span class="state__dot" aria-hidden="true"></span>Waiting</span></td></tr>
-                      <tr role="row"><td role="cell" class="mono col-src">Call</td><td role="cell">Payment API test credentials</td><td role="cell" class="col-state"><span class="state state--block"><span class="state__dot" aria-hidden="true"></span>Blocking</span></td></tr>
+                      <tr role="row"><td role="cell" class="mono col-src">SOW §4.2</td><td role="cell">Discounts above 7% require approval</td><td role="cell" class="col-state"><span class="state state--ok">Confirmed</span></td></tr>
+                      <tr role="row"><td role="cell" class="mono col-src">Slack</td><td role="cell">Field renamed <span class="mono">deal_stage → opportunity_stage</span></td><td role="cell" class="col-state"><span class="state state--ok">Confirmed</span></td></tr>
+                      <tr role="row"><td role="cell" class="mono col-src">Call</td><td role="cell">Salesforce sandbox access</td><td role="cell" class="col-state"><span class="state state--wait">Waiting</span></td></tr>
+                      <tr role="row"><td role="cell" class="mono col-src">Call</td><td role="cell">Payment API test credentials</td><td role="cell" class="col-state"><span class="state state--block">Blocking</span></td></tr>
                     </tbody>
                   </table>
                 </div>
-                <p class="plate__note">Blocking · owner: Acme payments lead · routed 2h ago</p>
+                <p class="plate__note">Blocking, owner: Acme payments lead, routed 2h ago</p>
               </figure>
             </div>
 
@@ -316,10 +237,10 @@
                 <div class="plate__body">
                   <table class="ledger ledger--compact" aria-label="Validation results">
                     <tbody>
-                      <tr><td>Contract compliance</td><td class="col-state"><span class="state state--ok"><span class="state__dot" aria-hidden="true"></span>Pass</span></td></tr>
-                      <tr><td>Schema compatibility</td><td class="col-state"><span class="state state--ok"><span class="state__dot" aria-hidden="true"></span>Pass</span></td></tr>
-                      <tr><td>Permission checks</td><td class="col-state"><span class="state state--ok"><span class="state__dot" aria-hidden="true"></span>Pass</span></td></tr>
-                      <tr><td>Regression: escalation path</td><td class="col-state"><span class="state state--block"><span class="state__dot" aria-hidden="true"></span>1 flagged</span></td></tr>
+                      <tr><td>Contract compliance</td><td class="col-state"><span class="state state--ok">Pass</span></td></tr>
+                      <tr><td>Schema compatibility</td><td class="col-state"><span class="state state--ok">Pass</span></td></tr>
+                      <tr><td>Permission checks</td><td class="col-state"><span class="state state--ok">Pass</span></td></tr>
+                      <tr><td>Regression: escalation path</td><td class="col-state"><span class="state state--block">1 flagged</span></td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -358,7 +279,7 @@
                     </li>
                     <li class="trail__row">
                       <span class="trail__ts mono">Thu 14:11</span>
-                      <span class="trail__what">Change approved &amp; applied · replied &ldquo;done, live now&rdquo;</span>
+                      <span class="trail__what">Change approved and applied. Replied &ldquo;done, live now.&rdquo;</span>
                     </li>
                   </ol>
                 </div>
@@ -394,7 +315,7 @@
     </section>
 
     <!-- ── CTA ───────────────────────────────────────────────────── -->
-    <section class="section cta" id="access" aria-labelledby="cta-title">
+    <section class="section cta" aria-labelledby="cta-title">
       <div class="shell">
         <div class="cta__card">
           <h2 id="cta-title" class="display display--lg">Stop backlogging onboarding.<br class="brk" /> Start shipping to customers.</h2>
@@ -413,7 +334,6 @@
     <div class="shell footer__inner">
       <div class="footer__brand">
         <a class="wordmark" href="#top" aria-label="Aviran home">
-          <span class="wordmark__mark" aria-hidden="true"></span>
           Aviran
         </a>
         <p class="footer__tag">The AI Forward-Deployed Engineer for agent vendors.</p>
@@ -421,7 +341,7 @@
       <nav class="footer__nav" aria-label="Footer">
         <a href="#process">How it works</a>
         <a href="#docs">Docs</a>
-        <a href="#access">Request access</a>
+        <a href="https://calendly.com/raghav-jsub/chat">Request access</a>
         <a href="mailto:team@aviran.dev">team@aviran.dev</a>
       </nav>
       <p class="footer__legal">© <span data-year>2026</span> Aviran</p>

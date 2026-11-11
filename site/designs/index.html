@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Aviran: design directions</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <style>
+    @font-face {
+      font-family: "Geist Mono";
+      font-weight: 100 900;
+      font-display: swap;
+      src: url("/fonts/geist-mono-var.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Bricolage Grotesque";
+      font-weight: 200 800;
+      font-stretch: 75% 100%;
+      font-display: swap;
+      src: url("/fonts/bricolage-grotesque-var.woff2") format("woff2");
+    }
+    :root { --ground: #F3F1EA; --ink: #17141F; --soft: #5C5868; --rule: #D4D0C4; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 56px 24px 96px; }
+    .label {
+      font: 500 11px/1 "Geist Mono", ui-monospace, monospace;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--soft);
+    }
+    h1 {
+      margin: 18px 0 0;
+      font-size: clamp(44px, 9vw, 128px);
+      font-weight: 700;
+      font-stretch: 78%;
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+    }
+    .intro { max-width: 46ch; margin: 22px 0 0; font-size: 17px; line-height: 1.55; color: var(--soft); }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; margin-top: 64px; }
+    .card {
+      display: flex; flex-direction: column;
+      color: inherit; text-decoration: none;
+      border: 1px solid var(--ink);
+      background: #fff;
+      transition: transform 200ms cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 200ms;
+    }
+    .card:hover, .card:focus-visible { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+    .card:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .card:nth-child(1) { grid-column: span 7; }
+    .card:nth-child(2) { grid-column: span 5; }
+    .card:nth-child(3) { grid-column: 2 / span 8; }
+    .card:nth-child(4) { grid-column: span 3; align-self: end; }
+    .card img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-bottom: 1px solid var(--ink); }
+    .card__body { padding: 20px 22px 24px; }
+    .card__name { display: flex; align-items: baseline; gap: 14px; margin: 10px 0 8px; font-size: clamp(28px, 3.4vw, 46px); font-weight: 700; font-stretch: 80%; letter-spacing: -0.03em; line-height: 1; }
+    .card__name span { font: 500 12px/1 "Geist Mono", ui-monospace, monospace; letter-spacing: 0.1em; color: var(--soft); }
+    .card p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--soft); }
+    .card--live .card__name { font-size: 24px; }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      .card:nth-child(n) { grid-column: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="label">Aviran / landing page / design directions</p>
+    <h1>Three directions.</h1>
+    <p class="intro">Same copy as the live page. Different layout, type and colour in each. The live page is unchanged.</p>
+
+    <div class="grid">
+      <a class="card" href="/designs/dotmatrix/">
+        <img src="/designs/thumbs/dotmatrix.jpg" alt="Dot matrix direction, hero" loading="lazy" />
+        <div class="card__body">
+          <p class="label">Closest to the references</p>
+          <h2 class="card__name">Dot matrix <span>A</span></h2>
+          <p>Framed column, node dots, halftone type, vermilion accent, product plates in a bento grid.</p>
+        </div>
+      </a>
+      <a class="card" href="/designs/blueprint/">
+        <img src="/designs/thumbs/blueprint.jpg" alt="Blueprint direction, hero" loading="lazy" />
+        <div class="card__body">
+          <p class="label">Largest scale contrast</p>
+          <h2 class="card__name">Blueprint <span>B</span></h2>
+          <p>Cobalt drawing sheet, condensed caps up to 300px, dimension lines, title blocks.</p>
+        </div>
+      </a>
+      <a class="card" href="/designs/dossier/">
+        <img src="/designs/thumbs/dossier.jpg" alt="Dossier direction, hero" loading="lazy" />
+        <div class="card__body">
+          <p class="label">Furthest from a template</p>
+          <h2 class="card__name">Dossier <span>C</span></h2>
+          <p>Paper, serif and italic at mixed sizes, rotated slips, an approval stamp, a tabbed binder.</p>
+        </div>
+      </a>
+      <a class="card card--live" href="/">
+        <div class="card__body">
+          <p class="label">For comparison</p>
+          <h2 class="card__name">Live page</h2>
+          <p>The current aviran.dev.</p>
+        </div>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

@@ -900,3 +900,59 @@ main { flex: 1; display: flex; }
   -webkit-text-fill-color: transparent;
   overflow: hidden;
 }
+
+/* ══ B5 round 2: smaller headline, two offset cards under it ══ */
+.frame { min-height: 0; }
+.hero { padding-bottom: clamp(40px, 5vw, 72px); }
+.hero__giant { font-size: clamp(40px, calc(10.8vw - 15px), 150px); }
+.hero__for.dots { font-size: clamp(34px, 4.3vw, 64px); }
+.hero__mid { font-size: clamp(19px, 1.8vw, 26px); }
+
+.hero__pair {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: clamp(20px, 3vw, 44px);
+  align-items: start;
+  margin-top: calc(-1 * clamp(14px, 1.6vw, 22px));
+  padding-left: clamp(0px, 6vw, 96px);
+}
+.pcard {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--cobalt);
+  padding: clamp(20px, 2.4vw, 32px);
+  color: var(--ink);
+  box-shadow: 8px 8px 0 rgba(31, 59, 224, 0.12);
+}
+.pcard__tag { display: inline-block; color: var(--cobalt); border: 1px solid var(--cobalt); padding: 3px 7px; margin-bottom: 16px; }
+.pcard--lede { margin-top: clamp(40px, 4vw, 56px); }
+.pcard--lede p { font-size: clamp(17px, 1.45vw, 20px); line-height: 1.55; max-width: 52ch; }
+.pcard--cta { margin-top: calc(clamp(40px, 4vw, 56px) + 40px); }
+.pcard__title { font-family: var(--display); font-weight: 700; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.12; letter-spacing: -0.025em; color: var(--cobalt); margin-bottom: 20px; }
+.pcard .actions { display: grid; gap: 10px; }
+.pcard .btn--primary { border-color: var(--cobalt); }
+.pcard .btn--primary:hover { background: var(--cobalt); border-color: var(--cobalt); color: #fff; }
+
+@media (max-width: 900px) {
+  .hero__pair { grid-template-columns: minmax(0, 1fr); padding-left: 0; gap: 16px; }
+  .pcard--lede { margin-top: 32px; }
+  .pcard--cta { margin-top: 0; margin-left: clamp(16px, 8vw, 64px); }
+}
+@media (max-width: 560px) {
+  .pcard--cta { margin-left: 16px; }
+}
+.hero__pair > .hero__dim {
+  position: absolute; z-index: 0; margin: 0;
+  left: 0; right: 0; top: calc(clamp(40px, 4vw, 56px) + 56px);
+}
+.hero__pair > .pcard { position: relative; z-index: 1; }
+@media (max-width: 900px) {
+  .hero__pair > .hero__dim { position: static; order: -1; margin-top: 8px; }
+}
+@media (max-width: 900px) {
+  .hero__giant { font-size: min(calc((100vw - 100px) / 4.1), 150px); }
+  .hero__for.dots { font-size: clamp(32px, 9.5vw, 64px); }
+}
+@media (max-width: 900px) {
+  .hero__pair { margin-top: 28px; }
+}

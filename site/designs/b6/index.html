@@ -37,51 +37,74 @@
 
       <main id="main">
         <section class="hero" aria-labelledby="hero-title">
+          <p class="hero__label mono"><span class="px" aria-hidden="true"></span>The AI Forward-Deployed Engineer for agent vendors</p>
           <h1 id="hero-title" class="hero__title">
-            <span class="hero__giant">AI FDEs</span>
-            <span class="hero__mid">Get integrated with clients <span class="mark">in minutes.</span></span>
-            <span class="hero__for"><span class="hero__dots" data-dots>for your product.</span></span>
+            <span class="hero__big">AI FDEs <span class="matrix">for your product.</span></span>
+            <span class="hero__small">Get integrated with clients <span class="mark">in minutes.</span></span>
           </h1>
-
-          <div class="dim hero__dim" aria-hidden="true"><span class="mono">AI Forward-Deployed Engineer</span></div>
-
-          <div class="hero__lower">
-            <div class="hero__note" aria-hidden="true">
-              <span class="mono">01 / Product contract</span>
-              <span class="mono">02 / Validated change</span>
-              <span class="mono">03 / Operator approval</span>
-            </div>
-
-            <div class="hero__lede">
-              <span class="callout mono" aria-hidden="true">Rev A</span>
-              <p>
-                You ship one agent. Every enterprise customer needs a slightly different version:
-                a discount threshold, a renamed field, an escalation path. Aviran turns each
-                requirement into a validated change. Your operator approves each change.
-              </p>
-            </div>
-
-            <div class="titleblock" aria-label="Request access">
-              <div class="titleblock__cell titleblock__cell--wide">
-                <span class="mono titleblock__k">Title</span>
-                <span class="titleblock__v">The AI Forward-Deployed Engineer for agent vendors.</span>
-              </div>
-              <div class="titleblock__cell">
-                <span class="mono titleblock__k">Sheet</span>
-                <span class="titleblock__v mono">00 / 05</span>
-              </div>
-              <div class="titleblock__cell">
-                <span class="mono titleblock__k">Rev</span>
-                <span class="titleblock__v mono">A</span>
-              </div>
-              <div class="titleblock__cell titleblock__cell--wide titleblock__cell--actions">
-                <a class="btn btn--primary" href="https://calendly.com/raghav-jsub/chat">Request access</a>
-                <a class="btn btn--line" href="https://calendly.com/raghav-jsub/chat">Book a walkthrough</a>
-              </div>
-            </div>
+          <p class="hero__lede">
+            You ship one agent. Every enterprise customer needs a slightly different version:
+            a discount threshold, a renamed field, an escalation path. Aviran turns each
+            requirement into a validated change. Your operator approves each change.
+          </p>
+          <div class="actions hero__actions">
+            <a class="btn btn--primary" href="https://calendly.com/raghav-jsub/chat">Request access</a>
+            <a class="btn btn--line" href="https://calendly.com/raghav-jsub/chat">Book a walkthrough</a>
           </div>
         </section>
       </main>
+    </div>
+
+    <div class="grow" data-grow>
+      <div class="dim grow__dim" aria-hidden="true"><span class="mono">Requirement &rarr; validated change &rarr; operator approval</span></div>
+      <figure class="stage" aria-label="A requirement becomes a validated change, then waits for operator approval">
+        <div class="stage__card">
+          <div class="stage__bar">
+            <span class="stage__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="mono stage__file">acme_corp.yaml</span>
+            <span class="mono stage__cust">Acme Corp</span>
+          </div>
+          <div class="flow">
+            <div class="flow__col">
+              <p class="flow__label mono"><span class="flow__n">01</span>Requirement</p>
+              <blockquote class="req">
+                <span class="mono req__src">Slack &middot; Thu 14:02</span>
+                &ldquo;discounts above 7% now require approval&rdquo;
+              </blockquote>
+              <ul class="mini">
+                <li><span class="mono mini__k">SOW &sect;4.2</span><span>Discounts above 7% require approval</span></li>
+                <li><span class="mono mini__k">Slack</span><span>Field renamed <span class="mono">deal_stage &rarr; opportunity_stage</span></span></li>
+                <li><span class="mono mini__k">Call</span><span>Escalation path</span></li>
+              </ul>
+            </div>
+            <div class="flow__col">
+              <p class="flow__label mono"><span class="flow__n">02</span>Validated change</p>
+              <dl class="diff">
+                <div><dt class="mono">discount_threshold</dt><dd class="mono"><span class="was">null</span><span class="now">7%</span></dd></div>
+                <div><dt class="mono">approval_required</dt><dd class="mono"><span class="was">false</span><span class="now">true</span></dd></div>
+                <div><dt class="mono">crm_field</dt><dd class="mono"><span class="was">deal_stage</span><span class="now">opportunity_stage</span></dd></div>
+                <div><dt class="mono">escalation</dt><dd class="mono"><span class="same">default (unchanged)</span></dd></div>
+              </dl>
+              <ul class="checks">
+                <li><span>Contract compliance</span><span class="st">Pass</span></li>
+                <li><span>Schema compatibility</span><span class="st">Pass</span></li>
+                <li><span>Permission checks</span><span class="st">Pass</span></li>
+              </ul>
+            </div>
+            <div class="flow__col flow__col--approve">
+              <p class="flow__label mono"><span class="flow__n">03</span>Operator approval</p>
+              <p class="approve__status"><span class="pulse" aria-hidden="true"></span>Diff generated, pending operator approval</p>
+              <ul class="ships">
+                <li>Diff</li>
+                <li>Validation evidence</li>
+                <li>Rollback path</li>
+              </ul>
+              <span class="approve__btn" aria-hidden="true">Approve</span>
+              <p class="mono approve__after">Thu 14:11 &middot; Change approved and applied.</p>
+            </div>
+          </div>
+        </div>
+      </figure>
     </div>
     <div class="horizon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   </div>
@@ -409,6 +432,6 @@
   </footer>
 
   <script src="/main.js" type="module"></script>
-  <script src="/designs/b6/dots.js" defer></script>
+  <script src="/designs/b6/grow.js" defer></script>
 </body>
 </html>

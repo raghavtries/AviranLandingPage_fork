@@ -790,11 +790,14 @@ main { flex: 1; display: flex; }
   .field--br { width: 70vw; bottom: 80px; }
 }
 @media (max-width: 560px) {
-  /* small screens: a real dot-matrix face, solid fill, wraps to two lines */
-  .hero__for { white-space: normal; font-size: clamp(44px, 15vw, 84px); line-height: 1; letter-spacing: 0; }
+  /* small screens: same heavy face, coarse fixed halftone over a pale fill so it reads */
+  .hero__for { white-space: normal; font-size: clamp(56px, 19vw, 96px); line-height: 0.95; letter-spacing: -0.01em; }
   .hero__dots {
-    font-family: 'Doto', var(--mono); font-weight: 900; font-stretch: 100%; font-variation-settings: 'wght' 900;
-    color: #fff; background: none !important; -webkit-text-stroke: 0;
+    background:
+      radial-gradient(circle, #fff 0 2.1px, transparent 2.5px) 0 0 / 6px 6px,
+      rgba(255, 255, 255, 0.42) !important;
+    -webkit-background-clip: text !important; background-clip: text !important;
+    color: transparent; -webkit-text-fill-color: transparent; -webkit-text-stroke: 0;
   }
   .horizon i { height: 10px; background-size: 10px 10px; }
   .horizon i:nth-child(even) { background-position: 5px 0; }

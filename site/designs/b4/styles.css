@@ -980,3 +980,9 @@ main { flex: 1; display: flex; }
 @media (max-width: 900px) {
   .grow__inner { clip-path: inset(-4px -4px calc((1 - var(--sf)) * (1 - var(--p)) * 100%) -4px); }
 }
+@media (max-width: 900px) {
+  .grow__dots {
+    -webkit-mask-image: radial-gradient(ellipse 55% 30% at 100% 100%, #000 0 14%, transparent 70%);
+    mask-image: radial-gradient(ellipse 55% 30% at 100% 100%, #000 0 14%, transparent 70%);
+  }
+}

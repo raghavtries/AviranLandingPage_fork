@@ -907,4 +907,5 @@ body {
   .herocard__head { grid-template-columns: minmax(0, 1fr); }
   .herocard__head span + span { border-left: 0; }
   .herocard__actions { flex-direction: column; }
+  .herocard__actions .btn { flex: 0 0 auto; width: 100%; }
 }

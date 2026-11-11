@@ -866,21 +866,20 @@ main { flex: 1; display: flex; }
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .hero__title { grid-template-columns: minmax(0, 1fr); }
-  .hero__giant { white-space: normal; font-size: min(calc((100vw - 80px) / 4.05), 200px); line-height: 0.84; }
+  .hero__giant { white-space: normal; font-size: min(calc((100vw - 100px) / 4.1), 190px); line-height: 0.84; }
   .hero__for.dots { font-size: clamp(36px, 11vw, 80px); margin-top: 0; }
   .hero__mid { justify-self: start; max-width: 20ch; margin-top: 0.3em; }
   .field { width: 46vw; opacity: 0.7; }
   .rail__num { font-size: 46px; }
 }
 @media (max-width: 560px) {
-  .field--r { display: none; }
-  .field--l { opacity: 0.45; }
+  .field { display: none; }
   .cfield { opacity: 0.5; }
 }
 
 /* ── B5 fit fixes ──────────────────────────────────────────── */
 .faq__shell { grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr); }
-.faq__title { font-size: clamp(40px, 4.1vw, 60px); }
+.faq__title { font-size: clamp(36px, 3.6vw, 52px); }
 .wordmark--xl { font-size: clamp(40px, 3.9vw, 62px); }
 .cta .btn--line { background: var(--cobalt); }
 .cfield--tl { width: min(18vw, 260px); height: 70%; }
@@ -889,4 +888,15 @@ main { flex: 1; display: flex; }
   .faq__shell { grid-template-columns: minmax(0, 1fr); }
   .faq__title { font-size: clamp(40px, 11vw, 60px); }
   .wordmark--xl { font-size: clamp(40px, 12vw, 62px); }
+}
+
+/* Doto draws its full stop as a plus; replace it with one round dot */
+.hero__stop {
+  display: inline-block;
+  width: 0.11em; height: 0.11em;
+  margin-left: 0.06em;
+  border-radius: 50%;
+  background: currentColor;
+  -webkit-text-fill-color: transparent;
+  overflow: hidden;
 }

@@ -855,3 +855,14 @@ body {
   .h2 { font-stretch: 100%; }
   .caps__row dt { font-size: clamp(30px, 9.4vw, 44px); }
 }
+
+/* Doto draws its full stop as a plus; draw one square dot to match the grid */
+.hero__stop {
+  display: inline-block;
+  width: 0.085em; height: 0.085em;
+  margin-left: 0.04em;
+  background: currentColor;
+  -webkit-text-fill-color: transparent;
+  overflow: hidden;
+  line-height: 0;
+}

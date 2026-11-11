@@ -898,7 +898,7 @@ main { flex: 1; display: flex; }
 
 /* ── Small screens ──────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .hero__giant { font-size: clamp(60px, 21vw, 204px); }
+  .hero__giant { font-size: clamp(52px, 17.6vw, 204px); }
   .hero__for { justify-self: start; font-size: clamp(40px, 11.4vw, 108px); margin-top: 0.12em; }
   .hero__mid { margin-top: 0.6em; }
   .schem__num { font-size: 150px; top: -0.36em; }
@@ -906,7 +906,7 @@ main { flex: 1; display: flex; }
 }
 @media (max-width: 560px) {
   .hero__for { font-size: clamp(36px, 11.6vw, 60px); }
-  .dotted { -webkit-mask-size: 4.5px 4.5px; mask-size: 4.5px 4.5px; }
+  .dotted { -webkit-mask-size: 4.5px 4.5px; mask-size: 4.5px 4.5px; background-image: linear-gradient(100deg, #A9B5FF 0%, #FFFFFF 70%); }
   .caps__row:nth-child(2) dt, .cta__line--out { -webkit-text-stroke-width: 1.5px; letter-spacing: -0.02em; }
 }
 

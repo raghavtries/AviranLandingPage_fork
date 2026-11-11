@@ -912,3 +912,34 @@ main { flex: 1; display: flex; }
 
 .hero__mid .mark { white-space: nowrap; }
 .sheet { overflow-x: clip; }
+
+/* ── Round 2: smaller headline, two cards under the hero ────── */
+.hero__giant { font-size: clamp(54px, 10.7vw, 160px); }
+.hero__for { font-size: clamp(32px, 5.65vw, 85px); }
+.hero__mid { font-size: clamp(20px, 2.2vw, 32px); }
+.pair {
+  margin-top: clamp(28px, 3.6vw, 52px);
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(14px, 1.6vw, 24px);
+  align-items: stretch;
+}
+.pair__card {
+  display: flex; flex-direction: column; gap: 16px;
+  padding: clamp(18px, 2vw, 28px);
+  border: 1px solid rgba(147,162,255,0.8);
+  background: rgba(10,20,64,0.88);
+}
+.pair__label { color: var(--cobalt-lite); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+.pair__card p { margin: 0; font-size: 17px; line-height: 1.55; max-width: 58ch; }
+.pair__card--cta { justify-content: space-between; }
+.pair__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.pair__actions .btn { flex: 1 1 180px; }
+@media (max-width: 900px) {
+  .hero__giant { font-size: clamp(52px, 17.6vw, 160px); }
+  .hero__for { font-size: clamp(36px, 10vw, 85px); }
+  .pair { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .hero__for { font-size: clamp(32px, 10.4vw, 56px); }
+}

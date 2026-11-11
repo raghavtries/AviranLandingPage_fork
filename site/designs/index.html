@@ -71,6 +71,13 @@
     .six .card { grid-column: auto; align-self: stretch; }
     .six .card__name { font-size: clamp(24px, 2.4vw, 32px); }
     @media (max-width: 860px) { .six { grid-template-columns: 1fr; } }
+    .six .card--wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+    .six .card--wide img { height: 100%; border-bottom: 0; border-right: 1px solid var(--ink); }
+    .six .card--wide .card__body { align-self: end; }
+    @media (max-width: 860px) {
+      .six .card--wide { grid-template-columns: 1fr; }
+      .six .card--wide img { height: auto; border-right: 0; border-bottom: 1px solid var(--ink); }
+    }
     @media (max-width: 860px) {
       .grid { grid-template-columns: 1fr; }
       .card:nth-child(n) { grid-column: auto; }
@@ -168,6 +175,14 @@
             <p class="label">B6</p>
             <h3 class="card__name">Bricolage</h3>
             <p>B&rsquo;s cobalt sheet with A&rsquo;s hero: same size, &ldquo;for your product.&rdquo; in halftone dots. One product card below that flattens and widens as you scroll.</p>
+          </div>
+        </a>
+        <a class="card card--wide" href="/designs/b7/">
+          <img src="/designs/thumbs/b7.jpg" alt="Bricolage XL variation, hero" loading="lazy" />
+          <div class="card__body">
+            <p class="label">B7 / newest</p>
+            <h3 class="card__name">Bricolage XL</h3>
+            <p>B6&rsquo;s sheet and halftone line with B1-scale headline, and B4&rsquo;s CTA sheet that widens on scroll.</p>
           </div>
         </a>
       </div>

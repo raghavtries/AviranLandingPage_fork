@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aviran: The AI Forward-Deployed Engineer for agent vendors</title>
-  <meta name="description" content="Aviran is the AI FDE for AI agent vendors. Aviran learns your product once. Aviran handles onboarding and maintenance for every enterprise customer. Each change includes operator approval, validation evidence, and a rollback path." />
+  <title>Aviran: AI FDEs for agent vendors</title>
+  <meta name="description" content="Aviran is an AI forward-deployed engineer for agent vendors. It learns how each new client works from their docs, calls, and recordings, then prepares the client-specific config and integrations for your FDEs to approve." />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preload" href="/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/public-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -29,8 +29,10 @@
         <span class="nav__anno mono" aria-hidden="true">Sheet 00 / AI FDE</span>
         <nav class="nav__links" aria-label="Primary">
           <a href="#process">How it works</a>
+          <a href="#faq">FAQ</a>
+          <a href="https://calendly.com/raghav-jsub/chat">Book a call</a>
         </nav>
-        <a class="btn btn--line nav__cta" href="https://calendly.com/raghav-jsub/chat">Request access</a>
+        <a class="btn btn--line nav__cta" href="https://next.aviran.dev">Try it</a>
       </header>
 
       <main id="main">
@@ -53,15 +55,17 @@
               <div class="grow__start">
                 <span class="grow__label mono" aria-hidden="true">Sheet 00 / Rev A</span>
                 <p class="grow__lede">
-                  You ship one agent. Every enterprise customer needs a slightly different version:
-                  a discount threshold, a renamed field, an escalation path. Aviran turns each
-                  requirement into a validated change. Your operator approves each change.
+                  Every client you sign runs on a different mix of platforms, rules, and people.
+                  Aviran reads what they send you (docs, call transcripts, even screen recordings)
+                  and turns it into requirements, business logic, and questions for anything still
+                  unclear. Then it prepares the client-specific config and platform mappings.
+                  Your FDE makes the calls and approves every change.
                 </p>
-                <a class="btn btn--primary" href="https://calendly.com/raghav-jsub/chat">Request access</a>
+                <a class="btn btn--primary" href="https://next.aviran.dev">Try it with a sample client</a>
               </div>
               <div class="grow__end">
                 <p class="grow__line">Get integrated with clients <span class="mark">in minutes.</span></p>
-                <a class="btn btn--line grow__walk" href="https://calendly.com/raghav-jsub/chat">Book a walkthrough</a>
+                <a class="btn btn--line grow__walk" href="https://calendly.com/raghav-jsub/chat">Book a call</a>
               </div>
             </div>
           </div>
@@ -77,7 +81,7 @@
     <div class="shell">
       <div class="sheet__tag mono" aria-hidden="true"><span>Sheet 01</span><span>Understand / Onboard / Maintain</span></div>
       <h2 id="loop-title" class="h2">
-        From new customer to launched,<br class="brk" /> <span class="h2__small">without a new hire.</span>
+        From new client to integrated,<br class="brk" /> <span class="h2__small">without a new hire.</span>
       </h2>
 
       <ol class="schem" aria-label="How Aviran works">
@@ -85,21 +89,21 @@
           <span class="schem__num" aria-hidden="true">1</span>
           <div class="schem__box">
             <h3>Understand</h3>
-            <p>Aviran learns your product one time. The resulting product contract includes configurable objects, workflows, and permission boundaries.</p>
+            <p>Aviran learns your agent once: what changes per client, from platforms and prompts to tools and policies. That becomes a product contract every later client reuses.</p>
           </div>
         </li>
         <li class="schem__step">
           <span class="schem__num" aria-hidden="true">2</span>
           <div class="schem__box">
             <h3>Onboard</h3>
-            <p>First, Aviran extracts cited requirements for each customer. Then it generates the customer-specific build. Then it validates the build against the contract before anything ships.</p>
+            <p>For each new client, Aviran turns their docs, calls, and recordings into cited requirements and business logic. It prepares the config and platform mappings, including a platform you haven&rsquo;t integrated before.</p>
           </div>
         </li>
         <li class="schem__step">
           <span class="schem__num" aria-hidden="true">3</span>
           <div class="schem__box">
             <h3>Maintain</h3>
-            <p>Aviran suggests supported changes after launch. Each suggestion includes a diff and a rollback path. Aviran applies a change only after the operator approves it.</p>
+            <p>After launch, clients describe the change they want. Aviran finds what needs updating and proposes a diff with a rollback path. Nothing applies until your FDE approves it.</p>
           </div>
         </li>
       </ol>
@@ -111,19 +115,23 @@
   <section class="sheet sheet--ink caps" aria-labelledby="caps-title">
     <div class="shell">
       <div class="sheet__tag mono" aria-hidden="true"><span>Sheet 02</span><span>Research</span></div>
-      <h2 id="caps-title" class="h2 caps__title">Grounded by our <span class="mark mark--line">ICLR-backed</span> research.</h2>
+      <h2 id="caps-title" class="h2 caps__title">What carries over from <span class="mark mark--line">client to client.</span></h2>
 
       <dl class="caps__list">
         <div class="caps__row">
           <dt><span class="caps__label mono" aria-hidden="true">A / Contract</span>Product contract, once</dt>
-          <dd>Aviran learns your configurable objects, workflows, and permission boundaries a single time. Every later customer reuses the same contract.</dd>
+          <dd>Aviran learns your configurable objects, workflows, and permission boundaries one time. Every later client starts from that contract, so each rollout takes less custom work than the last.</dd>
         </div>
         <div class="caps__row">
-          <dt><span class="caps__label mono" aria-hidden="true">B / Blockers</span>Owner-routed blockers</dt>
-          <dd>Most implementation delay sits with the customer: missing access, unclear ownership, unanswered questions. Aviran finds the owner of each blocker, asks them directly, and tracks the answer as an implementation record.</dd>
+          <dt><span class="caps__label mono" aria-hidden="true">B / Repeat work</span>Repeat work, flagged</dt>
+          <dd>As you onboard more clients, Aviran flags the work that keeps coming back, so you can tell what belongs in your core product and what stays custom.</dd>
         </div>
         <div class="caps__row">
-          <dt><span class="caps__label mono" aria-hidden="true">C / Approval</span>Approve, don&rsquo;t audit</dt>
+          <dt><span class="caps__label mono" aria-hidden="true">C / Blockers</span>Owner-routed blockers</dt>
+          <dd>Most implementation delay sits with the client: missing access, unclear ownership, unanswered questions. Aviran finds who owns each blocker, asks them directly, and logs the answer as an implementation record.</dd>
+        </div>
+        <div class="caps__row">
+          <dt><span class="caps__label mono" aria-hidden="true">D / Approval</span>Approve, don&rsquo;t audit</dt>
           <dd>Every generated config and every post-launch change ships with a diff, validation evidence, and a rollback path.</dd>
         </div>
       </dl>
@@ -135,8 +143,8 @@
     <div class="shell">
       <div class="sheet__tag mono" aria-hidden="true"><span>Sheet 03</span><span>Five stages</span></div>
       <div class="process__head">
-        <h2 id="process-title" class="h2">Five stages, <span class="h2__small">each with evidence.</span></h2>
-        <p class="process__intro">The sequence is fixed. Nothing advances a stage without an artifact you can read.</p>
+        <h2 id="process-title" class="h2">The same loop, <span class="h2__small">stage by stage.</span></h2>
+        <p class="process__intro">Understand, onboard, and maintain, broken into the five stages you see in the product. Each stage leaves an artifact you can read, and nothing ships without your approval.</p>
       </div>
 
       <ol class="rail" role="tablist" aria-label="Process stages">
@@ -204,7 +212,7 @@
         <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" class="panel" tabindex="0" hidden>
           <div class="panel__copy">
             <h3 class="panel__title">Extract requirements, not assumptions.</h3>
-            <p class="panel__body">Aviran reads customer documents, call transcripts, policies, Slack threads, and sample data. Aviran extracts structured, cited requirements from these sources. Aviran routes open questions to the right stakeholder.</p>
+            <p class="panel__body">Aviran reads client documents, call transcripts, screen recordings, policies, Slack threads, and sample data. It extracts structured, cited requirements and routes open questions to the right person.</p>
             <ul class="panel__points">
               <li>Every requirement is traceable to its source</li>
               <li>Missing or conflicting information is flagged and routed automatically</li>
@@ -232,7 +240,7 @@
         <div role="tabpanel" id="panel-3" aria-labelledby="tab-3" class="panel" tabindex="0" hidden>
           <div class="panel__copy">
             <h3 class="panel__title">Generate the customer-specific build.</h3>
-            <p class="panel__body">Aviran combines the vendor product contract with confirmed customer requirements. The result includes configuration, field mappings, workflows, and acceptance criteria for testing. Requirement mapping and candidate generation draw on ICLR-published search techniques.</p>
+            <p class="panel__body">Aviran combines your product contract with the client&rsquo;s confirmed requirements. The result includes configuration, field mappings, workflows, and acceptance criteria for testing. When the client uses a platform you haven&rsquo;t integrated before, Aviran helps wire that integration too.</p>
             <ul class="panel__points">
               <li>Config, mappings, and workflows generated from the product contract</li>
               <li>Acceptance tests and an implementation plan produced alongside the build</li>
@@ -324,7 +332,7 @@
   </section>
 
   <!-- ── FAQ (paper, ruled) ──────────────────────────────────────── -->
-  <section class="sheet sheet--paper faq" id="docs" aria-labelledby="faq-title">
+  <section class="sheet sheet--paper faq" id="faq" aria-labelledby="faq-title">
     <div class="shell faq__shell">
       <div class="faq__head">
         <div class="sheet__tag mono" aria-hidden="true"><span>Sheet 04</span><span>Diligence</span></div>
@@ -349,6 +357,10 @@
           <summary><span class="qa__n mono" aria-hidden="true">Q3</span><span class="qa__q">What happens when the customer is the blocker?</span></summary>
           <div class="qa__a"><p>When this happens Aviran first identifies who owns each blocker. Then Aviran tries asking the owner directly. If there&rsquo;s no result, Aviran turns the answer into an implementation record and gives suggestions on what next steps to take from here.</p></div>
         </details>
+        <details class="qa">
+          <summary><span class="qa__n mono" aria-hidden="true">Q4</span><span class="qa__q">What if a client runs on a system with no API?</span></summary>
+          <div class="qa__a"><p>We leverage tools to create endpoints for you, so your agent can still call into that system. Aviran also maps how the client works there, so your FDEs know what the integration needs.</p></div>
+        </details>
       </div>
     </div>
   </section>
@@ -364,10 +376,10 @@
         <span class="cta__line">Start shipping to customers.</span>
       </h2>
       <div class="cta__lower">
-        <p class="cta__lede">We onboard one of your customers live in a <span class="mark">walkthrough.</span></p>
+        <p class="cta__lede">Try it with the sample client already loaded, or book a call and we&rsquo;ll walk through one of your <span class="mark">real clients.</span></p>
         <div class="actions">
-          <a class="btn btn--primary" href="https://calendly.com/raghav-jsub/chat">Book a walkthrough</a>
-          <a class="btn btn--line" href="mailto:team@aviran.dev">Email the team</a>
+          <a class="btn btn--primary" href="https://next.aviran.dev">Try it</a>
+          <a class="btn btn--line" href="https://calendly.com/raghav-jsub/chat">Book a call</a>
         </div>
       </div>
     </div>
@@ -382,13 +394,14 @@
         </div>
         <div class="titleblock__cell titleblock__cell--tag">
           <span class="mono titleblock__k">Title</span>
-          <p class="titleblock__v footer__tag">The AI Forward-Deployed Engineer for agent vendors.</p>
+          <p class="titleblock__v footer__tag">AI FDEs for agent vendors.</p>
         </div>
         <nav class="titleblock__cell titleblock__cell--nav" aria-label="Footer">
           <span class="mono titleblock__k" aria-hidden="true">Index</span>
           <a href="#process">How it works</a>
-          <a href="#docs">Docs</a>
-          <a href="https://calendly.com/raghav-jsub/chat">Request access</a>
+          <a href="#faq">FAQ</a>
+          <a href="https://next.aviran.dev">Try it</a>
+          <a href="https://calendly.com/raghav-jsub/chat">Book a call</a>
           <a href="mailto:team@aviran.dev">team@aviran.dev</a>
         </nav>
         <div class="titleblock__cell titleblock__cell--legal">

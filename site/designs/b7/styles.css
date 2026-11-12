@@ -1082,3 +1082,11 @@ main { display: block; }
 .body-intertight :is(.h2, .h2__small, .schem__box h3, .caps__row dt, .faq__title, .qa__q, .cta__title, .plate__title, .panel__title, .schem__num) { font-family: "Inter Tight", sans-serif; letter-spacing: -0.03em; }
 .body-plex :is(.h2, .h2__small, .schem__box h3, .caps__row dt, .faq__title, .qa__q, .cta__title, .plate__title, .panel__title, .schem__num) { font-family: "IBM Plex Sans", sans-serif; letter-spacing: -0.02em; }
 .body-archivo :is(.h2, .h2__small, .schem__box h3, .caps__row dt, .faq__title, .qa__q, .cta__title, .plate__title, .panel__title, .schem__num) { font-family: "Archivo", sans-serif; letter-spacing: -0.025em; }
+
+/* ══ Official: Archivo for every heading below the hero (hero unchanged) ══ */
+.h2, .h2__small, .schem__box h3, .caps__row dt, .faq__title, .qa__q, .cta__title, .plate__title, .panel__title, .schem__num {
+  font-family: "Archivo", sans-serif;
+  font-stretch: 100%;
+  font-variation-settings: normal;
+  letter-spacing: -0.025em;
+}

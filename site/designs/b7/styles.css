@@ -881,10 +881,10 @@ main { display: block; }
   font-family: var(--display);
   font-weight: 800; font-stretch: 92%;
   font-variation-settings: 'opsz' 96;
-  font-size: clamp(30px, 5.2vw, 76px);
+  font-size: clamp(40px, 7.6vw, 110px);
   line-height: 0.84;
   letter-spacing: -0.03em;
-  max-width: 5.6em;
+  max-width: 5.2em;
   white-space: normal;
   margin-bottom: -0.04em;
 }
@@ -975,7 +975,7 @@ main { display: block; }
   .hero__title { grid-template-columns: minmax(0, 1fr); }
   .hero__big { font-size: clamp(84px, 26vw, 210px); }
   .hero__small { grid-column: 1; grid-row: 3; max-width: none; margin-top: 0.7em; border-top: 0; padding-top: 0; font-size: clamp(22px, 6vw, 40px); }
-  .hero__for { grid-column: 1; grid-row: 2; max-width: 9em; margin: 0.12em 0 0; white-space: normal; line-height: 0.92; font-size: clamp(36px, 11vw, 96px); }
+  .hero__for { grid-column: 1; grid-row: 2; max-width: none; margin: 0.08em 0 0; white-space: nowrap; line-height: 0.92; font-size: clamp(44px, 12.8vw, 124px); }
   /* coarser, fuller dots on small type so the line never goes faint */
   .hero__for .matrix {
     background-image: radial-gradient(circle, #fff 0 52%, transparent 58%);
@@ -1017,15 +1017,15 @@ main { display: block; }
   font-family: "Big Shoulders Display", sans-serif; font-variation-settings: normal;
 }
 .font-bigshoulders .hero__big { font-size: clamp(96px, 19vw, 280px); }
-.font-bigshoulders .hero__for { font-size: clamp(34px, 6.4vw, 92px); }
+.font-bigshoulders .hero__for { font-size: clamp(46px, 9vw, 130px); }
 .font-unbounded :is(.hero__big, .hero__for, .hero__small, .grow__line, h2, h3) {
   font-family: "Unbounded", sans-serif; font-variation-settings: normal; letter-spacing: -0.04em;
 }
 .font-unbounded .hero__big { font-size: clamp(70px, 12vw, 176px); }
-.font-unbounded .hero__for { font-size: clamp(24px, 3.9vw, 56px); }
+.font-unbounded .hero__for { font-size: clamp(34px, 5.6vw, 80px); }
 @media (max-width: 900px) {
   .font-bigshoulders .hero__big { font-size: clamp(96px, 32vw, 250px); }
-  .font-bigshoulders .hero__for { font-size: clamp(40px, 13vw, 110px); }
+  .font-bigshoulders .hero__for { font-size: clamp(50px, 15vw, 130px); }
   .font-unbounded .hero__big { font-size: clamp(60px, 19vw, 170px); }
-  .font-unbounded .hero__for { font-size: clamp(26px, 8vw, 70px); }
+  .font-unbounded .hero__for { font-size: clamp(28px, 7.8vw, 84px); }
 }

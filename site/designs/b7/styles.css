@@ -1033,3 +1033,40 @@ main { display: block; }
   .font-unbounded .hero__big { font-size: clamp(60px, 19vw, 170px); }
   .font-unbounded .hero__for { font-size: clamp(28px, 7.8vw, 84px); }
 }
+
+/* ══ Calmer type below the hero: sentence case, medium weight, no outlines ══ */
+.h2, .schem__box h3, .caps__row dt, .faq__title, .cta__title, .plate__title, .panel__title {
+  font-family: var(--display);
+  font-stretch: 100%;
+  font-variation-settings: normal;
+  text-transform: none;
+  word-spacing: normal;
+  -webkit-text-stroke: 0;
+}
+.h2 { font-weight: 600; font-size: clamp(36px, 5vw, 68px); line-height: 1.02; letter-spacing: -0.03em; }
+.h2__small { font-weight: 400; font-size: clamp(20px, 2vw, 28px); margin-top: 0.4em; }
+.schem__box h3 { font-weight: 600; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.1; letter-spacing: -0.02em; }
+.caps__row dt { font-weight: 600; font-size: clamp(30px, 3.8vw, 52px); line-height: 1.05; letter-spacing: -0.03em; }
+.caps__row:nth-child(2) dt { color: #fff; -webkit-text-stroke: 0; }
+.panel__title { font-weight: 600; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.1; letter-spacing: -0.02em; }
+.plate__title { font-weight: 600; font-size: 17px; letter-spacing: -0.01em; }
+.faq__title { font-weight: 600; font-size: clamp(34px, 3.8vw, 54px); line-height: 1.02; letter-spacing: -0.03em; }
+.qa__q { font-stretch: 100%; font-weight: 500; font-size: clamp(20px, 2vw, 28px); line-height: 1.2; }
+.cta__title { font-weight: 600; font-size: clamp(38px, 5.6vw, 88px); line-height: 1.02; letter-spacing: -0.035em; }
+.cta__line--out { color: rgba(255,255,255,0.62); -webkit-text-stroke: 0; letter-spacing: inherit; }
+/* numerals: plain light figures instead of outlined giants */
+.schem__num {
+  font-stretch: 100%; font-variation-settings: normal; font-weight: 300;
+  font-size: clamp(96px, 11vw, 160px); top: -0.42em;
+  color: rgba(31, 59, 224, 0.16); -webkit-text-stroke: 0;
+}
+.rail__num {
+  font-family: var(--mono); font-stretch: 100%; font-variation-settings: normal; font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 44px); line-height: 1; letter-spacing: -0.02em;
+  color: var(--cobalt); -webkit-text-stroke: 0;
+}
+.rail__item:hover .rail__num { color: var(--cobalt); }
+.rail__item.is-active .rail__num, .rail__item.is-active:hover .rail__num { color: #fff; }
+@media (max-width: 900px) {
+  .caps__row:nth-child(2) dt, .cta__line--out, .rail__num { -webkit-text-stroke-width: 0; letter-spacing: -0.02em; }
+}

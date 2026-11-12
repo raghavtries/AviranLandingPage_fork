@@ -337,15 +337,20 @@
       <div class="faq__list">
         <details class="qa">
           <summary><span class="qa__n mono" aria-hidden="true">Q1</span><span class="qa__q">Why wouldn&rsquo;t we build this internally?</span></summary>
-          <div class="qa__a"><p>Deployment is a different surface from your core product. Aviran automates the onboarding and maintenance work. Aviran works faster than a human FDE. Your team spends its time on the product instead of manually onboarding 10 new customers. Requirements intake, configuration generation, validation, approvals, rollout, rollback, and auditability require substantial infrastructure to build from scratch.</p></div>
+          <div class="qa__a">
+            <p>Your product quality is important, and any time your engineers can spend on the core product is a win.</p>
+            <p>But we know that deployment is often a lengthy process, involving work that&rsquo;s quite different from building your core product.</p>
+            <p>For each client, figuring out their business logic can involve extensive requirements intake, configuration generation, validation, approvals, rollout, rollback, and auditability. And as their needs change, much of this work continues well beyond the initial deployment.</p>
+            <p>Aviran helps automate this entire onboarding and maintenance process, giving your engineering team more time to focus on improving and growing your product.</p>
+          </div>
         </details>
         <details class="qa">
           <summary><span class="qa__n mono" aria-hidden="true">Q2</span><span class="qa__q">What can Aviran actually change without approval?</span></summary>
-          <div class="qa__a"><p>Nothing ships without operator sign-off. Aviran suggests changes, such as policy updates, prompt and workflow edits, field mappings, integration config, and routing rules. Aviran shows the exact diff for each change.</p></div>
+          <div class="qa__a"><p>Everything can be set to on-approval only, and independently configured for different scenarios.</p></div>
         </details>
         <details class="qa">
           <summary><span class="qa__n mono" aria-hidden="true">Q3</span><span class="qa__q">What happens when the customer is the blocker?</span></summary>
-          <div class="qa__a"><p>A lot of implementation delay sits with the customer: missing access, unclear ownership, unresolved requirements. First, Aviran identifies who owns each blocker. Then Aviran asks the owner directly. Then Aviran turns the answer into an implementation record, for example: &ldquo;Salesforce sandbox access (Owner: Acme CRM admin, Status: Waiting).&rdquo;</p></div>
+          <div class="qa__a"><p>When this happens Aviran first identifies who owns each blocker. Then Aviran tries asking the owner directly. If there&rsquo;s no result, Aviran turns the answer into an implementation record and gives suggestions on what next steps to take from here.</p></div>
         </details>
       </div>
     </div>
